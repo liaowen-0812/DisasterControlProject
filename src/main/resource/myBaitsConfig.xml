@@ -3,7 +3,7 @@
 <configuration>
 <properties resource="pro.properties"></properties>
     <typeAliases>
-     <package name="com.lovo.servlet.entity"></package>
+
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -20,12 +20,5 @@
 
     <mappers>
 
-    <!--  <mapper resource="com/lovo/servlet/dao/IUserMapper.xml"></mapper>
-        <mapper resource="com/lovo/servlet/dao/IStudentMapper.xml"></mapper>
-        <mapper resource="com/lovo/servlet/dao/IKaoqinMapper.xml"></mapper>
-         <mapper resource="com/lovo/servlet/dao/IPageMapper.xml"></mapper> 第一子项目  -->
-<mapper resource="dao/IStudentMapper.xml"></mapper>
-        <mapper resource="dao/IKaoqinMapper.xml"></mapper>
-        <mapper resource="dao/IFIleMapper.xml"></mapper>
     </mappers>
 </configuration>
