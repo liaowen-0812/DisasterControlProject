@@ -13,6 +13,7 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <html>
+
 <head>
     <base href="<%=basePath%>">
     <title>日志一览</title>
@@ -85,8 +86,8 @@
 
 <!--分页结束-->
 <!--查询开始-->
-<div class="layui-col-md4" style="float: right;margin-top: 10px">
-    <div class="layui-card"  style="text-align: center">
+<div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
+    <div class="layui-card"  style="text-align: center;height: 40%">
         <div class="layui-card-header">查询日志信息</div>
         <div class="layui-card-body">
 
@@ -96,13 +97,14 @@
                     <input type="text" class="layui-input"  id="test-laydate-start-cn" placeholder="yyyy-MM-dd">
                 </div>
             </div>
-
-            <div class="layui-input-inline" style="margin-top: 20px">
+            <br/><br/>
+            <div class="layui-input-inline">
                 <label class="layui-form-label">结束日期</label>
                 <div class="layui-input-inline">
                     <input type="text" class="layui-input"  id="test-laydate-last-cn" placeholder="yyyy-MM-dd">
                 </div>
             </div>
+            <br/>
             <br/>
             <br/>
             <!--按钮-->
@@ -111,6 +113,25 @@
         </div>
     </div>
 </div>
+
+<!--查询结束-->
+
+<div class="layui-col-md4" style="margin-top: 10px;width: 48%">
+
+    <div class="layui-card" style="height: 40%;">
+        <div class="layui-card-header" style="text-align: center;">按钮</div>
+        <div class="layui-card-body">
+            <div  id="btnDivId">
+                <!--按钮-->
+                <button type="button" class="layui-btn layui-btn-primary">添加用户</button>
+                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">删除用户</button>
+                <br/><br/><br/><br/>
+                <button type="button"  class="layui-btn layui-btn-primary">修改用户信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--查询结束-->
 <script src="layuiadmin/layui/layui.js"></script>

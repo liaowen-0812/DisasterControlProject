@@ -13,6 +13,15 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <html>
+
+<style type="text/css">
+    #btnDivId button{
+        width: 150px;
+    }
+    #btnDivId{
+        margin-left: 20%;
+    }
+</style>
 <head>
     <base href="<%=basePath%>">
     <title>用户管理</title>
