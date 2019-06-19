@@ -68,32 +68,89 @@
         </tbody>
     </table>
 </div>
+
 <div class="layui-col-md12">
     <div class="layui-card">
-        <div class="layui-card-header">自定义首页、尾页、上一页、下一页文本</div>
+
         <div class="layui-card-body">
             <div id="test-laypage-demo3"></div>
         </div>
     </div>
 </div>
+<!--分页结束-->
+
+<!--添加按钮开始-->
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-primary">添加药剂</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--添加按钮结束-->
+<!--查询开始-->
+<div class="layui-col-md4" style="float: right;margin-top: 10px">
+    <div class="layui-card"  style="text-align: center">
+        <div class="layui-card-header">查询日志信息</div>
+        <div class="layui-card-body">
+
+            <div class="layui-input-inline">
+                <label class="layui-form-label">起始日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn" placeholder="yyyy-MM-dd">
+                </div>
+            </div>
+
+            <div class="layui-input-inline" style="margin-top: 20px">
+                <label class="layui-form-label">结束日期</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input"  id="test-laydate-last-cn" placeholder="yyyy-MM-dd">
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <!--按钮-->
+            <button type="button" class="layui-btn layui-btn-primary">查询</button>
+
+        </div>
+    </div>
+</div>
+
+<!--查询结束-->
 
 
 
-</div>
-</div>
-</div>
+
 
 
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
-    layui.config({
-        base: 'layuiadmin/' //静态资源所在路径
-    }).extend({
-        index: 'lib/index' //主入口模块
-    }).use(['index', 'laypage'], function(){
-        var laypage = layui.laypage;
 
 
+        layui.config({
+            base: 'layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index','laydate', 'laypage'], function(){
+            var laydate = layui.laydate,
+                laypage = layui.laypage;
+
+            laydate.render({
+                elem: '#test-laydate-start-cn'
+                ,trigger: 'click'
+            });
+
+            laydate.render({
+                elem: '#test-laydate-last-cn'
+                ,trigger: 'click'
+            });
 
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
