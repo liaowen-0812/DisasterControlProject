@@ -93,37 +93,7 @@
     }).use(['index', 'laypage'], function(){
         var laypage = layui.laypage;
 
-        //总页数低于页码总数
-        laypage.render({
-            elem: 'test-laypage-demo0'
-            ,count: 50 //数据总数
-        });
 
-        //总页数大于页码总数
-        laypage.render({
-            elem: 'test-laypage-demo1'
-            ,count: 70 //数据总数
-            ,jump: function(obj){
-                console.log(obj)
-            }
-        });
-
-        //自定义样式
-        laypage.render({
-            elem: 'test-laypage-demo2'
-            ,count: 100
-            ,theme: '#1E9FFF'
-        });
-        laypage.render({
-            elem: 'test-laypage-demo2-1'
-            ,count: 100
-            ,theme: '#FF5722'
-        });
-        laypage.render({
-            elem: 'test-laypage-demo2-2'
-            ,count: 100
-            ,theme: '#FFB800'
-        });
 
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
@@ -135,33 +105,11 @@
             ,next: '<em>→</em>'
         });
 
-        //不显示首页尾页
-        laypage.render({
-            elem: 'test-laypage-demo4'
-            ,count: 100
-            ,first: false
-            ,last: false
-        });
 
-        //开启HASH
-        laypage.render({
-            elem: 'test-laypage-demo5'
-            ,count: 500
-            ,curr: location.hash.replace('#!fenye=', '') //获取hash值为fenye的当前页
-            ,hash: 'fenye' //自定义hash值
-        });
 
-        //只显示上一页、下一页
-        laypage.render({
-            elem: 'test-laypage-demo6'
-            ,count: 50
-            ,layout: ['prev', 'next']
-            ,jump: function(obj, first){
-                if(!first){
-                    layer.msg('第 '+ obj.curr +' 页');
-                }
-            }
-        });
+
+
+       
 
     });
 </script>
