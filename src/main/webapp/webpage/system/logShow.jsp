@@ -14,26 +14,10 @@
 %>
 <html>
 
-<style type="text/css">
-    #btnDivId button{
-        width: 150px;
-    }
-    #btnDivId{
-        margin-left: 20%;
-    }
-</style>
 <head>
     <base href="<%=basePath%>">
-    <title>用户管理</title>
+    <title>日志一览</title>
     <%@include file="head.jsp"%>
-    <style type="text/css">
-        #btnDivId button{
-            width: 150px;
-        }
-        #btnDivId{
-            margin-left: 20%;
-        }
-    </style>
 </head>
 <body>
 <div class="layui-col-md12">
@@ -137,17 +121,19 @@
     <div class="layui-card" style="height: 40%;">
         <div class="layui-card-header" style="text-align: center;">按钮</div>
         <div class="layui-card-body">
-        <div  id="btnDivId">
-            <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary">添加用户</button>
-            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">删除用户</button>
-            <br/><br/><br/><br/>
-            <button type="button"  class="layui-btn layui-btn-primary">修改用户信息</button>
-        </div>
+            <div  id="btnDivId">
+                <!--按钮-->
+                <button type="button" class="layui-btn layui-btn-primary">添加用户</button>
+                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">删除用户</button>
+                <br/><br/><br/><br/>
+                <button type="button"  class="layui-btn layui-btn-primary">修改用户信息</button>
+            </div>
         </div>
     </div>
 </div>
 
+
+<!--查询结束-->
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
@@ -156,7 +142,7 @@
         index: 'lib/index' //主入口模块
     }).use(['index','laydate', 'laypage'], function(){
         var laydate = layui.laydate,
-         laypage = layui.laypage;
+            laypage = layui.laypage;
 
         laydate.render({
             elem: '#test-laydate-start-cn'
