@@ -24,7 +24,7 @@
     <div class="layui-card">
         <div class="layui-card-header" style="font-size: 30px">日志信息</div>
         <div class="layui-card-body">
-            <table class="layui-table">
+            <table class="layui-table" >
                 <colgroup>
                     <col width="150">
                     <col width="150">
@@ -148,7 +148,6 @@
             , prev: '<em>←</em>'
             , next: '<em>→</em>'
         });
-
     });
 </script>
 </body>
