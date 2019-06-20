@@ -82,23 +82,11 @@
 <!--添加按钮开始-->
 
 
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md6">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="layui-btn-container">
-                        <button class="layui-btn layui-btn-primary">添加药剂</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 <!--添加按钮结束-->
 <!--查询开始-->
-<div class="layui-col-md4" style="float: right;margin-top: 10px">
+<div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
     <div class="layui-card"  style="text-align: center">
-        <div class="layui-card-header">查询日志信息</div>
+        <div class="layui-card-header">查询药剂信息</div>
         <div class="layui-card-body">
 
             <div class="layui-input-inline">
@@ -126,11 +114,28 @@
 <!--查询结束-->
 
 
+        <div class="layui-col-md4" style="margin-top: 10px;width: 48%">
+
+            <div class="layui-card" style="height: 40%;">
+
+                <div class="layui-card-body">
+                    <div  id="btnDivId">
+                        <!--按钮-->
+                        <button style="margin-left: 200px;margin-top: 20%" onclick="add()" type="button" class="layui-btn layui-btn-primary">添加药剂</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
+<script>
+    function add() {
+        location.href="webpage/warehouse/add.jsp";
+    }
 
+</script>
 
-<script src="layuiadmin/layui/layui.js"></script>
 <script>
 
 
