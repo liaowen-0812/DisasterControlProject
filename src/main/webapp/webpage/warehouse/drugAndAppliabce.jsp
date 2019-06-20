@@ -82,6 +82,17 @@
 <!--添加按钮开始-->
 
 
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-primary">添加药剂</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <!--添加按钮结束-->
 <!--查询开始-->
