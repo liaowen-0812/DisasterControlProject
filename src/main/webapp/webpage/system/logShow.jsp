@@ -10,14 +10,14 @@
 <%
     String path = request.getContextPath();
 //http://ip+port+projectName
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <html>
 
 <head>
     <base href="<%=basePath%>">
     <title>日志一览</title>
-    <%@include file="head.jsp"%>
+    <%@include file="head.jsp" %>
 </head>
 <body>
 <div class="layui-col-md12">
@@ -68,7 +68,7 @@
                     <td>孟子</td>
                     <td>华夏族（汉族）</td>
                     <td>公元前-372年</td>
-                    <td>猿强，则国强。国强，则猿更强！ </td>
+                    <td>猿强，则国强。国强，则猿更强！</td>
                 </tr>
                 </tbody>
             </table>
@@ -87,21 +87,21 @@
 <!--分页结束-->
 <!--查询开始-->
 <div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
-    <div class="layui-card"  style="text-align: center;height: 40%">
+    <div class="layui-card" style="text-align: center;height: 40%">
         <div class="layui-card-header">查询日志信息</div>
         <div class="layui-card-body">
 
             <div class="layui-input-inline">
                 <label class="layui-form-label">起始日期</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn" placeholder="yyyy-MM-dd">
+                    <input type="text" class="layui-input" id="test-laydate-start-cn" placeholder="yyyy-MM-dd">
                 </div>
             </div>
             <br/><br/>
             <div class="layui-input-inline">
                 <label class="layui-form-label">结束日期</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-last-cn" placeholder="yyyy-MM-dd">
+                    <input type="text" class="layui-input" id="test-laydate-last-cn" placeholder="yyyy-MM-dd">
                 </div>
             </div>
             <br/>
@@ -121,12 +121,12 @@
     <div class="layui-card" style="height: 40%;">
         <div class="layui-card-header" style="text-align: center;">按钮</div>
         <div class="layui-card-body">
-            <div  id="btnDivId">
+            <div id="btnDivId">
                 <!--按钮-->
                 <button type="button" class="layui-btn layui-btn-primary">添加用户</button>
                 <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">删除用户</button>
                 <br/><br/><br/><br/>
-                <button type="button"  class="layui-btn layui-btn-primary">修改用户信息</button>
+                <button type="button" class="layui-btn layui-btn-primary">修改用户信息</button>
             </div>
         </div>
     </div>
@@ -140,27 +140,27 @@
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index','laydate', 'laypage'], function(){
+    }).use(['index', 'laydate', 'laypage'], function () {
         var laydate = layui.laydate,
             laypage = layui.laypage;
 
         laydate.render({
             elem: '#test-laydate-start-cn'
-            ,trigger: 'click'
+            , trigger: 'click'
         });
 
         laydate.render({
             elem: '#test-laydate-last-cn'
-            ,trigger: 'click'
+            , trigger: 'click'
         });
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
             elem: 'test-laypage-demo3'
-            ,count: 100
-            ,first: '首页'
-            ,last: '尾页'
-            ,prev: '<em>←</em>'
-            ,next: '<em>→</em>'
+            , count: 100
+            , first: '首页'
+            , last: '尾页'
+            , prev: '<em>←</em>'
+            , next: '<em>→</em>'
         });
 
     });
