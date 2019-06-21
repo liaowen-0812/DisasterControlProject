@@ -27,9 +27,9 @@
         left: 50%;
         background-color: white;
         transform: translate(-50%, -50%);
-        padding: 40px;
+        padding: 50px;
         padding-top: 32px;
-        padding-bottom: 20px;
+        padding-bottom: 0px;
         box-shadow: 0px 3px 20px 3px rgba(0, 0, 0, 0.15);
     }
 
