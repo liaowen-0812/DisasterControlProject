@@ -5,7 +5,8 @@
 <%
     String path = request.getContextPath();
 //http://ip+port+projectName
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme()+"://"+request.getServerName
+            ()+":"+request.getServerPort()+path+"/";
 %>
 <html>
 <head>
@@ -17,8 +18,8 @@
 
 
 <!-- 表格-->
-<div class="layui-card-header" style="font-size:30px"align="center">药剂/器械一览</div>
-<div class="layui-card-body" style="height: 35%">
+<div class="layui-card-header" style="font-size:30px">药剂/器械一览</div>
+<div class="layui-card-body" style="height: 53%;width: 100%">
     <table class="layui-table">
         <colgroup>
             <col width="150">
@@ -59,7 +60,12 @@
             <td>1103-北宋崇宁二年</td>
             <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
         </tr>
-
+        <tr>
+            <td>孟子</td>
+            <td>华夏族（汉族）</td>
+            <td>公元前-372年</td>
+            <td>猿强，则国强。国强，则猿更强！ </td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -74,7 +80,21 @@
 </div>
 <!--分页结束-->
 
+<div class="layui-col-md4" style="margin-top: 10px;width: 48%">
 
+    <div class="layui-card" style="height: 40%;">
+
+        <div class="layui-card-body">
+            <div  id="btnDivId">
+                <!--按钮-->
+                <button style="margin-left: 66px;margin-top: 10%" onclick=""
+                        type="button" class="layui-btn layui-btn-primary">查询</button>
+                <button style="margin-left: 200px;margin-top: 10%" onclick=""
+                        type="button" class="layui-btn layui-btn-primary">领取</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--查询开始-->
 
@@ -86,13 +106,15 @@
 
             <div class="layui-form-item">
                 <div class="layui-col-md12">
-                    <input type="text" style="width: 50%;margin-left: 20%" name="title" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                    <input type="text" style="width: 50%;margin-left: 20%"
+                           name="title" placeholder="请输入名称" autocomplete="off" class="layui-input">
                 </div><br><br>
             </div>
 
             <div class="layui-form-item">
                 <div class="layui-col-md6" style="width: 335px">
-                    <select name="city" lay-verify="" style="width: 267px;height: 40px;margin-left:32%">
+                    <select name="city" lay-verify="" style="width: 267px;height:
+40px;margin-left:32%">
                         <option value="">请选择一个防治类型</option>
                         <option value="0">病害</option>
                         <option value="1">虫害</option>
@@ -105,7 +127,7 @@
 
             <div class="layui-form-item">
                 <div class="layui-col-md6" style="width: 335px">
-                    <select name="city" lay-verify="" style="width: 267px;height: 40px;margin-left:32%">
+                    <select name="city" lay-verify="" style="width: 267px;height:40px;margin-left:32%">
                         <option value="">请选择一个类别</option>
                         <option value="0">药剂</option>
                         <option value="1">器械</option>
@@ -113,68 +135,55 @@
                 </div>
             </div>
 
+
             <br/>
             <br/>
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary">查询</button>
+            <button type="button" style="margin-top: -10%" class="layui-btn
+layui-btn-primary">查询</button>
 
         </div>
-            </div>
+    </div>
 
 </div>
 
 <!--查询结束-->
 
 
-        <div class="layui-col-md4" style="margin-top: 10px;width: 48%">
 
-            <div class="layui-card" style="height: 40%;">
-
-                <div class="layui-card-body">
-                    <div  id="btnDivId">
-                        <!--按钮-->
-                        <button style="margin-left: 200px;margin-top: 20%" onclick="add()" type="button" class="layui-btn layui-btn-primary">添加药剂</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
 <script>
-    function add() {
-        location.href="webpage/warehouse/add2.jsp";
-    }
+
 
 </script>
 
 
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
-        layui.config({
-            base: 'layuiadmin/' //静态资源所在路径
-        }).extend({
-            index: 'lib/index' //主入口模块
-        }).use(['index','laydate', 'laypage','user','form'], function(){
-            var laydate = layui.laydate,
-                laypage = layui.laypage;
-            var $ = layui.$
-                , admin = layui.admin
-                , element = layui.element
-                , form = layui.form
-                , router = layui.router();
+    layui.config({
+        base: 'layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index','laydate','user', 'laypage','form'], function(){
+        var laydate = layui.laydate,
+            laypage = layui.laypage
+            , admin = layui.admin
+            , element = layui.element
+            , router = layui.router();
+        var   form = layui.form;
 
-            form.render();
+        form.render();
 
-            laydate.render({
-                elem: '#test-laydate-start-cn'
-                ,trigger: 'click'
-            });
+        laydate.render({
+            elem: '#test-laydate-start-cn'
+            ,trigger: 'click'
+        });
 
-            laydate.render({
-                elem: '#test-laydate-last-cn'
-                ,trigger: 'click'
-            });
+        laydate.render({
+            elem: '#test-laydate-last-cn'
+            ,trigger: 'click'
+        });
 
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
@@ -186,7 +195,7 @@
             ,next: '<em>→</em>'
         });
 
-        });
+    });
 
 
 </script>
