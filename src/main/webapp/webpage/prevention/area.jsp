@@ -20,34 +20,66 @@
 </head>
 <body>
 <div class="layui-card-header" align="center"><h2>区域一览</h2></div>
-<div class="layui-card-body" align="center">
-    <table class="layui-table">
-        <colgroup>
-            <col width="250">
-            <col width="250">
-            <col width="250">
-            <col width="250">
-        </colgroup>
-        <thead>
-        <tr>
-            <th>区域名称</th>
-            <th>林种</th>
-            <th>地类</th>
-            <th>优势树种</th>
-            <th>负责小班 </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>贤心</td>
-            <td>汉族</td>
-            <td>1989-10-14</td>
-            <td>人生似修行</td>
-            <td></td>
-        </tr>
+<div class="layui-card">
+    <div class="layui-card-header" style="font-size: 30px">日志信息</div>
+    <div class="layui-card-body">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="150">
+                <col width="200">
+                <col width="250">
+                <col width="200">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>人物</th>
+                <th>民族</th>
+                <th>出场时间</th>
+                <th>格言</th>
+                <th>faj</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>贤心</td>
+                <td>汉族</td>
+                <td>1989-10-14</td>
+                <td>人生似修行</td>
+                <td>111</td>
+            </tr>
+            <tr>
+                <td>张爱玲</td>
+                <td>汉族</td>
+                <td>1920-09-30</td>
+                <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
+                <td>111</td>
+            </tr>
+            <tr>
+                <td>Helen Keller</td>
+                <td>拉丁美裔</td>
+                <td>1880-06-27</td>
+                <td> Life is either a daring adventure or nothing.</td>
+                <td>111</td>
+            </tr>
+            <tr>
+                <td>岳飞</td>
+                <td>汉族</td>
+                <td>1103-北宋崇宁二年</td>
+                <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
+                <td>111</td>
+            </tr>
+            <tr>
+                <td>孟子</td>
+                <td>华夏族（汉族）</td>
+                <td>公元前-372年</td>
+                <td>猿强，则国强。国强，则猿更强！ </td>
+                <td>111</td>
+            </tr>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!--分页-->
@@ -62,9 +94,16 @@
 <!--按钮-->
 <div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
     <div class="layui-card"  style="text-align: center;height: 40%">
-        <div class="layui-card-header">查询日志信息</div>
-        <div class="layui-card-body">
-            <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px">
+        <div class="layui-card-header">查询区域信息</div>
+        <div class="layui-card-body" >
+
+            <!--文本框标题-->
+            <div style=" position: absolute;left: 25%;top: 40px;width: 100px;"><h2>种植区域:</h2></div>
+            <div style=" position: absolute;left: 27.5%;top: 100px;width: 100px;"><h2>林种:</h2></div>
+            <div style=" position: absolute;left: 25%;top: 160px;width: 100px;"><h2>负责小班:</h2></div>
+
+
+            <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px;">
                 <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="种植区域" class="layui-input">
             </div>
             <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px">
