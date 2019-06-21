@@ -23,8 +23,8 @@
 <div class="layui-col-md12">
     <div class="layui-card">
         <div class="layui-card-header" style="font-size: 30px">日志信息</div>
-        <div class="layui-card-body">
-            <table class="layui-table" >
+        <div class="layui-card-body" style="height: 35%">
+            <table class="layui-table">
                 <colgroup>
                     <col width="150">
                     <col width="150">
