@@ -38,8 +38,8 @@
 <body>
 <div class="layui-col-md12">
     <div class="layui-card">
-        <div class="layui-card-header" style="font-size: 30px">日志信息</div>
-        <div class="layui-card-body">
+        <div class="layui-card-header" style="text-align:center;font-size: 30px">日志信息</div>
+        <div class="layui-card-body" style="height: 35%">
             <table class="layui-table">
                 <colgroup>
                     <col width="150">
@@ -139,10 +139,10 @@
         <div class="layui-card-body">
         <div  id="btnDivId">
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary">添加用户</button>
+            <button type="button" onclick="addUser()" class="layui-btn layui-btn-primary">添加用户</button>
             <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">删除用户</button>
             <br/><br/><br/><br/>
-            <button type="button"  class="layui-btn layui-btn-primary">修改用户信息</button>
+            <button type="button"  class="layui-btn layui-btn-primary" onclick="update()">修改用户信息</button>
         </div>
         </div>
     </div>
@@ -177,7 +177,14 @@
             ,next: '<em>→</em>'
         });
 
+
     });
+    function addUser() {
+        location.href='webpage/system/addUser.jsp';
+    }
+    function update() {
+        location.href='webpage/system/updateUser.jsp';
+    }
 </script>
 </body>
 </html>
