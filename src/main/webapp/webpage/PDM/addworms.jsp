@@ -92,8 +92,11 @@
 
 
         <!--按钮-->
-        <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;">添加</button>
-    <script>
+    <div>
+        <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;" id="addId" onclick="add()">添加</button>
+    </div>
+        <script>
+
         layui.config({
             base: 'layuiadmin/' //静态资源所在路径
         }).extend({
@@ -200,7 +203,12 @@
             })
 
         });
+
+        function add(){
+            location.href="webpage/PDM/worms.jsp";
+        }
     </script>
+
 </div>
 </div>
 </body>

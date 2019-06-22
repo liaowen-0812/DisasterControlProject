@@ -84,7 +84,7 @@
 
 
     <!--按钮-->
-    <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;">添加</button>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;" onclick="add()">添加</button>
     <script>
         layui.config({
             base: 'layuiadmin/' //静态资源所在路径
@@ -192,6 +192,10 @@
             })
 
         });
+
+        function add(){
+            location.href="webpage/PDM/mouse.jsp";
+        }
     </script>
 </div>
 </div>

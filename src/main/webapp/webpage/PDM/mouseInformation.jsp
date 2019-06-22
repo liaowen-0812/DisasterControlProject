@@ -9,35 +9,32 @@
 <head>
     <base href="<%=basePath%>">
     <meta charset="utf-8">
-    <title>虫害详细信息</title>
+    <title>鼠害详细信息</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <%@include file="../../head.jsp" %>
 </head>
 <body>
-<div><h2 align="center">虫害详细信息</h2>
+<div><h2 align="center">鼠害详细信息</h2>
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">名称</b></span>
-        <span><b style="margin-left: 20%">幼虫图片</b></span>
+        <span><b style="margin-left: 20%">图片</b></span>
     </div>
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">繁殖</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">寄主</b></span>
+        <span><b style="margin-left: 35%">食物</b></span>
     </div>
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">天敌</b></span>
-        <span><b style="margin-left: 20%">成虫图片</b></span>
+        <span><b style="margin-left: 20%">主要危害</b></span>
 
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">主要危害</b></span>
+        <span><b style="margin-left: 35%">防治措施</b></span>
 
-    </div>
-    <div style="margin-top: 30px">
-            <span><b style="margin-left: 35%">防治措施</b></span>
     </div>
 
     <div class="layui-card-body" style="margin-left: 37%;margin-top: 70px">
@@ -52,7 +49,7 @@
 
 <script>
     $("#bid").click(function () {
-        location.href="webpage/PDM/worms.jsp";
+        location.href="webpage/PDM/mouse.jsp";
     });
 </script>
 

@@ -15,12 +15,12 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>添加虫害</title>
+    <title>添加病害</title>
     <%@include file="head.jsp"%>
 </head>
 <body>
 <div class="layui-fluid" align="center">
-    <div class="layui-card-header" style="font-size: 30px">添加虫害</div>
+    <div class="layui-card-header" style="font-size: 30px">添加病害</div>
     <br/><br/>
     <div class="layui-form-item">
         <div class="layui-inline">
@@ -55,13 +55,16 @@
 
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">幼虫图片</label>
-            <div class="layui-upload" style="padding-right: 200px">
+            <label class="layui-form-label">图片</label>
+            <div class="layui-upload" style="padding-right: 300px">
                 <img class="layui-upload-img" id="test-upload-normal-img" style="width: 100px;height: 100px">
                 <p id="test-upload-demoText"></p><br/>
                 <button type="button" class="layui-btn" id="test-upload-normal">上传图片</button>
             </div>
         </div>
+
+
+
 
     <div class="layui-form-item">
         <div class="layui-inline">
@@ -82,7 +85,7 @@
 
 
     <!--按钮-->
-    <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;">添加</button>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;"onclick="add()">添加</button>
     <script>
         layui.config({
             base: 'layuiadmin/' //静态资源所在路径
@@ -190,6 +193,10 @@
             })
 
         });
+
+        function add(){
+            location.href="webpage/PDM/disease.jsp";
+        }
     </script>
 </div>
 </div>
