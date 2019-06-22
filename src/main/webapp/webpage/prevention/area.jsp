@@ -130,6 +130,7 @@
 
         </div>
     </div>
+</div>
 <script>
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
@@ -209,5 +210,6 @@
         });
     });
 </script>
+
 </body>
 </html>
