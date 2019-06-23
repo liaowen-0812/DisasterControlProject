@@ -15,13 +15,12 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>Title</title>
+    <title>区域一览</title>
     <%@include file="head.jsp"%>
 </head>
 <body>
 <div class="layui-card-header" align="center"><h2>区域一览</h2></div>
 <div class="layui-card">
-    <div class="layui-card-header" style="font-size: 30px">日志信息</div>
     <div class="layui-card-body">
         <table class="layui-table">
             <colgroup>
@@ -115,7 +114,7 @@
             </div>
 
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 50%;margin-top: 20px">添加用户</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 50%;margin-top: 20px">查找</button>
 
         </div>
     </div>
@@ -126,7 +125,7 @@
     <div class="layui-card"  style="text-align: center;height: 40%">
         <div class="layui-card-body">
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:40%;margin-top:100px;width: 150px">添加用户</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:40%;margin-top:100px;width: 150px" id="buttonId" onclick="buttonId() ">添加用户</button>
 
         </div>
     </div>
@@ -209,6 +208,14 @@
             }
         });
     });
+
+
+
+    // //自己的js
+    function buttonId() {
+        location.href="webpage/prevention/addarea.jsp";
+    }
+
 </script>
 
 </body>
