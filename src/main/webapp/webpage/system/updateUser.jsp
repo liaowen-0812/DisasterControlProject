@@ -37,6 +37,7 @@
             <div class="layui-form-item">
                 <span>用户名:</span>
                 <span style="margin-left: 25%">${userObj.userName}</span>
+                <input type="hidden" name="userId" value="${userObj.userId}"/>
             </div>
             <br/>
 

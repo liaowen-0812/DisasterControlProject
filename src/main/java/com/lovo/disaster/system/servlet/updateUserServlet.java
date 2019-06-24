@@ -1,5 +1,7 @@
 package com.lovo.disaster.system.servlet;
 
+import com.lovo.disaster.system.bean.SysRole;
+import com.lovo.disaster.system.bean.SysUser;
 import com.lovo.disaster.system.service.IUserService;
 import com.lovo.disaster.system.service.impl.UserServiceImpl;
 
@@ -11,7 +13,21 @@ import java.io.IOException;
 
 public class updateUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        IUserService service = new UserServiceImpl();
+        String passWord= request.getParameter("passWord");
+        String userId = request.getParameter("userId");
+        String city = request.getParameter("city");
+        if(userId!= null && !"".equals(userId)){
+            int id = Integer.parseInt(userId);
+            int cityId = Integer.parseInt(city);
+            SysUser user = new SysUser();
+            user.setUserId(id);
+            user.setUserPwd(passWord);
+            SysRole role = new SysRole();
+            role.setRoleId(cityId);
+            user.setRoleObj(role);
+            IUserService service = new UserServiceImpl();
+            service.updateUser(user);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
