@@ -25,4 +25,12 @@ session.close();
         session.close();
 
     }
+
+    @Override
+    public int allPage(Map<String, Object> map) {
+        SqlSession session= GetSession.creatSession();
+       int allPage= session.getMapper(IDrugDao.class).allPage(map);
+
+        return allPage;
+    }
 }
