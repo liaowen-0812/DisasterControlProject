@@ -42,4 +42,21 @@ public interface IUserDao {
      */
     public int findUserByName(String name);
 
+    /**
+     * 根据id查询用户
+     * @param userId 用户id
+     * @return 用户对象
+     */
+    public SysUser findUserById(int userId);
+
+
+
+
+    /**
+     * 修改用户
+     * @param user 用户对象
+     * @return 受影响的行数
+     */
+    public int updateUser(SysUser user);
+
 }

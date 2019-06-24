@@ -87,4 +87,31 @@ public class UserServiceImpl implements IUserService {
             return true;
         }
     }
+
+
+    public SysUser findUserById(int userId){
+        SqlSession session = GetSession.creatSession();
+        IUserDao dao = session.getMapper(IUserDao.class);
+        SysUser user = dao.findUserById(userId);
+        session.close();
+        return user;
+    }
+
+    /**
+     * 修改用户
+     * @param user 用户对象
+     * @return 受影响的行数
+     */
+    public boolean updateUser(SysUser user){
+        SqlSession session = GetSession.creatSession();
+        IUserDao dao = session.getMapper(IUserDao.class);
+        int i = dao.updateUser(user);
+        session.commit();
+        session.close();
+        if(i == 0){
+            return false;
+        }else{
+            return  true;
+        }
+    }
 }

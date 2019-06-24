@@ -36,27 +36,27 @@
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <div class="layui-form-item">
                 <span>用户名:</span>
-                <span style="margin-left: 25%">zy</span>
+                <span style="margin-left: 25%">${userObj.userName}</span>
             </div>
             <br/>
+
 
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password"
                        for="LAY-user-login-password"></label>
-                <input type="password" name="password" id="LAY-user-login-password" lay-verify="pass" placeholder="密码"
+                <input type="password" name="passWord" id="LAY-user-login-passWord" lay-verify="passWord" placeholder="密码"
                        class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password"
-                       for="LAY-user-login-repass"></label>
-                <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码"
+                       for="LAY-user-login-passWord2"></label>
+                <input type="password" name="passWord2" id="LAY-user-login-passWord2" lay-verify="passWord2" placeholder="确认密码"
                        class="layui-input">
             </div>
-
             <br/>
             <div class="layui-form-item">
                 <span>真实姓名:</span>
-                <span style="margin-left: 25%">逐步反</span>
+                <span style="margin-left: 25%">${userObj.userTrueName}</span>
             </div>
             <br/>
 
@@ -64,12 +64,11 @@
                 <div class="layui-col-md6" style="width: 335px">
                     <select name="city" lay-verify="">
                         <option value="">用户等级</option>
-                        <option value="010">超级管理员</option>
-                        <option value="021">资料管理员</option>
-                        <option value="0571">灾情管理员</option>
-                        <option value="0571">专家管理员</option>
-                        <option value="0571">库房管理员</option>
+                        <c:forEach items="${rolelist}" var="role">
+                            <option id="option${role.roleId}" value="${role.roleId}">${role.roleName}</option>
+                        </c:forEach>
                     </select>
+                    <input type="hidden"  value="${userObj.roleObj.roleId}" id="inputSelectId"/>
                 </div>
             </div>
 
@@ -97,16 +96,40 @@
             , form = layui.form
             , router = layui.router();
 
+        layer.ready(function () {
+
+            var inputSelectId = $("#inputSelectId").val();
+            var v = "#option" + inputSelectId;
+            $(v).attr("selected", "selected");
+        })
         form.render();
 
+        form.verify({
+            passWord: [/(.+){3,12}$/, '密码必须3到12位']
+            ,roleType: function (value) {
+                if(value == ""){
+                    return '请选择用户等级';
+                }
+            }
+        });
         //提交
         form.on('submit(LAY-user-reg-submit)', function (obj) {
             var field = obj.field;
             //确认密码
-            if (field.password !== field.repass) {
+            if (field.passWord !== field.passWord2) {
                 return layer.msg('两次密码输入不一致');
             }
-
+            $.post("updateUser", obj.field,function (data) {
+                if(data == 'true'){
+                    layer.msg('修改成功', {
+                        offset: '15px'
+                        ,icon: 1
+                        ,time: 1000
+                    }, function(){
+                        location.href = 'user'; //跳转到登入页
+                    });
+                }
+            })
             //请求接口
 
             return false;

@@ -41,5 +41,11 @@
     </select>
 
 
+    <select id="findUserById" resultMap="userMap" >
+       select * from sys_user where user_id = #{0}
+    </select>
 
+    <insert id="updateUser" parameterType="com.lovo.disaster.system.bean.SysUser">
+        update sys_user set user_pwd = #{userPwd},role_id = #{roleObj.roleId} where user_id = #{userId};
+    </insert>
 </mapper>

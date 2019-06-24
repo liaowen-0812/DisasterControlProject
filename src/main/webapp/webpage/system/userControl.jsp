@@ -125,7 +125,10 @@
                     <input type="hidden" value="" name="idStr" id="delInput"/>
                 </form>
                 <br/><br/><br/><br/>
-                <button type="button" class="layui-btn layui-btn-primary" onclick="update()">修改用户信息</button>
+                <form style="display: initial;" class="layui-form" id="updateformId" action="findId" method="post">
+                    <button type="button" class="layui-btn layui-btn-primary" onclick="update()">修改用户信息</button>
+                    <input type="hidden" value="" name="idStr" id="updateInput"/>
+                </form>
             </div>
         </div>
     </div>
@@ -186,7 +189,18 @@
     }
 
     function update() {
-        location.href = 'webpage/system/updateUser.jsp';
+        var checkId = $("#tableId input:checked").length;
+        if(checkId ==1){
+            var tempId = "";
+            $("#tableId input:checked").each(function () {
+                tempId += $(this).val();
+            })
+            $("#updateInput").val(tempId);
+            $("#updateformId").submit();
+        }else{
+            layer.msg('请选择1行')
+        }
+        //location.href = 'webpage/system/updateUser.jsp';
     }
 
     function delUser() {
@@ -195,7 +209,7 @@
             str +=$(this).val()+","
         })
         if (str==""){
-            layer.msg('请选择行')
+            layer.msg('请选择行');
             return;
         }
         $("#delInput").val(str);
