@@ -20,7 +20,7 @@
     <%@include file="head.jsp" %>
 </head>
 <body>
-
+<form action="add.lovo" method="post">
 <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
@@ -31,12 +31,12 @@
 
             <div class="layui-form-item">
             <div class="layui-col-md12">
-                <input type="text" name="title" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                <input type="text" name="title1" placeholder="请输入名称" autocomplete="off" class="layui-input">
             </div><br><br>
             </div>
             <div class="layui-form-item">
                 <div class="layui-col-md12">
-                    <input type="text" name="title" placeholder="请输入数量" autocomplete="off" class="layui-input">
+                    <input type="text" name="title2" placeholder="请输入数量" autocomplete="off" class="layui-input">
                 </div><br><br>
             </div>
 
@@ -44,9 +44,9 @@
                 <div class="layui-col-md6" style="width: 335px">
                     <select name="city" lay-verify="">
                         <option value="">请选择一个防治类型</option>
-                        <option value="0">病害</option>
-                        <option value="1">虫害</option>
-                        <option value="2">鼠害</option>
+                        <c:forEach items="${list1}" var="type">
+                            <option value="${type.typeKey}">${type.typeVal}</option>
+                        </c:forEach>
 
                     </select>
                 </div>
@@ -55,28 +55,38 @@
 
             <div class="layui-form-item">
                 <div class="layui-col-md6" style="width: 335px">
-                    <select name="city" lay-verify="">
+                    <select name="city2" lay-verify="">
                         <option value="">请选择一个类别</option>
-                        <option value="0">药剂</option>
-                        <option value="1">器械</option>
+                        <c:forEach items="${list2}" var="v2">
+                            <option value="${v2.typeKey}">${v2.typeVal}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
 
             <div class="layui-card-body layui-row layui-col-space10">
                 <div class="layui-col-md12">
-                    <textarea name="" style="width: 335px;margin-left: -5%" placeholder="请输入" class="layui-textarea"></textarea>
+                    <textarea name="wby" style="width: 335px;margin-left: -5%" placeholder="请输入" class="layui-textarea"></textarea>
                 </div>
             </div>
 
 
             <div class="layui-form-item">
-                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-reg-submit">添加</button>
+               <!--  <button class="layui-btn layui-btn-fluid" >添加</button> -->
+                <input  class="layui-btn layui-btn-fluid" type="submit"  value="添加">
             </div>
         </div>
     </div>
 
 </div>
+</form>
+
+<script src="webpage/jQuery-2.2.2-min.js"></script>
+<script>
+
+
+</script>
+
 
 <script src="layuiadmin/layui/layui.js"></script>
 <script>

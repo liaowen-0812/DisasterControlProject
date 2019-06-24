@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.warehouse.dao.ITypeDao">
+
+<select id="findTypeByKey" resultType="long">
+    select type_id from sys_type where type_key=#{0} and type_name=#{1}
+</select>
+
+    <select id="findAlltype" resultType="com.lovo.disaster.warehouse.entity.SysType">
+        select type_id typeId, type_name typeName, type_key typeKey, type_val typeVal
+         from sys_type where type_name=#{0}
+    </select>
+
+</mapper>

@@ -15,12 +15,13 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>区域一览</title>
+    <title>小班管理</title>
     <%@include file="head.jsp"%>
 </head>
 <body>
-<div class="layui-card-header" align="center"><h2>区域一览</h2></div>
+
 <div class="layui-card">
+    <div class="layui-card-header" style="font-size: 30px;height: 70px" align="center">小班管理</div>
     <div class="layui-card-body">
         <table class="layui-table">
             <colgroup>
@@ -93,13 +94,12 @@
 <!--按钮-->
 <div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
     <div class="layui-card"  style="text-align: center;height: 40%">
-        <div class="layui-card-header">查询区域信息</div>
+        <div class="layui-card-header">查询小班信息</div>
         <div class="layui-card-body" >
 
             <!--文本框标题-->
-            <div style=" position: absolute;left: 25%;top: 40px;width: 100px;"><h2>种植区域:</h2></div>
-            <div style=" position: absolute;left: 27.5%;top: 100px;width: 100px;"><h2>林种:</h2></div>
-            <div style=" position: absolute;left: 25%;top: 160px;width: 100px;"><h2>负责小班:</h2></div>
+            <div style=" position: absolute;left: 27%;top: 40px;width: 100px;"><h2>负责区域:</h2></div>
+            <div style=" position: absolute;left: 27.5%;top: 100px;width: 100px;"><h2>小班名称:</h2></div>
 
 
             <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px;">
@@ -109,12 +109,9 @@
                 <input type="text" name="title1" lay-verify="title" autocomplete="off" placeholder="林种" class="layui-input">
             </div>
 
-            <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px">
-                <input type="text" name="title2" lay-verify="title" autocomplete="off" placeholder="负责小班" class="layui-input">
-            </div>
 
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 50%;margin-top: 20px">查找</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 50%;margin-top: 20px">查询</button>
 
         </div>
     </div>
@@ -122,14 +119,25 @@
 </div>
 
 <div class="layui-col-md4" style="float: left;margin-top: 10px;width: 48%;">
-    <div class="layui-card"  style="text-align: center;height: 40%">
-        <div class="layui-card-body">
+    <div class="layui-card"  style="text-align: center;height: 40%;">
+        <div class="layui-card-body" >
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:40%;margin-top:100px;width: 150px" id="buttonId" onclick="buttonId() ">添加用户</button>
-
+            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:10%;margin-top:20px;width: 150px;" id="addClassId" onclick="addClass()">添加小班</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:10%;margin-top:20px;width: 150px;" onclick="findClass()">查看小班信息</button>
         </div>
+
+        <div class="layui-card-body" style="margin-top: 120px">
+            <!--按钮-->
+            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:10%;margin-top:10px;width: 150px;" id="updateId">修改小班信息</button>
+        </div>
+
     </div>
+
+
+
 </div>
+
+
 <script>
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
@@ -209,12 +217,21 @@
         });
     });
 
-
-
-    // //自己的js
-    function buttonId() {
-        location.href="webpage/prevention/addarea.jsp";
+    //js
+    //添加小班
+    function addClass() {
+        location.href="webpage/prevention/addlittleClass.jsp";
     }
+
+    //查看小班信息
+    function findClass() {
+        location.href="webpage/prevention/findClass.jsp";
+    }
+
+    //修改小班信息
+    $("#updateId").click(function () {
+        location.href="webpage/prevention/updateClass.jsp";
+    })
 
 </script>
 
