@@ -42,7 +42,24 @@
           and drug_type = #{type2}
     </if>
 
+ limit #{start},#{hang}
+
   </select>
+
+
+    <select id="allPage" resultType="int">
+
+        select count(*) from sys_drug where 1=1
+        <if test="drugName1!=null and drugName1!=''">
+            and drug_name like '%${drugName1}%'
+        </if>
+        <if test="type1!=null and type1!=0">
+            and drug_cure_type = #{type1}
+        </if>
+        <if test="type2!=null and type2!=0">
+            and drug_type = #{type2}
+        </if>
+    </select>
 
 
 </mapper>

@@ -2,6 +2,7 @@ package com.lovo.disaster.warehouse.servlet;
 
 import com.lovo.disaster.warehouse.entity.SysDrug;
 import com.lovo.disaster.warehouse.entity.SysType;
+import com.lovo.disaster.warehouse.page.Page;
 import com.lovo.disaster.warehouse.service.IShowDrugService;
 import com.lovo.disaster.warehouse.service.ITypeService;
 import com.lovo.disaster.warehouse.service.impl.ShowDrugServiceImpl;
@@ -23,11 +24,22 @@ public class ShowDrugServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         IShowDrugService showDrugService = new ShowDrugServiceImpl();
         ITypeService typeService = new TypeServiceImpl();
+           Page p=new Page();
 
         //获得表单数据
         String drugName=request.getParameter("title");
         String typeLx=request.getParameter("city");
         String typeLb=request.getParameter("city1");
+        //当前页
+        String currentPage2=request.getParameter("currentPage");
+        int currentPage=1;
+        if(null!=currentPage2) {
+         currentPage = Integer.parseInt(currentPage2);
+        }
+        p.setCurrentPage(currentPage);
+          //设置起始位置
+        p.setStart(p.getCurrentPage());
+
         //根据选择的下拉的val。查询对应的类型ID
         long type1=0,type2=0;
         //查询类型的id
@@ -42,6 +54,13 @@ public class ShowDrugServlet extends HttpServlet {
      map.put("drugName1",drugName);
      map.put("type1",type1);
      map.put("type2",type2);
+
+     map.put("start",p.getStart());
+     map.put("hang",p.getCountPage());
+
+        //设置总行数
+        p.setAllCount(showDrugService.allPage(map));
+
       List<SysDrug> list= showDrugService.findDrugByCondition(map);
       //初始下拉框
       List<SysType> list1=  typeService.findAlltype("fzlx");
@@ -50,7 +69,14 @@ public class ShowDrugServlet extends HttpServlet {
       request.setAttribute("list",list);
         request.setAttribute("list1",list1);
         request.setAttribute("list2",list2);
+request.setAttribute("allCount",p.getAllCount());
+request.setAttribute("countPage",p.getCountPage());
+request.setAttribute("drugName",drugName);
+        request.setAttribute("typeLx",typeLx);
+        request.setAttribute("typeLb",typeLb);
 
+
+request.setAttribute("tval",currentPage);
       request.getRequestDispatcher("webpage/warehouse/drugAndAppliabce.jsp").forward(request,response);
 
     }

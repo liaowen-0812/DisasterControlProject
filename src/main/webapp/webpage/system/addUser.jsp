@@ -38,13 +38,13 @@
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password"
                        for="LAY-user-login-password"></label>
-                <input type="password" name="password" id="LAY-user-login-password" lay-verify="pass" placeholder="密码"
+                <input type="password" name="passWord" id="LAY-user-login-passWord" lay-verify="passWord" placeholder="密码"
                        class="layui-input">
             </div>
             <div class="layui-form-item">
                 <label class="layadmin-user-login-icon layui-icon layui-icon-password"
-                       for="LAY-user-login-repass"></label>
-                <input type="password" name="repass" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码"
+                       for="LAY-user-login-passWord2"></label>
+                <input type="password" name="passWord2" id="LAY-user-login-passWord2" lay-verify="passWord2" placeholder="确认密码"
                        class="layui-input">
             </div>
 
@@ -57,13 +57,13 @@
 
             <div class="layui-form-item">
                     <div class="layui-col-md6" style="width: 335px">
-                        <select name="city" lay-verify="">
+                        <select name="city" lay-verify="roleType">
                             <option value="">用户等级</option>
-                            <option value="010">超级管理员</option>
-                            <option value="021">资料管理员</option>
-                            <option value="0571">灾情管理员</option>
-                            <option value="0571">专家管理员</option>
-                            <option value="0571">库房管理员</option>
+                            <option value="1">超级管理员</option>
+                            <option value="2">资料管理员</option>
+                            <option value="3">灾情管理员</option>
+                            <option value="4">专家管理员</option>
+                            <option value="5">库房管理员</option>
                         </select>
                     </div>
             </div>
@@ -94,14 +94,51 @@
 
         form.render();
 
+        var tag="";
+        $("#LAY-user-login-userName").change(function () {
+            $.post("findName", {"userName":$("#LAY-user-login-userName").val()},function (data) {
+                tag=data;
+            })
+        })
+        form.verify({
+            userName: function(value){
+                if(value.length < 2){
+                    return '姓名至少得2个字符';
+                }
+                if(tag=="true"){
+                    return '用户名已被注册';
+                }
+            },
+            realName: function(value){
+                if(value.length < 2){
+                    return '登陆至少得2个字符';
+                }
+            }
+            ,passWord: [/(.+){3,12}$/, '密码必须3到12位']
+            ,roleType: function (value) {
+                if(value == ""){
+                    return '请选择用户等级';
+                }
+            }
+        });
         //提交
         form.on('submit(LAY-user-reg-submit)', function (obj) {
             var field = obj.field;
             //确认密码
-            if (field.password !== field.repass) {
-                return layer.msg('两次密码输入不一致');
+            if (field.passWord !== field.passWord2) {
+                return layer.msg('两次密码输入不一致', {icon: 5, anim: 6});
             }
-
+            $.post("addUser", obj.field,function (data) {
+                if(data == 'true'){
+                    layer.msg('添加成功', {
+                        offset: '15px'
+                        ,icon: 1
+                        ,time: 1000
+                    }, function(){
+                        location.href = 'user'; //跳转到登入页
+                    });
+                }
+            })
             //请求接口
 
             return false;
