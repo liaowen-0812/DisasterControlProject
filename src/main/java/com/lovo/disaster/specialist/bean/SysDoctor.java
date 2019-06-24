@@ -13,7 +13,7 @@ public class SysDoctor {
   private String doctorTel;
   private String doctorCompany;
   private String doctorHome;
-  private String doctorEmail  ;
+  private String doctorEmail;
 
 
   public long getDoctorId() {
