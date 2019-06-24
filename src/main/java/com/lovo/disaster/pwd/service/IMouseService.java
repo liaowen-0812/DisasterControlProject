@@ -20,7 +20,7 @@ public interface IMouseService {
 
     /**
      * 通过鼠害id查找鼠害对象
-     * @param mouseId 鼠害id
+     * @param mouseId     鼠害id
      * @return 鼠害对象
      */
     public MouseBean findById(int mouseId);
