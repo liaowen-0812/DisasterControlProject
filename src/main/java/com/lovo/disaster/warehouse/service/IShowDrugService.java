@@ -18,4 +18,11 @@ public interface IShowDrugService {
      *  药剂/器械对象
      */
     public  void  addDurg(String drugName,long type1,long type2,String drugUseWay,int drugNum);
+
+    /**
+     * 获取总行数
+     * @param map
+     * @return 总行数
+     */
+    public int  allPage(Map<String,Object> map);
 }
