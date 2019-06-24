@@ -91,8 +91,8 @@
         <div class="layui-card-body">
             <div  id="btnDivId">
                 <!--按钮-->
-                <button type="button" class="layui-btn layui-btn-primary">添加新病害</button>
-                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">查看详细信息</button>
+                <button type="button" class="layui-btn layui-btn-primary" onclick="addEnter()">添加新病害</button>
+                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px" onclick="see()">查看详细信息</button>
 
             </div>
         </div>
@@ -143,6 +143,13 @@
             ,next: '<em>→</em>'
         });
     });
+
+    function addEnter(){
+        location.href="webpage/PDM/adddisease.jsp";
+    }
+    function see(){
+        location.href="webpage/PDM/diseaseInformation.jsp";
+    }
 </script>
 
 </body>
