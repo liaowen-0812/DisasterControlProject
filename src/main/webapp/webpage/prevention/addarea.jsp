@@ -15,7 +15,7 @@
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>Title</title>
+    <title>添加区域</title>
     <%@include file="head.jsp"%>
 </head>
 <body>
@@ -69,17 +69,16 @@
 
             <!--按钮-->
             <div style="margin-top: 8%">
-                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 42.5%;width: 15%">添加</button>
+                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 42.5%;width: 15%"  id="buttonId" onclick="buId()" >添加</button>
             </div>
 
 
         </form>
     </div>
 </div>
-<%--</div>--%>
 
 
-<script src="layuiadmin/layui/layui.js"></script>
+
 <script>
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
@@ -99,35 +98,19 @@
             elem: '#LAY-component-form-group-date'
         });
 
-        /* 自定义验证规则 */
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,content: function(value){
-                layedit.sync(editIndex);
-            }
-        });
 
-        /* 监听指定开关 */
-        form.on('switch(component-form-switchTest)', function(data){
-            layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-                offset: '6px'
-            });
-            layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        });
 
-        /* 监听提交 */
-        form.on('submit(component-form-demo1)', function(data){
-            parent.layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            })
-            return false;
-        });
+
+
     });
+
+ //js
+
+    function buId() {
+        location.href="webpage/prevention/area.jsp";
+    }
+
+
 </script>
 
 </body>

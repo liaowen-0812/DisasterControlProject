@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.warehouse.dao.IDrugDao">
+
+<select id="addDurg" statementType="CALLABLE" >
+  call drugPro(#{0},#{1},#{2},#{3},#{4});
+
+</select>
+
+  <resultMap id="drug2" type="com.lovo.disaster.warehouse.entity.SysDrug">
+       <result property="drugId" column="drug_id"></result>
+    <result property="drugName" column="drug_name"></result>
+    <result property="drugUseWay" column="drug_use_way"></result>
+    <result property="drugNum" column="drug_num"></result>
+
+   <association property="type1" column="drug_cure_type" select="finType">
+    <!--  <result property="typeId" column="type_id"></result>
+        <result property="typeName" column="type_name"></result>
+        <result property="typeKey" column="type_key"></result>
+        <result property="typeVal" column="type_val"></result>-->
+    </association>
+      <association property="type2" column="drug_type" select="finType">
+
+      </association>
+
+  </resultMap>
+
+    <select id="finType" resultType="com.lovo.disaster.warehouse.entity.SysType">
+       select type_id typeId, type_name typeName, type_key typeKey, type_val typeVal
+         from sys_type where type_id=#{0}
+    </select>
+
+  <select id="findDrugByCondition" resultMap="drug2" parameterType="map">
+    select * from sys_drug where 1=1
+    <if test="drugName1!=null and drugName1!=''">
+       and drug_name like '%${drugName1}%'
+    </if>
+    <if test="type1!=null and type1!=0">
+        and drug_cure_type = #{type1}
+    </if>
+    <if test="type2!=null and type2!=0">
+          and drug_type = #{type2}
+    </if>
+
+ limit #{start},#{hang}
+
+  </select>
+
+
+    <select id="allPage" resultType="int">
+
+        select count(*) from sys_drug where 1=1
+        <if test="drugName1!=null and drugName1!=''">
+            and drug_name like '%${drugName1}%'
+        </if>
+        <if test="type1!=null and type1!=0">
+            and drug_cure_type = #{type1}
+        </if>
+        <if test="type2!=null and type2!=0">
+            and drug_type = #{type2}
+        </if>
+    </select>
+
+
+</mapper>

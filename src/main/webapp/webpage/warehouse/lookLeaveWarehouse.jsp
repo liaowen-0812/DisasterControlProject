@@ -1,6 +1,6 @@
 
 
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
@@ -15,9 +15,9 @@
 </head>
 <body>
 
-<div class="layui-card-header" style="font-size:30px;margin-bottom: 3%" align="center">²é¿´³ö¿âÐÅÏ¢</div>
-<b style="margin-left: 15%;font-size:18px">ÁìÓÃÐ¡°à£ºÑÅÁÕÒ»°à</b> <b style="margin-left: 15%;font-size:18px">³ö¿âÈË£ºÕÐÐ¡ºê</b>
-<b style="margin-left: 15%;font-size:18px">ÁìÓÃÈÕÆÚ   2019-6-21</b>
+<div class="layui-card-header" style="font-size:30px;margin-bottom: 3%" align="center">æŸ¥çœ‹å‡ºåº“ä¿¡æ¯</div>
+<b style="margin-left: 15%;font-size:18px">é¢†ç”¨å°ç­ï¼šé›…ç³ä¸€ç­</b> <b style="margin-left: 15%;font-size:18px">å‡ºåº“äººï¼šæ‹›å°å®</b>
+<b style="margin-left: 15%;font-size:18px">é¢†ç”¨æ—¥æœŸ   2019-6-21</b>
 <div class="layui-card-body" style="height: 35%;margin-top: 3%">
     <table class="layui-table">
         <colgroup>
@@ -28,42 +28,42 @@
         </colgroup>
         <thead>
         <tr>
-            <th>ÈËÎï</th>
-            <th>Ãñ×å</th>
-            <th>³ö³¡Ê±¼ä</th>
-            <th>¸ñÑÔ</th>
+            <th>äººç‰©</th>
+            <th>æ°‘æ—</th>
+            <th>å‡ºåœºæ—¶é—´</th>
+            <th>æ ¼è¨€</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>ÏÍÐÄ</td>
-            <td>ºº×å</td>
+            <td>è´¤å¿ƒ</td>
+            <td>æ±‰æ—</td>
             <td>1989-10-14</td>
-            <td>ÈËÉúËÆÐÞÐÐ</td>
+            <td>äººç”Ÿä¼¼ä¿®è¡Œ</td>
         </tr>
         <tr>
-            <td>ÕÅ°®Áá</td>
-            <td>ºº×å</td>
+            <td>å¼ çˆ±çŽ²</td>
+            <td>æ±‰æ—</td>
             <td>1920-09-30</td>
-            <td>ÓÚÇ§ÍòÈËÖ®ÖÐÓö¼ûÄãËùÓö¼ûµÄÈË£¬ÓÚÇ§ÍòÄêÖ®ÖÐ£¬Ê±¼äµÄÎÞÑÄµÄ»ÄÒ°Àï¡­</td>
+            <td>äºŽåƒä¸‡äººä¹‹ä¸­é‡è§ä½ æ‰€é‡è§çš„äººï¼ŒäºŽåƒä¸‡å¹´ä¹‹ä¸­ï¼Œæ—¶é—´çš„æ— æ¶¯çš„è’é‡Žé‡Œâ€¦</td>
         </tr>
         <tr>
             <td>Helen Keller</td>
-            <td>À­¶¡ÃÀÒá</td>
+            <td>æ‹‰ä¸ç¾Žè£”</td>
             <td>1880-06-27</td>
             <td> Life is either a daring adventure or nothing.</td>
         </tr>
         <tr>
-            <td>ÔÀ·É</td>
-            <td>ºº×å</td>
-            <td>1103-±±ËÎ³çÄþ¶þÄê</td>
-            <td>½Ì¿ÆÊéÔÙÀÄ¸Ä£¬Ò²Ä¨²»È¥¡°Ãñ×åÓ¢ÐÛ¡±µÄÊÂÊµ</td>
+            <td>å²³é£ž</td>
+            <td>æ±‰æ—</td>
+            <td>1103-åŒ—å®‹å´‡å®äºŒå¹´</td>
+            <td>æ•™ç§‘ä¹¦å†æ»¥æ”¹ï¼Œä¹ŸæŠ¹ä¸åŽ»â€œæ°‘æ—è‹±é›„â€çš„äº‹å®ž</td>
         </tr>
         <tr>
-            <td>ÃÏ×Ó</td>
-            <td>»ªÏÄ×å£¨ºº×å£©</td>
-            <td>¹«ÔªÇ°-372Äê</td>
-            <td>Ô³Ç¿£¬Ôò¹úÇ¿¡£¹úÇ¿£¬ÔòÔ³¸üÇ¿£¡ </td>
+            <td>å­Ÿå­</td>
+            <td>åŽå¤æ—ï¼ˆæ±‰æ—ï¼‰</td>
+            <td>å…¬å…ƒå‰-372å¹´</td>
+            <td>çŒ¿å¼ºï¼Œåˆ™å›½å¼ºã€‚å›½å¼ºï¼Œåˆ™çŒ¿æ›´å¼ºï¼ </td>
         </tr>
         </tbody>
     </table>
@@ -76,8 +76,8 @@
 
 
             <div  id="btnDivId" style="margin-top: -10%;margin-left: 20%">
-                <!--°´Å¥-->
-                <button style="margin-left: 200px;margin-top: 20%" onclick="ret()" type="button" class="layui-btn layui-btn-primary">È·¶¨</button>
+                <!--æŒ‰é’®-->
+                <button style="margin-left: 200px;margin-top: 20%" onclick="ret()" type="button" class="layui-btn layui-btn-primary">ç¡®å®š</button>
 
             </div>
 

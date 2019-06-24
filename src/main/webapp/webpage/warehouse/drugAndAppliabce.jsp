@@ -1,192 +1,213 @@
-
-
-<%@ page contentType="text/html;charset=GBK" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String path = request.getContextPath();
 //http://ip+port+projectName
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <html>
 <head>
     <base href="<%=basePath%>">
-    <title>Ò©¼Á/Æ÷ĞµÒ»ÀÀ</title>
-    <%@include file="head.jsp"%>
+    <title>è¯å‰‚/å™¨æ¢°ä¸€è§ˆ</title>
+    <%@include file="head.jsp" %>
 </head>
 <body>
 
 
-<!-- ±í¸ñ-->
-<div class="layui-card-header" style="font-size:30px"align="center">Ò©¼Á/Æ÷ĞµÒ»ÀÀ</div>
-<div class="layui-card-body" style="height: 35%">
-    <table class="layui-table">
-        <colgroup>
-            <col width="150">
-            <col width="150">
-            <col width="200">
-            <col>
-        </colgroup>
-        <thead>
-        <tr>
-            <th>ÈËÎï</th>
-            <th>Ãñ×å</th>
-            <th>³ö³¡Ê±¼ä</th>
-            <th>¸ñÑÔ</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>ÏÍĞÄ</td>
-            <td>ºº×å</td>
-            <td>1989-10-14</td>
-            <td>ÈËÉúËÆĞŞĞĞ</td>
-        </tr>
-        <tr>
-            <td>ÕÅ°®Áá</td>
-            <td>ºº×å</td>
-            <td>1920-09-30</td>
-            <td>ÓÚÇ§ÍòÈËÖ®ÖĞÓö¼ûÄãËùÓö¼ûµÄÈË£¬ÓÚÇ§ÍòÄêÖ®ÖĞ£¬Ê±¼äµÄÎŞÑÄµÄ»ÄÒ°Àï¡­</td>
-        </tr>
-        <tr>
-            <td>Helen Keller</td>
-            <td>À­¶¡ÃÀÒá</td>
-            <td>1880-06-27</td>
-            <td> Life is either a daring adventure or nothing.</td>
-        </tr>
-        <tr>
-            <td>ÔÀ·É</td>
-            <td>ºº×å</td>
-            <td>1103-±±ËÎ³çÄş¶şÄê</td>
-            <td>½Ì¿ÆÊéÔÙÀÄ¸Ä£¬Ò²Ä¨²»È¥¡°Ãñ×åÓ¢ĞÛ¡±µÄÊÂÊµ</td>
-        </tr>
+<!-- è¡¨æ ¼-->
+<form action="showDrug.lovo" method="post" id="f2" class="layui-form">
+    <input type="text" value="${tval}" style="display: none" name="currentPage" id="tt1">
 
-        </tbody>
-    </table>
-</div>
 
-<div class="layui-col-md12">
-    <div class="layui-card">
+    <div class="layui-card-header" style="font-size:30px" align="center">è¯å‰‚/å™¨æ¢°ä¸€è§ˆ</div>
+    <div class="layui-card-body" style="height: 35%">
+        <table class="layui-table">
+            <colgroup>
+                <col width="150">
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>åç§°</th>
+                <th>é˜²æ²»ç±»å‹</th>
+                <th>ç±»åˆ«</th>
+                <th>æ•°é‡</th>
+                <th>ä¸»è¦ç”¨é€”</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${list}" var="drug">
+                <tr>
+                    <td>${drug.drugName}</td>
+                    <td>${drug.type1.typeVal}</td>
+                    <td>${drug.type2.typeVal}</td>
+                    <td>${drug.drugNum}</td>
+                    <td>${drug.drugUseWay}</td>
+                </tr>
+            </c:forEach>
+
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top: 8%">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+
+                <div class="layui-card-body">
+                    <div id="test-laypage-demo3"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--åˆ†é¡µç»“æŸ-->
+
+
+    <!--æŸ¥è¯¢å¼€å§‹-->
+
+    <div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
+        <div class="layui-card" style="text-align: center">
+            <div class="layui-card-header">æŸ¥è¯¢è¯å‰‚ä¿¡æ¯</div>
+            <div class="layui-card-body">
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md12">
+                            <input type="text"  style="width: 50%;margin-left: 20%" name="title" placeholder="è¯·è¾“å…¥åç§°" value="${drugName}"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                        <br><br>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md6" style="width: 375px;padding-left: 20%">
+                            <select name="city" lay-verify="" style=";width: 50%;height: 40px;">
+                                <option value="">è¯·é€‰æ‹©ä¸€ä¸ªé˜²æ²»ç±»å‹</option>
+                                <c:forEach items="${list1}" var="type">
+                                    <c:if test="${typeLx==type.typeKey&&typeLx!=''}">
+                                        <option value="${type.typeKey}" selected="selected">${type.typeVal}</option>
+                                    </c:if>
+                                    <c:if test="${typeLx!=type.typeKey}">
+                                        <option value="${type.typeKey}">${type.typeVal}</option>
+                                    </c:if>
+
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <div class="layui-col-md6" style="width: 375px;padding-left: 20%">
+                            <select name="city1" lay-verify="" style="width: 267px;height: 40px;margin-left:32%">
+                                <option value="">è¯·é€‰æ‹©ä¸€ä¸ªç±»åˆ«</option>
+                                <c:forEach items="${list2}" var="type">
+                                    <c:if test="${typeLb==type.typeKey&&typeLb!=''}">
+                                        <option value="${type.typeKey}" selected="selected">${type.typeVal}</option>
+                                    </c:if>
+                                    <c:if test="${typeLb!=type.typeKey}">
+                                        <option value="${type.typeKey}">${type.typeVal}</option>
+                                    </c:if>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+                    <br/>
+                    <br/>
+                    <!--æŒ‰é’®-->
+                    <!--     <button type="button" class="layui-btn layui-btn-primary">æŸ¥è¯¢</button>-->
+                    <input type="submit" onclick="change1()" class="layui-btn layui-btn-primary" value="æŸ¥è¯¢">
+
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+<!--æŸ¥è¯¢ç»“æŸ-->
+
+
+<div class="layui-col-md4" style="margin-top: 10px;width: 48%">
+
+    <div class="layui-card" style="height: 40%;">
 
         <div class="layui-card-body">
-            <div id="test-laypage-demo3"></div>
+            <div id="btnDivId">
+                <!--æŒ‰é’®-->
+                <!-- <button style="margin-left: 200px;margin-top: 20%" onclick="add()" id="b1" type="button" class="layui-btn layui-btn-primary">
+                æ·»åŠ è¯å‰‚</button> -->
+                <form action="showAddDrug.lovo" method="post" id="f1">
+                    <input style="margin-left: 200px;margin-top: 20%"  type="submit"
+                           class="layui-btn layui-btn-primary" value="æ·»åŠ è¯å‰‚">
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<!--·ÖÒ³½áÊø-->
 
-
-
-<!--²éÑ¯¿ªÊ¼-->
-
-<div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
-    <div class="layui-card"  style="text-align: center">
-        <div class="layui-card-header">²éÑ¯Ò©¼ÁĞÅÏ¢</div>
-        <div class="layui-card-body">
-
-
-            <div class="layui-form-item">
-                <div class="layui-col-md12">
-                    <input type="text" style="width: 50%;margin-left: 20%" name="title" placeholder="ÇëÊäÈëÃû³Æ" autocomplete="off" class="layui-input">
-                </div><br><br>
-            </div>
-
-            <div class="layui-form-item">
-                <div class="layui-col-md6" style="width: 335px">
-                    <select name="city" lay-verify="" style="width: 267px;height: 40px;margin-left:32%">
-                        <option value="">ÇëÑ¡ÔñÒ»¸ö·ÀÖÎÀàĞÍ</option>
-                        <option value="0">²¡º¦</option>
-                        <option value="1">³æº¦</option>
-                        <option value="2">Êóº¦</option>
-
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="layui-form-item">
-                <div class="layui-col-md6" style="width: 335px">
-                    <select name="city" lay-verify="" style="width: 267px;height: 40px;margin-left:32%">
-                        <option value="">ÇëÑ¡ÔñÒ»¸öÀà±ğ</option>
-                        <option value="0">Ò©¼Á</option>
-                        <option value="1">Æ÷Ğµ</option>
-                    </select>
-                </div>
-            </div>
-
-            <br/>
-            <br/>
-            <!--°´Å¥-->
-            <button type="button" class="layui-btn layui-btn-primary">²éÑ¯</button>
-
-        </div>
-            </div>
-
-</div>
-
-<!--²éÑ¯½áÊø-->
-
-
-        <div class="layui-col-md4" style="margin-top: 10px;width: 48%">
-
-            <div class="layui-card" style="height: 40%;">
-
-                <div class="layui-card-body">
-                    <div  id="btnDivId">
-                        <!--°´Å¥-->
-                        <button style="margin-left: 200px;margin-top: 20%" onclick="add()" type="button" class="layui-btn layui-btn-primary">Ìí¼ÓÒ©¼Á</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+<script src="webpage/jQuery-2.2.2-min.js"></script>
 <script>
-    function add() {
-        location.href="webpage/warehouse/add2.jsp";
+    function change1() {
+        $("tt1").val("1");
     }
 
 </script>
 
-
+<script src="webpage/jQuery-2.2.2-min.js"></script>
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
-        layui.config({
-            base: 'layuiadmin/' //¾²Ì¬×ÊÔ´ËùÔÚÂ·¾¶
-        }).extend({
-            index: 'lib/index' //Ö÷Èë¿ÚÄ£¿é
-        }).use(['index','laydate', 'laypage','user','form'], function(){
-            var laydate = layui.laydate,
-                laypage = layui.laypage;
-            var $ = layui.$
-                , admin = layui.admin
-                , element = layui.element
-                , form = layui.form
-                , router = layui.router();
+    layui.config({
+        base: 'layuiadmin/' //é™æ€èµ„æºæ‰€åœ¨è·¯å¾„
+    }).extend({
+        index: 'lib/index' //ä¸»å…¥å£æ¨¡å—
+    }).use(['index', 'laydate', 'laypage', 'user', 'form'], function () {
+        var laydate = layui.laydate,
+            laypage = layui.laypage;
+        var $ = layui.$
+            , admin = layui.admin
+            , element = layui.element
+            , form = layui.form
+            , router = layui.router();
 
-            form.render();
+        form.render();
 
-            laydate.render({
-                elem: '#test-laydate-start-cn'
-                ,trigger: 'click'
-            });
+        laydate.render({
+            elem: '#test-laydate-start-cn'
+            , trigger: 'click'
+        });
 
-            laydate.render({
-                elem: '#test-laydate-last-cn'
-                ,trigger: 'click'
-            });
+        laydate.render({
+            elem: '#test-laydate-last-cn'
+            , trigger: 'click'
+        });
 
-        //×Ô¶¨ÒåÊ×Ò³¡¢Î²Ò³¡¢ÉÏÒ»Ò³¡¢ÏÂÒ»Ò³ÎÄ±¾
+        //è‡ªå®šä¹‰é¦–é¡µã€å°¾é¡µã€ä¸Šä¸€é¡µã€ä¸‹ä¸€é¡µæ–‡æœ¬
         laypage.render({
             elem: 'test-laypage-demo3'
-            ,count: 100
-            ,first: 'Ê×Ò³'
-            ,last: 'Î²Ò³'
-            ,prev: '<em>¡û</em>'
-            ,next: '<em>¡ú</em>'
-        });
+            , count: ${allCount} //è®¾ç½®æ€»è¡Œæ•°ï¼Œä»åå°ä¼ 
+            , limit:${countPage} //æ¯é¡µæ˜¾ç¤ºè¡Œæ•°ï¼Œåå°ä¼ 
+            , first: 'é¦–é¡µ'
+            , last: 'å°¾é¡µ'
+            , curr: $("#tt1").val()
+            , prev: '<em>â†</em>'
+            , next: '<em>â†’</em>'
+            , jump: function (obj, first) { // è·³è½¬é¡µæ•°
+                if (!first) {
+                    $("#tt1").val(obj.curr) //å°†éšè—è¡¨å•çš„valè®¾ç½®ä¸ºå½“å‰é¡µï¼Œç„¶åæäº¤ï¼Œä¼ ç»™åå°
+                    $("#f2").submit();
+                }
+            }
+
 
         });
+
+    });
 
 
 </script>
