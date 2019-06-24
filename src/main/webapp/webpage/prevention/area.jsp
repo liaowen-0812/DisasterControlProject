@@ -19,7 +19,9 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
+
 <div class="layui-card-header" align="center"><h2>区域一览</h2></div>
+<form id="fid" action="areaServlet.lovo" method="post">
 <div class="layui-card">
     <div class="layui-card-body">
         <table class="layui-table">
@@ -32,50 +34,24 @@
             </colgroup>
             <thead>
             <tr>
-                <th>人物</th>
-                <th>民族</th>
-                <th>出场时间</th>
-                <th>格言</th>
-                <th>faj</th>
+                <th>区域名</th>
+                <th>林种</th>
+                <th>地类</th>
+                <th>优势树种</th>
+                <th>负责小班</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>贤心</td>
-                <td>汉族</td>
-                <td>1989-10-14</td>
-                <td>人生似修行</td>
-                <td>111</td>
-            </tr>
-            <tr>
-                <td>张爱玲</td>
-                <td>汉族</td>
-                <td>1920-09-30</td>
-                <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                <td>111</td>
-            </tr>
-            <tr>
-                <td>Helen Keller</td>
-                <td>拉丁美裔</td>
-                <td>1880-06-27</td>
-                <td> Life is either a daring adventure or nothing.</td>
-                <td>111</td>
-            </tr>
-            <tr>
-                <td>岳飞</td>
-                <td>汉族</td>
-                <td>1103-北宋崇宁二年</td>
-                <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-                <td>111</td>
-            </tr>
-            <tr>
-                <td>孟子</td>
-                <td>华夏族（汉族）</td>
-                <td>公元前-372年</td>
-                <td>猿强，则国强。国强，则猿更强！ </td>
-                <td>111</td>
-            </tr>
 
+             <c:forEach  items="${list}" var="s">
+            <tr>
+                <td>${s.areaId.areaName}</td>
+                <td>${s.areaId.areaTreeType}</td>
+                <td>${s.areaId.areaAdressId}</td>
+                <td>${s.areaId.areaGoodTree}</td>
+                <td>${s.className}</td>
+            </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -103,18 +79,18 @@
 
 
             <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px;">
-                <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="种植区域" class="layui-input">
+                <input type="text" name="title" lay-verify="make" autocomplete="off" placeholder="种植区域" class="layui-input" >
             </div>
             <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px">
-                <input type="text" name="title1" lay-verify="title" autocomplete="off" placeholder="林种" class="layui-input">
+                <input type="text" name="title1" lay-verify="tree" autocomplete="off" placeholder="林种" class="layui-input">
             </div>
 
             <div class="layui-input-block" style="width: 200px; margin-left:50%;margin-top: 20px">
-                <input type="text" name="title2" lay-verify="title" autocomplete="off" placeholder="负责小班" class="layui-input">
+                <input type="text" name="title2" lay-verify="littleClass" autocomplete="off" placeholder="负责小班" class="layui-input" >
             </div>
 
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 50%;margin-top: 20px">查找</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 50%;margin-top: 20px" id="findId">查找</button>
 
         </div>
     </div>
@@ -125,11 +101,14 @@
     <div class="layui-card"  style="text-align: center;height: 40%">
         <div class="layui-card-body">
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:40%;margin-top:100px;width: 150px" id="buttonId" onclick="buttonId() ">添加用户</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="float: left;margin-left:40%;margin-top:100px;width: 150px" id="buttonId">添加用户</button>
 
         </div>
     </div>
+</form>
 </div>
+
+</body>
 <script>
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
@@ -212,9 +191,15 @@
 
 
     // //自己的js
+    //页面跳转
     function buttonId() {
         location.href="webpage/prevention/addarea.jsp";
     }
+//表单提交数据
+//     $("#buttonId").click(function () {
+//         $("#fid").submit();
+//         alert(1)
+//     })
 
 </script>
 
