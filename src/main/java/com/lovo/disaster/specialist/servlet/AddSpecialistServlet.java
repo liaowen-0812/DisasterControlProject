@@ -43,7 +43,7 @@ public class AddSpecialistServlet extends HttpServlet {
                     break;
                 }
                fileName=StringInfo.getNewFileName(fileName);
-                doctor.setDoctorImgPath(fileName);
+                doctor.setDoctorImgPath("img/"+fileName);
                 OutputStream out=new FileOutputStream(path+fileName);
                 InputStream in=file.getInputStream();
                 byte[] bytes=new byte[1024*10];
@@ -80,10 +80,12 @@ public class AddSpecialistServlet extends HttpServlet {
                     }
                 }
             }
+
             if(bl){
                 service.addSpecialist(doctor);
                 response.sendRedirect("specialistServlet.lovo");
             }
+
         } catch (FileUploadException e) {
             e.printStackTrace();
         }

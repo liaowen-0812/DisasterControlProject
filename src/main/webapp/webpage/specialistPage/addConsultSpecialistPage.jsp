@@ -39,7 +39,7 @@
                 <textarea name="text" class="layui-textarea" style="width: 200px"></textarea>
                         <div class="layui-form-item" style="margin-top: 30px">
                             <div class="layui-col-md6" style="width: 335px;margin-left: -5%">
-                               <b>会商人员:</b> <select name="city" lay-verify="">
+                               <b>会商人员:</b> <select name="city" lay-verify="" class="layui-form">
                                     <option value="">会商人员</option>
                                     <option value="010">超级管理员</option>
                                     <option value="021">资料管理员</option>
@@ -47,6 +47,10 @@
                                     <option value="0571">专家管理员</option>
                                     <option value="0571">库房管理员</option>
                                 </select>
+                                <div style="margin-top: 30px">
+                                <button type="submit" class="layui-btn layui-btn-primary" id="bid">添加会商信息</button>
+                                <button type="submit" class="layui-btn layui-btn-primary" id="bid1">返回</button>
+                                </div>
                             </div>
                             <textarea name="text" class="layui-textarea" style="width: 100px;height: 50px"></textarea>
                         </div>

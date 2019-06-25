@@ -27,10 +27,9 @@ public interface ISpecialistService {
     public SysDoctor findById(int sysDoctorId);
 
     /**
-     * 根据ID修改专家信息
-     * @param sysDoctorId 专家ID
+     * 修改专家信息
      */
-    public void updateSpecialist(int sysDoctorId);
+    public void updateSpecialist(Map map);
 
     /**
      * 根据ID删除专家
@@ -44,4 +43,10 @@ public interface ISpecialistService {
      * @return 专家集合
      */
     public List<SysDoctor> findAll(Map map);
+
+    /**
+     * 计算总行数
+     * @return
+     */
+    public Integer countPage(Map map);
 }
