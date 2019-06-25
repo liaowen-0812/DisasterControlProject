@@ -59,4 +59,12 @@ public interface IUserDao {
      */
     public int updateUser(SysUser user);
 
+    /**
+     * 根据名字和密码查询用户
+     * @param username 名字
+     * @param password 密码
+     * @return 用户
+     */
+    public SysUser findUserByNameandPwd(String username,String password);
+
 }

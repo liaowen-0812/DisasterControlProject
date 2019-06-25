@@ -1,7 +1,10 @@
 package com.lovo.disaster.prevention.preventionService;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lovo.disaster.prevention.preventionBean.AreaBean;
+import com.lovo.disaster.prevention.preventionBean.LittleClassBean;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,9 +15,9 @@ public interface IAreaService {
     /**
      * 主页面的查询全部和动态查询
      * @param map 查询条件集合
-     * @return json字符串，用于拼接表格
+     * @return 对象集合
      */
-    public String findAll(Map map);
+    public List<LittleClassBean> findAll(Map map) throws JsonProcessingException;
 
     /**
      * 添加区域

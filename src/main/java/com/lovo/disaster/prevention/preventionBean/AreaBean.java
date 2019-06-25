@@ -1,6 +1,8 @@
 package com.lovo.disaster.prevention.preventionBean;
 
 
+import java.util.List;
+
 /**
  * 区域实体类
  */
@@ -15,7 +17,7 @@ public class AreaBean {
     //区域优势树种
     private String areaGoodTree;
     //区域地类
-    private int areaAdressId;
+    private XLBean areaAdressId;
 
 
     public int getAreaId() {
@@ -50,11 +52,11 @@ public class AreaBean {
         this.areaGoodTree = areaGoodTree;
     }
 
-    public int getAreaAdressId() {
+    public XLBean getAreaAdressId() {
         return areaAdressId;
     }
 
-    public void setAreaAdressId(int areaAdressId) {
+    public void setAreaAdressId(XLBean areaAdressId) {
         this.areaAdressId = areaAdressId;
     }
 }

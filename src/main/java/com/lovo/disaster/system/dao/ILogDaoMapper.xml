@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.system.dao.ILogDao">
+    <select id="findAllLogByDay" resultType="com.lovo.disaster.system.bean.SysLog">
+        select log_id as logId,log_info as logInfo, log_date as logDate from sys_log where 1=1
+        <if test="startDay!=null and startDay != ''">
+            and log_date &gt; #{startDay}
+        </if>
+        <if test="lastDay!=null and lastDay != ''">
+            and log_date &lt; #{lastDay}
+        </if>
+        limit ${startPage},${countPage}
+    </select>
+
+    <select id="findLogCount" resultType="int">
+        select count(log_id) from sys_log where 1=1
+        <if test="startDay!=null and startDay != ''">
+            and log_date &gt; #{startDay}
+        </if>
+        <if test="lastDay!=null and lastDay != ''">
+            and log_date &lt; #{lastDay}
+        </if>
+    </select>
+    <insert id="insertLog" parameterType="com.lovo.disaster.system.bean.SysLog">
+        insert into sys_log(log_info,log_date) values(#{logInfo},#{logDate});
+    </insert>
+</mapper>
