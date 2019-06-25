@@ -47,7 +47,7 @@
             <tr>
                 <td>${s.areaId.areaName}</td>
                 <td>${s.areaId.areaTreeType}</td>
-                <td>${s.areaId.areaAdressId}</td>
+                <td>${s.areaId}</td>
                 <td>${s.areaId.areaGoodTree}</td>
                 <td>${s.className}</td>
             </tr>
