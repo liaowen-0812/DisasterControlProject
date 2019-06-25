@@ -18,4 +18,17 @@ public interface IWormsDao  {
      * @return 虫害对象集合
      */
     public List<WormsBean> findAll(Map map);
+
+    /**
+     *通过对象id查找对象信息
+     * @param wormsId 虫害id
+     * @return 虫害对象
+     */
+    public WormsBean findByWormsId(int wormsId);
+
+    /**
+     * 计算总行数
+     * @return
+     */
+    public Integer countPage(Map map);
 }

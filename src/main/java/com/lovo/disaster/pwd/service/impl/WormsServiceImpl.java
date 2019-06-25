@@ -31,7 +31,19 @@ public class WormsServiceImpl implements IWormsService {
 
     @Override
     public WormsBean findByWormsId(int wormsId) {
-        return null;
+        SqlSession session=GetSession.creatSession();
+        WormsBean worms=session.getMapper(IWormsDao.class).findByWormsId(wormsId);
+        session.close();
+        return worms;
+    }
+
+    @Override
+    public Integer countPage(Map map) {
+        SqlSession session= GetSession.creatSession();
+        ISpecialistDao dao=session.getMapper(ISpecialistDao.class);
+        int countPage=dao.countPage(map);
+        session.close();
+        return countPage;
     }
 
     @Override
@@ -41,6 +53,5 @@ public class WormsServiceImpl implements IWormsService {
         List<WormsBean> list=dao.findAll(map);
         session.close();
         return list;
-
     }
 }

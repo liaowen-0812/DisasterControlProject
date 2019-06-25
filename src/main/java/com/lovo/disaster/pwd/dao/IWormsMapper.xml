@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lovo.disaster.pwd.dao.IWormsDao">
-<!--添加虫害-->
-    <insert id="addWorms" parameterType="wormsBean">
-        insert into sys_pest(pest_name,pest_host,pest_breed,pest_enemy,pest_baby_img,pest_old_img,pest_method,pest_harm)
-        values(#{wormsName},#{host},#{wormsBreed},#{wormsEnemy},#{babyImg},#{oldImg},#{wormsMethod},#{wormsHarm})
-    </insert>
 
     <resultMap id="wormsBeanMap" type="wormsBean ">
         <id property="wormsId" column="pest_id"></id>
@@ -29,13 +24,28 @@
         <if test="null!=hName and ''!=hName">
             and pest_host=#{hName}
         </if>
-
+        limit #{start},#{hang}
     </select>
     <!--添加虫害对象-->
-    <select id="addWorms" parameterType="wormsBean">
+    <insert id="addWorms" parameterType="wormsBean">
     insert into sys_pest(pest_name,pest_host,pest_breed,pest_enemy,pest_baby_img,pest_old_img,pest_method,pest_harm)
     values (#{wormsName},#{host},#{wormsBreed},#{wormsEnemy},#{babyImg},#{oldImg},#{wormsMethod},#{wormsHarm})
 
+    </insert>
+    <!--通过id查找虫害对象-->
+    <select id="findByWormsId" resultMap="wormsBeanMap" parameterType="wormsBean">
+        select * from sys_pest where pest_id=#{wormsId}
+    </select>
+
+    <!--分页-->
+    <select id="countPage" resultType="Integer" parameterType="map">
+        select count(*) from sys_pest where 1=1
+        <if test="null!=wName and ''!=wName">
+            and pest_name like '%${wName}%'
+        </if>
+        <if test="null!=hName and ''!=hName">
+            and pest_host like '%${hName}%'
+        </if>
     </select>
 
 

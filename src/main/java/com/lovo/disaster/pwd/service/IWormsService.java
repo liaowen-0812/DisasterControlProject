@@ -36,4 +36,10 @@ public interface IWormsService {
      */
     public List<WormsBean> findAll(Map map);
 
+    /**
+     * 计算总行数
+     * @return
+     */
+    public Integer countPage(Map map);
+
 }
