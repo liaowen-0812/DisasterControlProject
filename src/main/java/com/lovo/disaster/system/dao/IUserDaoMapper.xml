@@ -48,4 +48,7 @@
     <insert id="updateUser" parameterType="com.lovo.disaster.system.bean.SysUser">
         update sys_user set user_pwd = #{userPwd},role_id = #{roleObj.roleId} where user_id = #{userId};
     </insert>
+    <select id="findUserByNameandPwd" resultMap="userMap">
+        select * from sys_user su join sys_role sr on su.role_id=sr.role_id where user_name = #{0} and user_pwd = #{1}
+    </select>
 </mapper>

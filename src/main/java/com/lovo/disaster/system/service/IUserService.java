@@ -50,4 +50,12 @@ public interface IUserService {
      * @return 受影响的行数
      */
     public boolean updateUser(SysUser user);
+
+    /**
+     * 登陆方法,并且添加登陆记录
+     * @param username 用户名
+     * @param password 密码
+     * @return 是否登陆成功
+     */
+    public SysUser loginUser(String username,String password);
 }
