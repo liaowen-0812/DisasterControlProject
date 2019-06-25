@@ -3,8 +3,10 @@
 <configuration>
 <properties resource="pro.properties"></properties>
     <typeAliases>
-
+        <!--别名-->
+        <package name="com.lovo.disaster.prevention.preventionBean"></package>
     </typeAliases>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC" />
@@ -19,6 +21,7 @@
     </environments>
 
     <mappers>
-
+        <mapper resource="com/lovo/disaster/prevention/preventionDao/IXLDaoMapper.xml"></mapper>
+           <mapper resource="com/lovo/disaster/prevention/preventionDao/IAreaMapper.xml"></mapper>
     </mappers>
 </configuration>

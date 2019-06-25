@@ -21,15 +21,13 @@
 </head>
 <style type="text/css">
     #login-center {
-        width: 250px;
+        width: 300px;
         position: absolute;
-        top: 50%;
+        top: 52%;
         left: 50%;
         background-color: white;
         transform: translate(-50%, -50%);
         padding: 50px;
-        padding-top: 32px;
-        padding-bottom: 0px;
         box-shadow: 0px 3px 20px 3px rgba(0, 0, 0, 0.15);
     }
 
@@ -65,10 +63,6 @@
         <div class="layui-form-item">
             <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
         </div>
-
-        <div class="layui-form-item" style="margin-bottom: 20px;">
-            <input type="checkbox" name="remember" lay-skin="primary" title="记住密码">
-        </div>
     </div>
 </div>
 <script src="layuiadmin/layui/layui.js"></script>
@@ -79,40 +73,26 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'user'], function(){
         var $ = layui.$
-            ,setter = layui.setter
             ,admin = layui.admin
             ,form = layui.form
-            ,router = layui.router()
-            ,search = router.search;
 
         form.render();
-
         //提交
         form.on('submit(LAY-user-login-submit)', function(obj){
-
             //请求登入接口
-            admin.req({
-                url: layui.setter.base + 'json/user/login.js' //实际使用请改成服务端真实接口
-                ,data: obj.field
-                ,done: function(res){
-
-                    //请求成功后，写入 access_token
-                    layui.data(setter.tableName, {
-                        key: setter.request.tokenName
-                        ,value: res.data.access_token
-                    });
-
-                    //登入成功的提示与跳转
-                    layer.msg('登入成功', {
+            $.post("login", obj.field,function (data) {
+                if(data == 'true'){
+                    layer.msg('登陆成功', {
                         offset: '15px'
                         ,icon: 1
                         ,time: 1000
                     }, function(){
-                        location.href = '../'; //后台主页
+                        location.href = 'user'; //跳转到登入页
                     });
+                }else{
+                    layer.msg('登陆失败', {icon: 5, anim: 6});
                 }
-            });
-
+            })
         });
 
     });

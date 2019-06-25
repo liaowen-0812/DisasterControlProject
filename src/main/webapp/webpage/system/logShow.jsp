@@ -20,103 +20,79 @@
     <%@include file="head.jsp" %>
 </head>
 <body>
-<div class="layui-col-md12">
-    <div class="layui-card">
-        <div class="layui-card-header" style="text-align:center;font-size: 30px">日志信息</div>
-        <div class="layui-card-body" style="height: 35%">
-            <table class="layui-table">
-                <colgroup>
-                    <col width="150">
-                    <col width="150">
-                    <col width="200">
-                    <col>
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
-                    <th>格言</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>贤心</td>
-                    <td>汉族</td>
-                    <td>1989-10-14</td>
-                    <td>人生似修行</td>
-                </tr>
-                <tr>
-                    <td>张爱玲</td>
-                    <td>汉族</td>
-                    <td>1920-09-30</td>
-                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                </tr>
-                <tr>
-                    <td>Helen Keller</td>
-                    <td>拉丁美裔</td>
-                    <td>1880-06-27</td>
-                    <td> Life is either a daring adventure or nothing.</td>
-                </tr>
-                <tr>
-                    <td>岳飞</td>
-                    <td>汉族</td>
-                    <td>1103-北宋崇宁二年</td>
-                    <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-                </tr>
-                <tr>
-                    <td>孟子</td>
-                    <td>华夏族（汉族）</td>
-                    <td>公元前-372年</td>
-                    <td>猿强，则国强。国强，则猿更强！</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!--分页开始-->
-<div class="layui-col-md12">
-    <div class="layui-card">
-        <div class="layui-card-body">
-            <div id="test-laypage-demo3"></div>
-        </div>
-    </div>
-</div>
-
-<!--分页结束-->
-<!--查询开始-->
-<div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
-    <div class="layui-card" style="text-align: center;height: 40%">
-        <div class="layui-card-header">查询日志信息</div>
-        <div class="layui-card-body">
-
-            <div class="layui-input-inline">
-                <label class="layui-form-label">起始日期</label>
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="test-laydate-start-cn" placeholder="yyyy-MM-dd">
-                </div>
+<form class="layui-form" id="formId" action="log" method="post">
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header" style="text-align:center;font-size: 30px">日志信息</div>
+            <div class="layui-card-body" style="height: 35%">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>日志内容</th>
+                        <th>日期</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${logList}" var="log">
+                        <tr>
+                            <td style="width: 4%"><input value="${log.logId}" type="checkbox" lay-skin="primary"/></td>
+                            <td>${log.logInfo}</td>
+                            <td>${log.logDate}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
             </div>
-            <br/><br/>
-            <div class="layui-input-inline">
-                <label class="layui-form-label">结束日期</label>
-                <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="test-laydate-last-cn" placeholder="yyyy-MM-dd">
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary">查询</button>
-
         </div>
     </div>
-</div>
+    <!--分页开始-->
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div id="test-laypage-demo3"></div>
+            </div>
+        </div>
+    </div>
 
+    <!--分页结束-->
+    <!--查询开始-->
+    <div class="layui-col-md4" style="float: right;margin-top: 10px;width: 50%">
+        <div class="layui-card" style="text-align: center;height: 40%">
+            <div class="layui-card-header">查询日志信息</div>
+            <div class="layui-card-body">
+
+                <div class="layui-input-inline">
+                    <label class="layui-form-label">起始日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="${startDay}" name="startDay" class="layui-input" id="test-laydate-start-cn" placeholder="yyyy-MM-dd">
+                    </div>
+                </div>
+                <br/><br/>
+                <div class="layui-input-inline">
+                    <label class="layui-form-label">结束日期</label>
+                    <div class="layui-input-inline">
+                        <input type="text" value="${lastDay}" name="lastDay" class="layui-input" id="test-laydate-last-cn" placeholder="yyyy-MM-dd">
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <input type="hidden" name="currentPage" value="${newPage}" id="inputId"/>
+                <!--按钮-->
+                <input type="submit" class="layui-btn layui-btn-primary" name="btnId" value="查询">
+
+            </div>
+        </div>
+    </div>
+</form>
 <!--查询结束-->
-
-
 
 
 <!--查询结束-->
@@ -126,10 +102,11 @@
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index', 'laydate', 'laypage'], function () {
+    }).use(['index', 'form', 'laydate', 'laypage'], function () {
         var laydate = layui.laydate,
-            laypage = layui.laypage;
-
+            laypage = layui.laypage
+            , form = layui.form;
+        form.render();
         laydate.render({
             elem: '#test-laydate-start-cn'
             , trigger: 'click'
@@ -142,9 +119,19 @@
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
             elem: 'test-laypage-demo3'
-            , count: 100
+            , count: ${allCount}
+            <%--${allCount}--%>
             , first: '首页'
             , last: '尾页'
+            , limit: ${countPage}
+            , curr: $("#inputId").val()
+            , jump: function (obj, first) {
+                $("#inputId").val(obj.curr);
+                if (!first) {
+                    $("#formId").submit();
+                }
+
+            }
             , prev: '<em>←</em>'
             , next: '<em>→</em>'
         });

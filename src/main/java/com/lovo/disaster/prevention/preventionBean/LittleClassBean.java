@@ -8,7 +8,7 @@ public class LittleClassBean {
     private int classId;
 
     //区域id
-    private int areaId;
+    private AreaBean areaId;
 
     //小班名
     private String className;
@@ -30,11 +30,11 @@ public class LittleClassBean {
         this.classId = classId;
     }
 
-    public int getAreaId() {
+    public AreaBean getAreaId() {
         return areaId;
     }
 
-    public void setAreaId(int areaId) {
+    public void setAreaId(AreaBean areaId) {
         this.areaId = areaId;
     }
 

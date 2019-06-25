@@ -62,7 +62,7 @@
                 <tbody>
                 <c:forEach items="${userList}" var="user">
                     <tr>
-                        <td><input value="${user.userId}" name="checkName" type="checkbox" lay-skin="primary"/></td>
+                        <td style="width: 4%"><input value="${user.userId}"  type="checkbox" lay-skin="primary"></td>
                         <td>${user.userName}</td>
                         <td>${user.userPwd}</td>
                         <td>${user.roleObj.roleName}</td>
@@ -120,7 +120,8 @@
                 <form style="display: initial;" class="layui-form" id="addformId" action="addUser" method="post">
                     <button type="button" onclick="addUser()" class="layui-btn layui-btn-primary">添加用户</button>
                 </form>
-                <form style="display: initial;" class="layui-form" id="delformId" action="delUser" method="post">
+                <form style="display: initial;padding-left:100px" class="layui-form" id="delformId" action="delUser"
+                      method="post">
                     <button type="button" onclick="delUser()" class="layui-btn layui-btn-primary">删除用户</button>
                     <input type="hidden" value="" name="idStr" id="delInput"/>
                 </form>
@@ -133,6 +134,7 @@
         </div>
     </div>
 </div>
+</form>
 
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
@@ -159,17 +161,13 @@
             , trigger: 'click'
         });
 
-        laydate.render({
-            elem: '#test-laydate-last-cn'
-            , trigger: ''
-        });
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
             elem: 'test-laypage-demo3'
             , count: ${allCount}
             , first: '首页'
             , last: '尾页'
-            , limit: 5
+            , limit: ${countPage}
             , curr: $("#inputId").val()
             , jump: function (obj, first) {
                 $("#inputId").val(obj.curr);
@@ -190,25 +188,25 @@
 
     function update() {
         var checkId = $("#tableId input:checked").length;
-        if(checkId ==1){
+        if (checkId == 1) {
             var tempId = "";
             $("#tableId input:checked").each(function () {
                 tempId += $(this).val();
             })
             $("#updateInput").val(tempId);
             $("#updateformId").submit();
-        }else{
+        } else {
             layer.msg('请选择1行')
         }
         //location.href = 'webpage/system/updateUser.jsp';
     }
 
     function delUser() {
-        var str="";
+        var str = "";
         $("#tableId input:checked").each(function () {
-            str +=$(this).val()+","
+            str += $(this).val() + ","
         })
-        if (str==""){
+        if (str == "") {
             layer.msg('请选择行');
             return;
         }

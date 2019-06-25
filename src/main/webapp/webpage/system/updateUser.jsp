@@ -37,6 +37,7 @@
             <div class="layui-form-item">
                 <span>用户名:</span>
                 <span style="margin-left: 25%">${userObj.userName}</span>
+                <input type="hidden" name="userId" value="${userObj.userId}"/>
             </div>
             <br/>
 
@@ -117,7 +118,7 @@
             var field = obj.field;
             //确认密码
             if (field.passWord !== field.passWord2) {
-                return layer.msg('两次密码输入不一致');
+                return layer.msg('两次密码输入不一致', {icon: 5, anim: 6});
             }
             $.post("updateUser", obj.field,function (data) {
                 if(data == 'true'){
