@@ -80,10 +80,12 @@ public class AddSpecialistServlet extends HttpServlet {
                     }
                 }
             }
+
             if(bl){
                 service.addSpecialist(doctor);
                 response.sendRedirect("specialistServlet.lovo");
             }
+
         } catch (FileUploadException e) {
             e.printStackTrace();
         }

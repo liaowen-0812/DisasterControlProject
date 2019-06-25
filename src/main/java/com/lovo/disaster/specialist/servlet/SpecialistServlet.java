@@ -47,6 +47,7 @@ public class SpecialistServlet extends HttpServlet {
             map.put("hName",home);
             request.setAttribute("hName",home);
         }
+
        List<SysDoctor> list= service.findAll(map);
         int allCount= service.countPage(map);
         request.setAttribute("doctorList",list);

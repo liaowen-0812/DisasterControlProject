@@ -54,7 +54,7 @@
         select * from sys_doctor where doctor_id=#{sysDoctorId}
     </select>
 
-    <delete id="delSpecialist">
+    <delete id="delSpecialist" >
         delete from sys_doctor where doctor_id=#{sysDoctorId}
     </delete>
 

@@ -39,7 +39,6 @@ public interface ISpecialistDao {
 
     /**
      * 修改专家信息
-     * @param
      */
     public void updateSpecialist(Map map);
 }

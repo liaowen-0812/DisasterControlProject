@@ -27,6 +27,7 @@ public class FindSpecialistServlet extends HttpServlet {
         request.setAttribute("gName",doctor.getDoctorCompany());
         request.setAttribute("txName",doctor.getDoctorHome());
         request.setAttribute("yName",doctor.getDoctorEmail());
+
         request.getRequestDispatcher("webpage/specialistPage/findSpecialistPage.jsp").forward(request,response);
 
     }

@@ -17,6 +17,7 @@ public class DelSpecialistServlet extends HttpServlet {
         String dId=request.getParameter("idStr");
         service.delSpecialist(Integer.parseInt(dId));
         response.sendRedirect("specialistServlet.lovo");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
