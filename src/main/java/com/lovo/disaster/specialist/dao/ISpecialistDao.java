@@ -17,4 +17,29 @@ public interface ISpecialistDao {
      * @param sysDoctor 专家对象
      */
     public void addSpecialist(SysDoctor sysDoctor);
+
+    /**
+     * 计算总行数
+     * @return
+     */
+    public Integer countPage(Map map);
+
+    /**
+     * 根据ID查询专家对象
+     * @param sysDoctorId 专家ID
+     * @return 专家对象
+     */
+    public SysDoctor findById(int sysDoctorId);
+
+    /**
+     * 根据ID删除专家
+     * @param sysDoctorId 专家ID
+     */
+    public void delSpecialist(int sysDoctorId);
+
+    /**
+     * 修改专家信息
+     * @param
+     */
+    public void updateSpecialist(Map map);
 }

@@ -20,7 +20,7 @@
       select doctor_id,doctor_name,doctor_sex,doctor_birthday,doctor_img_path,doctor_speciality,
       doctor_post,doctor_tel,doctor_company,doctor_home,doctor_email from sys_doctor where 1=1
           <if test="null!=sName and ''!=sName">
-              and doctor_name=#{sName}
+              and doctor_name like '%${sName}%'
           </if>
           <if test="null!=pName and ''!=pName">
               and doctor_speciality=#{pName}
@@ -28,6 +28,7 @@
        <if test="null!=hName and ''!=hName">
            and doctor_company=#{hName}
        </if>
+       limit #{start},#{hang}
    </select>
 
     <insert id="addSpecialist" parameterType="sysDoctor">
@@ -35,4 +36,44 @@
         doctor_tel,doctor_company,doctor_home,doctor_email) values(#{doctorName},#{doctorSex},#{doctorBirthday},
         #{doctorImgPath},#{doctorSpeciality},#{doctorPost},#{doctorTel},#{doctorCompany},#{doctorHome},#{doctorEmail})
     </insert>
+
+    <select id="countPage" resultType="Integer" parameterType="map">
+        select count(*) from sys_doctor where 1=1
+        <if test="null!=sName and ''!=sName">
+            and doctor_name like '%${sName}%'
+        </if>
+        <if test="null!=pName and ''!=pName">
+            and doctor_speciality=#{pName}
+        </if>
+        <if test="null!=hName and ''!=hName">
+            and doctor_company=#{hName}
+        </if>
+    </select>
+
+    <select id="findById" resultMap="sysDoctorMap" resultType="sysDoctor">
+        select * from sys_doctor where doctor_id=#{sysDoctorId}
+    </select>
+
+    <delete id="delSpecialist">
+        delete from sys_doctor where doctor_id=#{sysDoctorId}
+    </delete>
+
+    <update id="updateSpecialist" parameterType="map">
+        update sys_doctor
+        <set>
+            <if test="null!=dName and ''!=dName">
+                doctor_tel=#{dName},
+            </if>
+            <if test="null!=wName and ''!=wName">
+                doctor_post=#{wName},
+            </if>
+            <if test="null!=gName and ''!=gName">
+                doctor_company=#{gName},
+            </if>
+            <if test="null!=yName and ''!=yName">
+                doctor_email=#{dName},
+            </if>
+        </set>
+        where doctor_id=#{dId}
+    </update>
 </mapper>

@@ -27,17 +27,27 @@ public class ISpecialistServiceImpl implements ISpecialistService {
 
     @Override
     public SysDoctor findById(int sysDoctorId) {
-        return null;
+        SqlSession session=GetSession.creatSession();
+        SysDoctor d= session.getMapper(ISpecialistDao.class).findById(sysDoctorId);
+        session.close();
+        return d;
     }
 
     @Override
-    public void updateSpecialist(int sysDoctorId) {
+    public void updateSpecialist(Map map) {
+        SqlSession session=GetSession.creatSession();
+        session.getMapper(ISpecialistDao.class).updateSpecialist(map);
+        session.commit();
+        session.close();
 
     }
 
     @Override
     public void delSpecialist(int sysDoctorId) {
-
+        SqlSession session=GetSession.creatSession();
+        session.getMapper(ISpecialistDao.class).delSpecialist(sysDoctorId);
+        session.commit();
+        session.close();
     }
 
     @Override
@@ -47,5 +57,14 @@ public class ISpecialistServiceImpl implements ISpecialistService {
         List<SysDoctor> list=dao.findAll(map);
         session.close();
         return list;
+    }
+
+    @Override
+    public Integer countPage(Map map) {
+        SqlSession session= GetSession.creatSession();
+        ISpecialistDao dao=session.getMapper(ISpecialistDao.class);
+        int countPage=dao.countPage(map);
+        session.close();
+        return countPage;
     }
 }
