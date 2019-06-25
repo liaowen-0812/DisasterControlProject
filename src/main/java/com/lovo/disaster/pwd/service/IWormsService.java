@@ -3,6 +3,7 @@ package com.lovo.disaster.pwd.service;
 import com.lovo.disaster.pwd.bean.WormsBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 虫害业务层
@@ -30,10 +31,9 @@ public interface IWormsService {
 
     /**
      * 动态查询虫害对象
-     * @param wormsName 虫害名称
-     * @param host 寄主
-     * @return 虫害集合
+     * @param map
+     * @return虫害对象集合
      */
-    public List<WormsBean> findAll(String wormsName,String host);
+    public List<WormsBean> findAll(Map map);
 
 }

@@ -5,4 +5,20 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
   <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>addWormsServlet</servlet-name>
+        <servlet-class>com.lovo.disaster.pwd.servlet.addWormsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addWormsServlet</servlet-name>
+        <url-pattern>addWormsServlet.lovo</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>wormsListServlet</servlet-name>
+        <servlet-class>com.lovo.disaster.pwd.servlet.wormsListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>wormsListServlet</servlet-name>
+        <url-pattern>wormsListServlet.lovo</url-pattern>
+    </servlet-mapping>
 </web-app>

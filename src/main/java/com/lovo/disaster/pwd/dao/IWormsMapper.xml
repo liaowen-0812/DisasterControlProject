@@ -7,7 +7,7 @@
         values(#{wormsName},#{host},#{wormsBreed},#{wormsEnemy},#{babyImg},#{oldImg},#{wormsMethod},#{wormsHarm})
     </insert>
 
-    <resultMap id="infoMap" type="WormsBean">
+    <resultMap id="wormsBeanMap" type="wormsBean ">
         <id property="wormsId" column="pest_id"></id>
         <result property="wormsName" column="pest_name"></result>
         <result property="host" column="pest_host" ></result>
@@ -17,18 +17,26 @@
         <result property="oldImg" column="pest_old_img"></result>
         <result property="wormsMethod" column="pest_method"></result>
         <result property="wormsHarm" column="pest_harm"></result>
-        <association property="student"  javaType ="sysStudent">
-            <result property="studentName" column="student_name"></result>
-        </association>
     </resultMap>
 
-    <!--通过对象查找虫害id-->
-    <select id="findByItem" resultType="int">
+    <!--动态显示界面-->
+    <select id="findAll" resultMap="wormsBeanMap" parameterType="map">
+    select pest_id,pest_name,pest_host,pest_breed,pest_enemy,pest_baby_img,pest_old_img,pest_method,pest_harm
+    from sys_pest where 1=1
+    <if test="null!=wName and ''!=wName">
+        and pest_name=#{wName}
+    </if>
+        <if test="null!=hName and ''!=hName">
+            and pest_host=#{hName}
+        </if>
 
     </select>
+    <!--添加虫害对象-->
+    <select id="addWorms" parameterType="wormsBean">
+    insert into sys_pest(pest_name,pest_host,pest_breed,pest_enemy,pest_baby_img,pest_old_img,pest_method,pest_harm)
+    values (#{wormsName},#{host},#{wormsBreed},#{wormsEnemy},#{babyImg},#{oldImg},#{wormsMethod},#{wormsHarm})
 
-
-
+    </select>
 
 
 </mapper>
