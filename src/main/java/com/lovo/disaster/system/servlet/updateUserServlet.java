@@ -17,7 +17,7 @@ public class updateUserServlet extends HttpServlet {
         String passWord= request.getParameter("passWord");
         String userId = request.getParameter("userId");
         String city = request.getParameter("city");
-        boolean flag = false;
+        String flag = "false";
         if(userId!= null && !"".equals(userId)){
             int id = Integer.parseInt(userId);
             int cityId = Integer.parseInt(city);
@@ -29,7 +29,13 @@ public class updateUserServlet extends HttpServlet {
             user.setRoleObj(role);
             IUserService service = new UserServiceImpl();
             service.updateUser(user);
-            flag = true;
+            SysUser userBean = (SysUser) request.getSession().getAttribute("userObj");
+            flag = "true";
+            if(id == userBean.getUserId()){
+                flag = "login";
+                request.getSession().removeAttribute("userObj");
+                request.getSession().removeAttribute("powerList");
+            }
         }
         PrintWriter pw = response.getWriter();
         pw.write(flag+"");

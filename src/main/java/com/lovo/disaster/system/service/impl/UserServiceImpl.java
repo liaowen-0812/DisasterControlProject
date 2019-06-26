@@ -122,7 +122,6 @@ public class UserServiceImpl implements IUserService {
         SqlSession session = GetSession.creatSession();
         IUserDao dao = session.getMapper(IUserDao.class);
         SysUser user = dao.findUserByNameandPwd(username,password);
-        System.out.println(user);
 
         if(user != null){
             ILogDao logDao = session.getMapper(ILogDao.class);
