@@ -74,7 +74,7 @@
 
                     <div class="layui-form-item">
                         <div class="layui-col-md12">
-                            <input type="text"  style="width: 50%;margin-left: 20%" name="title" placeholder="请输入名称" value="${drugName}"
+                            <input type="text"  style="width: 50%;margin-left: 20%" name="title1" placeholder="请输入名称" value="${drugName}"
                                    autocomplete="off" class="layui-input">
                         </div>
                         <br><br>
@@ -88,7 +88,7 @@
                                     <c:if test="${typeLx==type.typeKey&&typeLx!=''}">
                                         <option value="${type.typeKey}" selected="selected">${type.typeVal}</option>
                                     </c:if>
-                                    <c:if test="${typeLx!=type.typeKey}">
+                                    <c:if test="${typeLx!=type.typeKey||typeLx==''}">
                                         <option value="${type.typeKey}">${type.typeVal}</option>
                                     </c:if>
 
@@ -106,7 +106,7 @@
                                     <c:if test="${typeLb==type.typeKey&&typeLb!=''}">
                                         <option value="${type.typeKey}" selected="selected">${type.typeVal}</option>
                                     </c:if>
-                                    <c:if test="${typeLb!=type.typeKey}">
+                                    <c:if test="${typeLb!=type.typeKey||typeLb==''}">
                                         <option value="${type.typeKey}">${type.typeVal}</option>
                                     </c:if>
                                 </c:forEach>
@@ -177,10 +177,11 @@
 
         form.render();
 
+
         laydate.render({
-            elem: '#test-laydate-start-cn'
+                elem: '#test-laydate-start-cn'
             , trigger: 'click'
-        });
+            });
 
         laydate.render({
             elem: '#test-laydate-last-cn'
@@ -199,7 +200,7 @@
             , next: '<em>→</em>'
             , jump: function (obj, first) { // 跳转页数
                 if (!first) {
-                    $("#tt1").val(obj.curr) //将隐藏表单的val设置为当前页，然后提交，传给后台
+                    $("#tt1").val(obj.curr)//将隐藏表单的val设置为当前页，然后提交，传给后台
                     $("#f2").submit();
                 }
             }
