@@ -3,6 +3,7 @@ package com.lovo.disaster.pwd.dao;
 import com.lovo.disaster.pwd.bean.WormsBean;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IWormsDao  {
     /**
@@ -10,12 +11,13 @@ public interface IWormsDao  {
      * @param wormsBean
      */
     public void addWorms(WormsBean wormsBean);
+
     /**
-     * 通过对象找到对象id
-     * @param wormsBean 虫害对象
-     * @return 虫害id
+     * 动态查询虫害对象
+     * @param map
+     * @return 虫害对象集合
      */
-    public int findByItem(WormsBean wormsBean);
+    public List<WormsBean> findAll(Map map);
 
     /**
      *通过对象id查找对象信息
@@ -25,10 +27,8 @@ public interface IWormsDao  {
     public WormsBean findByWormsId(int wormsId);
 
     /**
-     * 动态查询虫害对象
-     * @param wormsName 虫害名称
-     * @param host 寄主
-     * @return 虫害集合
+     * 计算总行数
+     * @return
      */
-    public List<WormsBean> findAll(String wormsName, String host);
+    public Integer countPage(Map map);
 }

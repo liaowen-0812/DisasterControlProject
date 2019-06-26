@@ -38,22 +38,22 @@
             <br/>
 
             <div class="layui-input-inline" style="margin-top: 20px">
-            <label class="layui-form-label">出生年月</label>
-            <div class="layui-input-inline">
-                <input type="text" class="layui-input"  id="test-laydate-last-cn">
-            </div>
-            <div class="layui-col-md12">
-                <div class="layui-card">
-                    <div class="layui-card-body">
-                        <div class="layui-upload">
-                            <img class="layui-upload-img" id="test-upload-normal-img" style="width: 50px;height: 80px">
-                            <p id="test-upload-demoText"></p>
-                            <button type="button" class="layui-btn" id="test-upload-normal">上传头像</button>
+                <label class="layui-form-label">出生年月</label>
+                <div class="layui-input-inline">
+                    <input type="text" class="layui-input"  id="test-laydate-last-cn">
+                </div>
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="layui-upload">
+                                <img class="layui-upload-img" id="test-upload-normal-img" style="width: 50px;height: 80px">
+                                <p id="test-upload-demoText"></p>
+                                <button type="button" class="layui-btn" id="test-upload-normal">上传头像</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
             <br/>
             <br/>
 

@@ -18,14 +18,15 @@
 </head>
 <body>
 
-
+<form action="specialistServlet.lovo" method="post" id="f2">
+    <input type="text" style="display: none" value="${cerPage}" name="tName" id="tid">
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-header" style="font-size: 30px" align="center">专家一览</div>
                 <div class="layui-card-body">
-                    <table class="layui-table">
+                    <table class="layui-table" id="tableId">
                         <colgroup>
                             <col width="150">
                             <col width="150">
@@ -34,6 +35,7 @@
                         </colgroup>
                         <thead>
                         <tr>
+                            <th>选择</th>
                             <th>姓名</th>
                             <th>工作单位</th>
                             <th>专长</th>
@@ -42,36 +44,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>贤心</td>
-                            <td>汉族</td>
-                            <td>1989-10-14</td>
-                            <td>人生似修行</td>
-                        </tr>
-                        <tr>
-                            <td>张爱玲</td>
-                            <td>汉族</td>
-                            <td>1920-09-30</td>
-                            <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                        </tr>
-                        <tr>
-                            <td>Helen Keller</td>
-                            <td>拉丁美裔</td>
-                            <td>1880-06-27</td>
-                            <td> Life is either a daring adventure or nothing.</td>
-                        </tr>
-                        <tr>
-                            <td>岳飞</td>
-                            <td>汉族</td>
-                            <td>1103-北宋崇宁二年</td>
-                            <td>教科书再滥改，也抹不去“民族英雄”的事实</td>
-                        </tr>
-                        <tr>
-                            <td>孟子</td>
-                            <td>华夏族（汉族）</td>
-                            <td>公元前-372年</td>
-                            <td>猿强，则国强。国强，则猿更强！ </td>
-                        </tr>
+                        <c:forEach items="${doctorList}" var="a">
+                            <tr><th><input value="${a.doctorId}" name="checkName" type="checkbox" lay-skin="primary"/></th><th>${a.doctorName}</th><th>${a.doctorCompany}</th><th>${a.doctorSpeciality}</th>
+                                <th>${a.doctorPost}</th><th>${a.doctorTel}</th></tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -99,7 +75,7 @@
             <div class="layui-input-inline">
                 <label class="layui-form-label">专家姓名</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn1">
+                    <input type="text" class="layui-input" value="${sName}" id="test-laydate-start-cn1" name="sName">
                 </div>
             </div>
             <br/>
@@ -107,7 +83,7 @@
             <div class="layui-input-inline" style="margin-top: 20px">
                 <label class="layui-form-label">专长</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-last-cn">
+                    <input type="text" class="layui-input" value="${pName}" id="test-laydate-last-cn3" name="pName">
                 </div>
             </div>
             <br/>
@@ -116,18 +92,18 @@
             <div class="layui-input-inline">
                 <label class="layui-form-label">工作单位</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn2">
+                    <input type="text" class="layui-input" value="${hName}" id="test-laydate-start-cn2" name="hName">
                 </div>
             </div>
             <br/>
             <br/>
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary">查询</button>
+            <button type="submit" class="layui-btn layui-btn-primary" id="bid">查询</button>
 
         </div>
     </div>
 </div>
-
+</form>
 <!--查询结束-->
 <div class="layui-col-md4" style="margin-top: 10px;width: 48%">
 
@@ -136,11 +112,20 @@
         <div class="layui-card-body">
             <div  id="btnDivId" style="margin-left: 150px">
                 <!--按钮-->
-                <button type="button" class="layui-btn layui-btn-primary" style="width: 120px">添加专家</button>
-                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px">查看专家信息</button>
+                <button type="button" class="layui-btn layui-btn-primary" style="width: 120px" id="bid1">添加专家</button>
+                <form style="display: initial;" class="layui-form" id="findId" action="find.lovo" method="post">
+                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px" id="bid2">查看专家信息</button>
+                    <input type="hidden" value="" name="idStr" id="findInput"/>
+                </form>
                 <br/><br/><br/><br/>
-                <button type="button"  class="layui-btn layui-btn-primary" >修改专家信息</button>
-                <button type="button"  class="layui-btn layui-btn-primary" style="margin-left: 100px;width: 120px" >删除专家</button>
+                <form style="display: initial;" class="layui-form" id="updateformId" action="update.lovo" method="post">
+                <button type="button"  class="layui-btn layui-btn-primary" id="bid3">修改专家信息</button>
+                    <input type="hidden" value="" name="idStr" id="updateInput"/>
+                </form>
+                <form style="display: initial;" class="layui-form" id="delformId" action="del.lovo" method="post">
+                <button type="button"  class="layui-btn layui-btn-primary" style="margin-left: 100px;width: 120px" id="bid4">删除专家</button>
+                    <input type="hidden" value="" name="idStr" id="delInput"/>
+                </form>
             </div>
         </div>
     </div>
@@ -168,13 +153,75 @@
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
             elem: 'test-laypage-demo3'
-            ,count: 100
+            ,count:${allCount}
+            ,limit:5
             ,first: '首页'
             ,last: '尾页'
-            ,prev: '<em>←</em>'
-            ,next: '<em>→</em>'
+            , curr: $("#tid").val()
+            , prev: '<em>←</em>'
+            , next: '<em>→</em>'
+            , jump: function (obj, first) { // 跳转页数
+                if (!first) {
+                    $("#tid").val(obj.curr) //将隐藏表单的val设置为当前页，然后提交，传给后台
+                    $("#f2").submit();
+                }
+            }
         });
 
+    });
+    
+    $("#bid").click(function () {
+        var s=$("#test-laydate-start-cn1").val();
+        alert(s)
+    });
+
+    $("#bid1").click(function () {
+        location.href="webpage/specialistPage/addSpecialistPage.jsp";
+    });
+
+    $("#bid2").click(function () {
+        var checkId = $("#tableId input:checked").length;
+        alert(checkId)
+        if(checkId==1){
+            var tem="";
+            $("#tableId input:checked").each(function () {
+               tem+=$(this).val();
+            });
+            $("#findInput").val(tem);
+            $("#findId").submit();
+        }else {
+            layer.msg('请选择1行')
+        }
+    });
+
+    $("#bid3").click(function () {
+        var checkId = $("#tableId input:checked").length;
+        alert(checkId)
+        if(checkId==1){
+            var tem="";
+            $("#tableId input:checked").each(function () {
+                tem+=$(this).val();
+            });
+            $("#updateInput").val(tem);
+            $("#updateformId").submit();
+        }else {
+            layer.msg('请选择1行')
+        }
+    });
+
+    $("#bid4").click(function () {
+        var checkId = $("#tableId input:checked").length;
+        alert(checkId)
+        if(checkId==1){
+            var tem="";
+            $("#tableId input:checked").each(function () {
+                tem+=$(this).val();
+            });
+            $("#delInput").val(tem);
+            $("#delformId").submit();
+        }else {
+            layer.msg('请选择1行')
+        }
     });
 </script>
 </body>

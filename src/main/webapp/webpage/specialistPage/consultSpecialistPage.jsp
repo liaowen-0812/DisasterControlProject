@@ -73,6 +73,16 @@
                     </table>
                 </div>
             </div>
+            <!--分页开始-->
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div id="test-laypage-demo3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--分页结束-->
         </div>
     </div>
 </div>
@@ -83,6 +93,7 @@
                 <!--按钮-->
                 <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 90%">专家会商</button>
         </div>
+</div>
 
 
 <script src="layuiadmin/layui/layui.js"></script>
@@ -105,5 +116,24 @@
             ,trigger: 'click'
         });
 
+        //自定义首页、尾页、上一页、下一页文本
+        laypage.render({
+            elem: 'test-laypage-demo3'
+            ,count: 10
+            ,limit:5
+            ,first: '首页'
+            ,last: '尾页'
+            , curr: $("#tid").val()
+            , prev: '<em>←</em>'
+            , next: '<em>→</em>'
+            , jump: function (obj, first) { // 跳转页数
+                if (!first) {
+                    $("#tid").val(obj.curr) //将隐藏表单的val设置为当前页，然后提交，传给后台
+                    $("#f2").submit();
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,8 +1,8 @@
-package com.lovo.disaster.specialist.servlet;
+package com.lovo.disaster.pwd.servlet;
 
-import com.lovo.disaster.specialist.bean.SysDoctor;
-import com.lovo.disaster.specialist.service.ISpecialistService;
-import com.lovo.disaster.specialist.service.impl.ISpecialistServiceImpl;
+import com.lovo.disaster.pwd.bean.WormsBean;
+import com.lovo.disaster.pwd.service.IWormsService;
+import com.lovo.disaster.pwd.service.impl.WormsServiceImpl;
 import com.lovo.disaster.util.StringInfo;
 import com.lovo.disaster.util.UploadUtil;
 import com.lovo.disaster.util.Verify;
@@ -20,15 +20,15 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
-public class AddSpecialistServlet extends HttpServlet {
-    ISpecialistService service=new ISpecialistServiceImpl();
+public class addWormsServlet extends HttpServlet {
+    IWormsService service=new WormsServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setHeader("Content-type", "text/plain;charset=UTF-8");
         UploadUtil uploadUtil=new UploadUtil();
         boolean bl=false;
-        SysDoctor doctor=new SysDoctor();
-       String STR= request.getParameter("zName");
+        WormsBean worms=new WormsBean();
+        String STR= request.getParameter("zName");
         try {
             Map<String, List<FileItem>> map= uploadUtil.getFileItem(request);
             //获得表单集合
@@ -36,14 +36,14 @@ public class AddSpecialistServlet extends HttpServlet {
             //获得文件集合
             List<FileItem> listFile=   map.get("listFile");
             String path= StringInfo.filePath;
-            for (FileItem file:listFile) {
+            for (FileItem file:listFile){
                 String fileName=file.getName();
                 bl= Verify.verifyFile(fileName,new String[]{"jpg","doc"});
                 if(!bl){
                     break;
                 }
-               fileName=StringInfo.getNewFileName(fileName);
-                doctor.setDoctorImgPath("img/"+fileName);
+                fileName=StringInfo.getNewFileName(fileName);
+                worms.setBabyImg(fileName);
                 OutputStream out=new FileOutputStream(path+fileName);
                 InputStream in=file.getInputStream();
                 byte[] bytes=new byte[1024*10];
@@ -55,43 +55,45 @@ public class AddSpecialistServlet extends HttpServlet {
                 out.close();
                 in.close();
             }
-            if(bl){
-                for (FileItem form:listForm) {
+            if (bl){
+                for (FileItem form:listForm){
                     String formName=form.getFieldName();
                     String val=form.getString("UTF-8");
-                    if(formName.equals("zName")){
-                        doctor.setDoctorName(val);
-                    }else if(formName.equals("sex")){
-                        doctor.setDoctorSex(val);
-                    }else if(formName.equals("cName")){
-                        doctor.setDoctorBirthday(val);
-                    }else if(formName.equals("sName")){
-                        doctor.setDoctorSpeciality(val);
-                    }else if(formName.equals("wName")){
-                        doctor.setDoctorPost(val);
-                    }else if(formName.equals("fName")){
-                        doctor.setDoctorTel(val);
-                    }else if(formName.equals("gName")){
-                        doctor.setDoctorCompany(val);
-                    }else if(formName.equals("xName")){
-                        doctor.setDoctorHome(val);
-                    }else if(formName.equals("yName")){
-                        doctor.setDoctorEmail(val);
+                    if(formName.equals("wormsName")){
+                        worms.setWormsName(val);
+                    }else if(formName.equals("host")){
+                        worms.setHost(val);
+                    }else if(formName.equals("wormsBreed")){
+                        worms.setWormsBreed(val);
+                    }else if(formName.equals("wormsEnemy")){
+                        worms.setWormsEnemy(val);
+                    }else if(formName.equals("babyImg")){
+                        worms.setBabyImg(val);
+                    }else if(formName.equals("oldImg")){
+                        worms.setOldImg(val);
+                    }else if(formName.equals("wormsMethod")){
+                        worms.setWormsMethod(val);
+                    }else if(formName.equals("wormsHarm")){
+                        worms.setWormsHarm(val);
                     }
                 }
             }
-
             if(bl){
-                service.addSpecialist(doctor);
-                response.sendRedirect("specialistServlet.lovo");
+                service.addWorms(worms);
+                response.sendRedirect("wormsListServlet.lovo");
             }
 
-        } catch (FileUploadException e) {
+
+        }
+        catch(FileUploadException e){
             e.printStackTrace();
         }
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
+
     }
 }
