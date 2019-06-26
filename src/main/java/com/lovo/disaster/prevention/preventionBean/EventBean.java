@@ -9,8 +9,8 @@ public class EventBean {
     //事件id(主键)
 private int eventId;
 
-    //区域id
-    private int areaId;
+    //区域对象id
+    private AreaBean areaId;
 
     //事件名
     private String evenName;
@@ -41,11 +41,11 @@ private int eventId;
         this.eventId = eventId;
     }
 
-    public int getAreaId() {
+    public AreaBean getAreaId() {
         return areaId;
     }
 
-    public void setAreaId(int areaId) {
+    public void setAreaId(AreaBean areaId) {
         this.areaId = areaId;
     }
 

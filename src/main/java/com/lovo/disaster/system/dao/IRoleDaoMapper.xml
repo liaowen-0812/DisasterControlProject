@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.system.dao.IRoleDao">
+
+    <select id="findAllRole" resultType="com.lovo.disaster.system.bean.SysRole" >
+       select role_id as roleId,role_name as roleName from sys_role
+    </select>
+    <resultMap id="powerMap" type="com.lovo.disaster.system.bean.SysPower">
+        <id property="powerId" column="power_id"></id>
+        <result property="powerName" column="power_name"></result>
+        <result property="powerSource" column="power_source"></result>
+        <result property="powerTag" column="power_tag"></result>
+        <association property="roleObj" column="role_id" javaType="com.lovo.disaster.system.bean.SysRole" resultMap="roleMap"></association>
+    </resultMap>
+    <resultMap id="roleMap" type="com.lovo.disaster.system.bean.SysRole">
+        <id property="roleId" column="role_id"></id>
+        <result property="roleName" column="role_name"></result>
+    </resultMap>
+    <select id="findPowerByRoleId" resultMap="powerMap">
+       SELECT * FROM sys_power WHERE role_id = #{0}
+    </select>
+</mapper>

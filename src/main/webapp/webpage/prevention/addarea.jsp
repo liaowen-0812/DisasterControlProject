@@ -19,18 +19,17 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
-
-<%--<div class="layui-fluid">--%>
+<form action="addAreaServlet" method="post" class="layui-form">
 <div class="layui-card" style="height: 100%">
     <div class="layui-card-header" align="center" style="height: 8%" ><h1>添加区域</h1></div>
     <div class="layui-card-body" style="padding: 15px;">
-        <form class="layui-form" action="" lay-filter="component-form-group" >
+        <%--<form class="layui-form" action="" lay-filter="component-form-group" >--%>
 
 
             <div class="layui-form-item" style="margin-top: 5%;">
                 <label class="layui-form-label" style="margin-left: 30%">名称</label>
                 <div class="layui-input-inline" style="width: 25%;" >
-                    <input type="password" name="password" lay-verify="pass" placeholder="名称" autocomplete="off" class="layui-input">
+                    <input type="text" name="areaName" lay-verify="pass" placeholder="名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
@@ -38,14 +37,14 @@
             <div class="layui-form-item" style="margin-top: 5%" >
                 <label class="layui-form-label" style="margin-left: 30%">林种</label>
                 <div class="layui-input-inline" style="width: 25%">
-                    <input type="password" name="password" lay-verify="pass" placeholder="林种" autocomplete="off" class="layui-input">
+                    <input type="text" name="treeType" lay-verify="pass" placeholder="林种" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item" style="margin-top: 5%" >
                 <label class="layui-form-label" style="margin-left: 30%">优势树种</label>
                 <div class="layui-input-inline" style="width: 25%">
-                    <input type="password" name="password" lay-verify="pass" placeholder="优势树种" autocomplete="off" class="layui-input">
+                    <input type="text" name="goodTree" lay-verify="pass" placeholder="优势树种" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
@@ -56,10 +55,9 @@
                     <label class="layui-form-label" style=";margin-left:10%">地类</label>
                     <div class="layui-input-inline" style="width:50%;" >
                         <select name="quiz">
-                            <option value="">林地</option>
-                            <option value="你工作的第一个城市">疏林地</option>
-                            <option value="你的工号">灌木林</option>
-                            <option value="你的工号">苗圃地</option>
+                            <c:forEach var="s" items="${list}">
+                            <option value="${s.typeKey}">${s.typeVal}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -72,12 +70,10 @@
                 <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 42.5%;width: 15%"  id="buttonId" onclick="buId()" >添加</button>
             </div>
 
-
-        </form>
     </div>
 </div>
 
-
+</form>
 
 <script>
     layui.config({
@@ -97,19 +93,12 @@
         laydate.render({
             elem: '#LAY-component-form-group-date'
         });
-
-
-
-
-
     });
 
  //js
-
     function buId() {
         location.href="webpage/prevention/area.jsp";
     }
-
 
 </script>
 

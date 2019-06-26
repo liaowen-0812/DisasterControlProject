@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.specialist.dao.ISpecialistDao">
+
+    <resultMap id="sysDoctorMap" type="sysDoctor">
+        <id property="doctorId" column="doctor_id"></id>
+        <result property="doctorName" column="doctor_name"></result>
+        <result property="doctorSex" column="doctor_sex"></result>
+        <result property="doctorBirthday" column="doctor_birthday"></result>
+        <result property="doctorImgPath" column="doctor_img_path"></result>
+        <result property="doctorSpeciality" column="doctor_speciality"></result>
+        <result property="doctorPost" column="doctor_post"></result>
+        <result property="doctorTel" column="doctor_tel"></result>
+        <result property="doctorCompany" column="doctor_company"></result>
+        <result property="doctorHome" column="doctor_home"></result>
+        <result property="doctorEmail" column="doctor_email"></result>
+    </resultMap>
+
+   <select id="findAll" resultMap="sysDoctorMap" parameterType="map">
+      select doctor_id,doctor_name,doctor_sex,doctor_birthday,doctor_img_path,doctor_speciality,
+      doctor_post,doctor_tel,doctor_company,doctor_home,doctor_email from sys_doctor where 1=1
+          <if test="null!=sName and ''!=sName">
+              and doctor_name like '%${sName}%'
+          </if>
+          <if test="null!=pName and ''!=pName">
+              and doctor_speciality=#{pName}
+          </if>
+       <if test="null!=hName and ''!=hName">
+           and doctor_company=#{hName}
+       </if>
+       limit #{start},#{hang}
+   </select>
+
+    <insert id="addSpecialist" parameterType="sysDoctor">
+        insert into sys_doctor(doctor_name,doctor_sex,doctor_birthday,doctor_img_path,doctor_speciality,doctor_post,
+        doctor_tel,doctor_company,doctor_home,doctor_email) values(#{doctorName},#{doctorSex},#{doctorBirthday},
+        #{doctorImgPath},#{doctorSpeciality},#{doctorPost},#{doctorTel},#{doctorCompany},#{doctorHome},#{doctorEmail})
+    </insert>
+
+    <select id="countPage" resultType="Integer" parameterType="map">
+        select count(*) from sys_doctor where 1=1
+        <if test="null!=sName and ''!=sName">
+            and doctor_name like '%${sName}%'
+        </if>
+        <if test="null!=pName and ''!=pName">
+            and doctor_speciality=#{pName}
+        </if>
+        <if test="null!=hName and ''!=hName">
+            and doctor_company=#{hName}
+        </if>
+    </select>
+
+    <select id="findById" resultMap="sysDoctorMap" resultType="sysDoctor">
+        select * from sys_doctor where doctor_id=#{sysDoctorId}
+    </select>
+
+    <delete id="delSpecialist" >
+        delete from sys_doctor where doctor_id=#{sysDoctorId}
+    </delete>
+
+    <update id="updateSpecialist" parameterType="map">
+        update sys_doctor
+        <set>
+            <if test="null!=dName and ''!=dName">
+                doctor_tel=#{dName},
+            </if>
+            <if test="null!=wName and ''!=wName">
+                doctor_post=#{wName},
+            </if>
+            <if test="null!=gName and ''!=gName">
+                doctor_company=#{gName},
+            </if>
+            <if test="null!=yName and ''!=yName">
+                doctor_email=#{dName},
+            </if>
+        </set>
+        where doctor_id=#{dId}
+    </update>
+</mapper>
