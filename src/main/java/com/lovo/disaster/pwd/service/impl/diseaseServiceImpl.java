@@ -22,11 +22,6 @@ public class diseaseServiceImpl implements IDiseaseService {
     }
 
     @Override
-    public int findByItem(DiseaseBean diseaseBean) {
-        return 0;
-    }
-
-    @Override
     public DiseaseBean findById(int diseaseId) {
         SqlSession session=GetSession.creatSession();
         DiseaseBean disease=session.getMapper(IDiseaseDao.class).findById(diseaseId);

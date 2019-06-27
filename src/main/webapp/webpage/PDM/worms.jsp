@@ -35,15 +35,15 @@
                 <thead>
                 <tr>
                     <th>选择</th>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
+                    <th>名称</th>
+                    <th>寄主</th>
+                    <th>主要危害</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${wormsList}" var="a">
-                    <tr><th><input value="${a.wormsId}" name="checkName" type="checkbox" lay-skin="primary"/></th><th>${a.wormsName}</th><th>${a.host}</th><th>${a.wormsHarm}</th>
+                    <tr><td><input value="${a.wormsId}" name="checkName" type="checkbox" lay-skin="primary"/></td><td>${a.wormsName}</td><td>${a.host}</td><td>${a.wormsHarm}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -143,7 +143,7 @@
     });
 
     function addEnter(){
-        location.href="webpage/PDM/addworms.jsp";
+        location.href="com.lovo.disaster.pwd.servlet.addWormsServlet";
     }
     function see(){
         location.href="webpage/PDM/wormsInformation.jsp";

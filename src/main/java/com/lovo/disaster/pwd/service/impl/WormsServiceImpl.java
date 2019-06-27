@@ -22,10 +22,7 @@ public class WormsServiceImpl implements IWormsService {
 
     }
 
-    @Override
-    public int findByItem(WormsBean wormsBean) {
-        return 0;
-    }
+
 
     @Override
     public WormsBean findByWormsId(int wormsId) {

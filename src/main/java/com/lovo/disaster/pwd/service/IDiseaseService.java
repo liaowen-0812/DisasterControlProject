@@ -13,13 +13,6 @@ public interface IDiseaseService {
     public void addDisease(DiseaseBean diseaseBean);
 
     /**
-     * 通过病害对象查找病害id
-     * @param diseaseBean 病害对象
-     * @return 病害id
-     */
-    public int findByItem(DiseaseBean diseaseBean);
-
-    /**
      * 通过病害id查找病害对象
      * @param diseaseId 病害id
      * @return 病害对象
