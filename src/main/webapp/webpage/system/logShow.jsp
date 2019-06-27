@@ -24,7 +24,7 @@
     <div class="layui-col-md12">
         <div class="layui-card">
             <div class="layui-card-header" style="text-align:center;font-size: 30px">日志信息</div>
-            <div class="layui-card-body" style="height: 35%">
+            <div class="layui-card-body" style="height: 40%">
                 <table class="layui-table">
                     <colgroup>
                         <col width="150">
@@ -42,7 +42,7 @@
                     <tbody>
                     <c:forEach items="${logList}" var="log">
                         <tr>
-                            <td style="width: 4%"><input value="${log.logId}" type="checkbox" lay-skin="primary"/></td>
+                            <td style="width: 5%"><input value="${log.logId}" type="checkbox" lay-skin="primary"/></td>
                             <td>${log.logInfo}</td>
                             <td>${log.logDate}</td>
                         </tr>

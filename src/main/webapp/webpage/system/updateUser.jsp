@@ -130,6 +130,15 @@
                         location.href = 'user'; //跳转到登入页
                     });
                 }
+                if(data == 'login'){
+                    layer.msg('修改成功,请重新登陆', {
+                        offset: '15px'
+                        ,icon: 1
+                        ,time: 1000
+                    }, function(){
+                        top.location.href = 'http://localhost:8081/dp/webpage/system/login.jsp'; //跳转到登入页
+                    });
+                }
             })
             //请求接口
 

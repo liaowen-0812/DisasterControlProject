@@ -106,7 +106,7 @@
                           <a href="showDrug.lovo" target="main">药剂器械管理</a>
                       </dd>
                       <dd data-name="console">
-                          <a href="webpage/warehouse/leaveWarehouse.jsp" target="main">出库管理</a>
+                          <a href="leaveHouse.lovo" target="main">出库管理</a>
                       </dd>
                   </dl>
               </li>

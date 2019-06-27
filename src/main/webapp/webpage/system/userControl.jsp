@@ -42,7 +42,7 @@
 <form class="layui-form" id="formId" action="user" method="post">
     <div class="layui-card">
         <div class="layui-card-header" style="text-align:center;font-size: 30px">用户管理</div>
-        <div class="layui-card-body" style="height: 35%">
+        <div class="layui-card-body" style="height: 40%">
             <table class="layui-table" id="tableId">
                 <colgroup>
                     <col width="150">
@@ -62,7 +62,7 @@
                 <tbody>
                 <c:forEach items="${userList}" var="user">
                     <tr>
-                        <td style="width: 4%"><input value="${user.userId}"  type="checkbox" lay-skin="primary"></td>
+                        <td style="width: 5%"><input value="${user.userId}"  type="checkbox" lay-skin="primary"></td>
                         <td>${user.userName}</td>
                         <td>${user.userPwd}</td>
                         <td>${user.roleObj.roleName}</td>
@@ -117,7 +117,7 @@
         <div class="layui-card-body">
             <div id="btnDivId">
                 <!--按钮-->
-                <form style="display: initial;" class="layui-form" id="addformId" action="addUser" method="post">
+                <form style="display: initial;" class="layui-form" id="addformId" action="addSelect" method="post">
                     <button type="button" onclick="addUser()" class="layui-btn layui-btn-primary">添加用户</button>
                 </form>
                 <form style="display: initial;padding-left:100px" class="layui-form" id="delformId" action="delUser"
@@ -183,7 +183,7 @@
     });
 
     function addUser() {
-        location.href = 'webpage/system/addUser.jsp';
+        $("#addformId").submit();
     }
 
     function update() {

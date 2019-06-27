@@ -46,17 +46,18 @@
         <i class="layui-icon " style="font-size: 30px;">&#xe66f;</i>
         登陆
     </h1>
+    <form  class="layui-form" id="formId" action="login" method="post">
     <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
         <div class="layui-form-item">
             <label class="layadmin-user-login-icon layui-icon layui-icon-username"
                    for="LAY-user-login-username"></label>
-            <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="用户名"
+            <input type="text" name="username" id="LAY-user-login-username" lay-verify="username" placeholder="用户名"
                    class="layui-input">
         </div>
         <div class="layui-form-item">
             <label class="layadmin-user-login-icon layui-icon layui-icon-password"
-                   for="LAY-user-login-password"></label>
-            <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码"
+                   for="LAY-user-login-pass"></label>
+            <input type="password" name="passWord" id="LAY-user-login-pass" lay-verify="pass" placeholder="密码"
                    class="layui-input">
         </div>
 
@@ -64,6 +65,7 @@
             <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-login-submit">登 入</button>
         </div>
     </div>
+    </form>
 </div>
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
@@ -73,27 +75,24 @@
         index: 'lib/index' //主入口模块
     }).use(['index', 'user'], function(){
         var $ = layui.$
-            ,admin = layui.admin
-            ,form = layui.form
-
+            ,form = layui.form;
         form.render();
+
+        form.verify({
+            pass: [/(.+){1,12}$/, '必填项'],
+            username: function(value){
+                if(value.length < 2){
+                    alert(value)
+                    return '姓名至少得2个字符';
+                }
+            }
+
+        });
         //提交
         form.on('submit(LAY-user-login-submit)', function(obj){
-            //请求登入接口
-            $.post("login", obj.field,function (data) {
-                if(data == 'true'){
-                    layer.msg('登陆成功', {
-                        offset: '15px'
-                        ,icon: 1
-                        ,time: 1000
-                    }, function(){
-                        location.href = 'user'; //跳转到登入页
-                    });
-                }else{
-                    layer.msg('登陆失败', {icon: 5, anim: 6});
-                }
-            })
+            $("#formId").submit();
         });
+
 
     });
 </script>
