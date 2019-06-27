@@ -18,22 +18,22 @@
 <body>
 <div><h2 align="center">鼠害详细信息</h2>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">名称</b></span>
-        <span><b style="margin-left: 20%">图片</b></span>
+        <span><b style="margin-left: 35%">名称:${mName}</b></span>
+        <span><b style="margin-left: 20%">图片:<img style="width: 50px;height: 80px" src="<%=basePath%>${pathImg}"></b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">繁殖</b></span>
+        <span><b style="margin-left: 35%">繁殖:${mouseBreed}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">食物</b></span>
+        <span><b style="margin-left: 35%">食物:${food}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">天敌</b></span>
-        <span><b style="margin-left: 20%">主要危害</b></span>
+        <span><b style="margin-left: 35%">天敌:${mouseEnemy}</b></span>
+        <span><b style="margin-left: 20%">主要危害:${mouseHarm}</b></span>
 
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">防治措施</b></span>
+        <span><b style="margin-left: 35%">防治措施:${mouseMethod}</b></span>
 
     </div>
 

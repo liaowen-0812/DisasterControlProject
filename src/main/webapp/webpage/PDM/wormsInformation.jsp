@@ -18,26 +18,26 @@
 <body>
 <div><h2 align="center">虫害详细信息</h2>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">名称</b></span>
-        <span><b style="margin-left: 20%">幼虫图片</b></span>
+        <span><b style="margin-left: 35%">名称:${wName}</b></span>
+        <span><b style="margin-left: 20%">幼虫图片:<img style="width: 50px;height: 80px" src="<%=basePath%>${babyImg}"></b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">繁殖</b></span>
+        <span><b style="margin-left: 35%">繁殖:${wormsBreed}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">寄主</b></span>
+        <span><b style="margin-left: 35%">寄主:${host}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">天敌</b></span>
-        <span><b style="margin-left: 20%">成虫图片</b></span>
+        <span><b style="margin-left: 35%">天敌:${wormsEnemy}</b></span>
+        <span><b style="margin-left: 20%">成虫图片:${oldImg}</b></span>
 
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">主要危害</b></span>
+        <span><b style="margin-left: 35%">主要危害:${wormsHarm}</b></span>
 
     </div>
     <div style="margin-top: 30px">
-            <span><b style="margin-left: 35%">防治措施</b></span>
+            <span><b style="margin-left: 35%">防治措施:${wormsMethod}</b></span>
     </div>
 
     <div class="layui-card-body" style="margin-left: 37%;margin-top: 70px">

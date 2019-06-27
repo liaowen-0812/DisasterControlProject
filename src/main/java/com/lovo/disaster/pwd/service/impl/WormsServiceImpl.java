@@ -5,8 +5,6 @@ import com.lovo.disaster.db.GetSession;
 import com.lovo.disaster.pwd.bean.WormsBean;
 import com.lovo.disaster.pwd.dao.IWormsDao;
 import com.lovo.disaster.pwd.service.IWormsService;
-import com.lovo.disaster.specialist.bean.SysDoctor;
-import com.lovo.disaster.specialist.dao.ISpecialistDao;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -40,7 +38,7 @@ public class WormsServiceImpl implements IWormsService {
     @Override
     public Integer countPage(Map map) {
         SqlSession session= GetSession.creatSession();
-        ISpecialistDao dao=session.getMapper(ISpecialistDao.class);
+        IWormsDao dao=session.getMapper(IWormsDao.class);
         int countPage=dao.countPage(map);
         session.close();
         return countPage;
