@@ -52,13 +52,13 @@
               </a>
               <dl class="layui-nav-child">
                 <dd data-name="console" class="layui-this">
-                  <a lay-href="home/console.html">虫害一览</a>
+                  <a href="wormsListServlet.lovo" target="main">虫害一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a lay-href="home/homepage1.html">病害一览</a>
+                  <a href="diseaseListServlet.lovo" target="main">病害一览</a>
                 </dd>
                 <dd data-name="console">
-                  <a lay-href="home/homepage2.html">鼠害一览</a>
+                  <a href="mouseListServlet.lovo" target="main">鼠害一览</a>
                 </dd>
               </dl>
             </li>

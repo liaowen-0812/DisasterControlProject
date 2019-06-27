@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lovo.disaster.pwd.dao.IMouseDao">
-    <resultMap id="mouseBeanMap" type="mouseBean ">
-        <id property="mouseId" column="mouse_id"></id>
-        <result property="mouseName" column="mouse_name"></result>
-        <result property="food" column="mouse_food" ></result>
-        <result property="mouseBreed" column="mouse_breed"></result>
-        <result property="mouseEnemy" column="mouse_enemy"></result>
-        <result property="pathImg" column="mouse_img_path"></result>
-        <result property="mouseMethod" column="mouse_method"></result>
-        <result property="mouseHarm" column="mouse_harm"></result>
-    </resultMap>
+    <!--<resultMap id="mouseBeanMap" type="mouseBean ">-->
+        <!--<id property="mouseId" column="mouse_id"></id>-->
+        <!--<result property="mouseName" column="mouse_name"></result>-->
+        <!--<result property="food" column="mouse_food" ></result>-->
+        <!--<result property="mouseBreed" column="mouse_breed"></result>-->
+        <!--<result property="mouseEnemy" column="mouse_enemy"></result>-->
+        <!--<result property="pathImg" column="mouse_img_path"></result>-->
+        <!--<result property="mouseMethod" column="mouse_method"></result>-->
+        <!--<result property="mouseHarm" column="mouse_harm"></result>-->
+    <!--</resultMap>-->
     <!--动态显示界面-->
-    <select id="findAll" resultMap="mouseBeanMap" parameterType="map">
-        select mouse_id,mouse_name,mouse_food,mouse_breed,mouse_enemy,mouse_img_path,mouse_method,mouse_harm
+    <select id="findAll" resultType="com.lovo.disaster.pwd.bean.MouseBean" parameterType="map">
+        select mouse_id mouseId,mouse_name mouseName,mouse_food food,mouse_breed mouseBreed,mouse_enemy mouseEnemy,mouse_img_path pathImg,mouse_method mouseMethod,mouse_harm mouseHarm
         from sys_mouse where 1=1
         <if test="null!=mName and ''!=mName">
             and mouse_name=#{mName}
@@ -26,7 +26,7 @@
         values (#{mouseName},#{food},#{mouseBreed},#{mouseEnemy},#{pathImg},#{mouseMethod},#{mouseHarm})
     </insert>
     <!--通过id查找鼠害对象-->
-    <select id="findById" resultMap="mouseBeanMap" parameterType="mouseBean">
+    <select id="findById" resultType="com.lovo.disaster.pwd.bean.MouseBean" parameterType="mouseBean">
         select * from sys_mouse where mouse_id=#{mouseId}
     </select>
     <!--分页-->
