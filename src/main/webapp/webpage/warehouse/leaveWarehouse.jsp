@@ -17,7 +17,7 @@
 
 
 <!-- 表格-->
-<form action="leaveHouse.lovo" method="post" id="f2">
+<form action="leaveHouse.lovo" method="post" id="f2" class="layui-form">
 
     <input type="text" name="text1" value="${currentPage}" id="tt1" style="display: none">
 <div class="layui-card-header" style="font-size:30px" align="center">药剂器械出库管理</div>
@@ -41,7 +41,7 @@
 
         <c:forEach items="${list}" var="a" varStatus="status">
             <tr>
-                <td><input type="radio" name="rName" value="${a.className},${a.stockpileDate},${a.leaveHouseMan},${a.leaveHouseNum}" ></td>
+                <td><input type="checkbox" name="rName"  value="${a.className},${a.stockpileDate},${a.leaveHouseMan},${a.leaveHouseNum}" lay-skin="primary" ></td>
                 <td>${a.stockpileDate}</td>
                 <td>${a.className}</td>
                 <td>${a.leaveHouseMan}</td>
@@ -123,6 +123,7 @@
 </div>
 
 
+<script src="layuiadmin/layui/layui.js"></script>
 <script>
 
     function c() {
@@ -133,13 +134,21 @@
     }
 
     function look() {
-     var checkInfo= $(":checked").val();
-     var str="LookLeaveHouse.lovo?checkInfo="+checkInfo
-     location.href=str;
-    }
+        if ($("input:checked").length == 0) {
+            layer.msg('请选择行', {icon: 5, anim: 6});
+            return;
+        }else if($("input:checked").length>1){
+            layer.msg('请选择单行', {icon: 5, anim: 6});
+            return;
+        }
+            var checkInfo = $(":checked").val();
+            var str = "LookLeaveHouse.lovo?checkInfo=" + checkInfo
+            location.href = str;
+        }
 
 </script>
 
+<script src="layuiadmin/layui/layui.js"></script>
 <script>
 
 
@@ -147,10 +156,13 @@
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index','laydate', 'laypage'], function(){
+    }).use(['index','laydate', 'laypage','form'], function(){
         var laydate = layui.laydate,
             laypage = layui.laypage;
-
+        var  form=layui.form,
+            element = layui.element;
+        form.render();
+         element.render();
         laydate.render({
             elem: '#test-laydate-start-cn'
             ,trigger: 'click'

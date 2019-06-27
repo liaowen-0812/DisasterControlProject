@@ -20,7 +20,7 @@
     <%@include file="head.jsp" %>
 </head>
 <body>
-<form action="add.lovo" method="post">
+<form action="add.lovo" method="post" id="f1">
 <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
@@ -31,12 +31,12 @@
 
             <div class="layui-form-item">
             <div class="layui-col-md12">
-                <input type="text" name="title1" placeholder="请输入名称" autocomplete="off" class="layui-input">
+                <input type="text" name="title1" id="t1" placeholder="请输入名称" autocomplete="off" class="layui-input">
             </div><br><br>
             </div>
             <div class="layui-form-item">
                 <div class="layui-col-md12">
-                    <input type="text" name="title2" placeholder="请输入数量" autocomplete="off" class="layui-input">
+                    <input type="text"  name="title2" id="t2" placeholder="请输入数量" autocomplete="off" class="layui-input">
                 </div><br><br>
             </div>
 
@@ -66,14 +66,14 @@
 
             <div class="layui-card-body layui-row layui-col-space10">
                 <div class="layui-col-md12">
-                    <textarea name="wby" style="width: 335px;margin-left: -5%" placeholder="请输入" class="layui-textarea"></textarea>
+                    <textarea name="wby" style="width: 335px;margin-left: -5%" id="t3" placeholder="请输入" class="layui-textarea"></textarea>
                 </div>
             </div>
 
 
             <div class="layui-form-item">
                <!--  <button class="layui-btn layui-btn-fluid" >添加</button> -->
-                <input  class="layui-btn layui-btn-fluid" type="submit"  value="添加">
+                <input  class="layui-btn layui-btn-fluid" onclick="drugName()"  type="button"  value="添加">
             </div>
         </div>
     </div>
@@ -81,15 +81,28 @@
 </div>
 </form>
 
-<script src="webpage/jQuery-2.2.2-min.js"></script>
-<script>
 
-
-</script>
 
 
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
+    function drugName() {
+        var posPattern = /^\d+$/;
+        if($("#t1").val().trim().length==0){
+            layer.msg('名称不能为空', {icon: 5, anim: 6});
+            return;
+        }else  if(!$("#t2").val().trim().match(posPattern)){
+            layer.msg('请输入正整数', {icon: 5, anim: 6});
+            return;
+        }else if($("#t1").val().trim().length==0){
+            layer.msg('用途不能为空', {icon: 5, anim: 6});
+            return;
+        }
+        $("#f1").submit();
+    }
+
+
+
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({

@@ -67,7 +67,7 @@
         <result property="stockpileDate" column="stockpile_date"></result>
         <result property="className" column="sclass_name"></result>
         <result property="leaveHouseMan" column="user_true_name"></result>
-        <result property="leaveHouseNum" column="stockpile_num"></result>
+        <result property="leaveHouseNum" column="leave_num"></result>
        <!-- <result property="drugName" column="drug_name"></result>
         <result property="type1" column="type_val1"></result>
         <result property="type2" column="type_val2"></result>-->
@@ -79,9 +79,9 @@
     </resultMap>
 
     <select id="findAllLeaveHouseDto" parameterType="map" resultMap="findDto">
-        SELECT stockpile_date,sclass_name,user_true_name,stockpile_num FROM sys_stockpile s
+        SELECT stockpile_date,sclass_name,user_true_name,leave_num FROM sys_stockpile s
         LEFT JOIN sys_user u ON u.user_id=s.stockpile_man LEFT JOIN sys_class c ON
-        c.sclass_id=s.stockpile_class
+        c.sclass_id=s.stockpile_class left join drug_stockpile ds on ds.stockpile_id=s.stockpile_id
         WHERE 1=1
 
         --         SELECT s.stockpile_date,c.sclass_name,u.user_true_name,d.drug_id FROM sys_drug d LEFT JOIN drug_stockpile ds ON ds.drug_id=d.drug_id LEFT JOIN sys_stockpile s
@@ -119,7 +119,7 @@
 
 
 <resultMap id="find2" type="com.lovo.disaster.warehouse.dto.LookLeaveHouseDto">
-   <result property="leaveHouseNum" column="stockpile_num"></result>
+   <result property="leaveHouseNum" column="leave_num"></result>
     <association property="sysDrug"   javaType="com.lovo.disaster.warehouse.entity.SysDrug">
    <result property="drugId" column="drug_id"></result>
         <result property="drugName" column="drug_name"></result>
@@ -195,5 +195,14 @@ limit #{start},#{hang}
     <select id="findDrugById" resultMap="findByid">
         select * from sys_drug where drug_id=#{0}
     </select>
+
+
+
+    <select id="saveChuku" statementType="CALLABLE">
+    call saveStockpile(#{0},#{1},#{2})
+    </select>
+<select id="saveDrugStockpile" statementType="CALLABLE">
+    call saveDrugStockpile(#{0},#{1});
+</select>
 
 </mapper>

@@ -73,11 +73,11 @@
                     <tbody>
                       <c:forEach items="${list2}" var="drug2">
                           <tr>
-                              <td><input type="checkbox" value="${drug2.drugId}"></td>
+                              <td><input type="checkbox" value="${drug2.drugId}" lay-skin="primary"></td>
                               <td>${drug2.drugName}</td>
                               <td>${drug2.type1.typeVal}</td>
                               <td>${drug2.type2.typeVal}</td>
-                              <td><input style="width: 10%" onchange="leaveNum(this)" type="text" name="tVal" value="${tVal}">
+                              <td><input style="width: 10%" onchange="leaveNum(this)" type="text" name="tVal" class="num" value="${tVal}">
                               <input type="text" value="${drug2.drugNum}" style="display: none"></td>
                           </tr>
                           </c:forEach>
@@ -110,7 +110,7 @@
                 <button style="margin-left:15%;margin-top: 5%" onclick="del()" type="button" class="layui-btn layui-btn-primary">移除物品</button>
 
                 <!--按钮-->
-                <button style="margin-left:15%;margin-top: 5%" onclick="" type="button" class="layui-btn layui-btn-primary">出库</button>
+                <button style="margin-left:15%;margin-top: 5%" onclick="chuKu()" type="button" class="layui-btn layui-btn-primary">出库</button>
             </div>
 
 
@@ -118,8 +118,33 @@
 
 </div>
 
+
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
+
+    function chuKu() {
+        var checked1="";
+        var classId1="";
+        var leaveNum="";
+            $("input:checkbox").each(function () {
+                checked1 += $(this).val() + ",";
+            });
+
+        classId1=$(":selected").val();
+
+        if(classId1==''){
+            layer.msg('请选班级', {icon: 5, anim: 6});
+            return;
+        }
+         $(".num").each(function () {
+             leaveNum+= $(this).val()+","
+         })
+
+        location.href="goAwayServlet.lovo?checked1="+checked1+"&classId1="+classId1+"&leaveNum="+leaveNum;
+
+    }
+
+
     //删除
     function del() {
         var notChecked="";
@@ -127,8 +152,12 @@
             $("input:checkbox").not("input:checked").each(function () {
                 notChecked += $(this).val() + ",";
             })
+        }else if($("input:checked").length==0){
+
+            layer.msg('请选择行', {icon: 5, anim: 6});
+            return;
         }
-       location.href="delDrugServlet.lovo?notChecked="+notChecked;
+        location.href="delDrugServlet.lovo?notChecked="+notChecked;
     }
 
     //加载
@@ -146,9 +175,10 @@
         Num= parseInt($(obj).val())
 
         if (Num<0){
+            layer.msg('请输入大于零的数', {icon: 5, anim: 6});
             $(obj).val(0);
         }else if(Num>maxNum){
-
+            layer.msg('库存不足', {icon: 5, anim: 6});
             $(obj).val(maxNum);
         }
 
@@ -172,7 +202,8 @@
             , laypage = layui.laypage
             , router = layui.router()
             ,layer = layui.layer;
-        element.render();
+        form.render();
+
 
         var active = {
             test5: function () {
@@ -221,8 +252,8 @@
                 }
             }
         });
-
     });
+
 </script>
 </body>
 </html>

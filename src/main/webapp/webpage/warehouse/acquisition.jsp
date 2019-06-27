@@ -43,7 +43,7 @@
         <tbody>
         <c:forEach items="${list}" var="drug">
             <tr>
-                <td> <input type="checkbox" name="cName" value="${drug.drugId}"></td>
+                <td> <input type="checkbox" name="cName" value="${drug.drugId}" lay-skin="primary"></td>
                 <td>${drug.drugName}</td>
                 <td>${drug.type1.typeVal}</td>
                 <td>${drug.type2.typeVal}</td>

@@ -1,6 +1,8 @@
 package com.lovo.disaster.warehouse.servlet;
 
+import com.lovo.disaster.warehouse.entity.SysClass;
 import com.lovo.disaster.warehouse.entity.SysDrug;
+import com.lovo.disaster.warehouse.page.Page;
 import com.lovo.disaster.warehouse.service.IShowDrugService;
 import com.lovo.disaster.warehouse.service.impl.ShowDrugServiceImpl;
 
@@ -16,6 +18,12 @@ public class DelDrugServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
      String notChecked=request.getParameter("notChecked");
+        IShowDrugService service2=new ShowDrugServiceImpl();
+
+        List<SysClass> list2=service2.findAllClass();
+        String classId=request.getParameter("selectId");
+        String currentPage2=request.getParameter("currentPage");
+
         List list = new ArrayList();
      if(notChecked.length()!=0) {
          String[] notCheckedArray = notChecked.split(",");
@@ -27,8 +35,22 @@ public class DelDrugServlet extends HttpServlet {
 
          }
      }
-        request.setAttribute("list2",list);
+   //分页
+        Page p=new Page();
 
+        int currentPage=1;
+        if(null!=currentPage2) {
+            currentPage = Integer.parseInt(currentPage2);
+        }
+        p.setCurrentPage(currentPage);
+        //设置起始位置
+        p.setStart(p.getCurrentPage());
+
+
+        request.setAttribute("list2",list);
+        request.setAttribute("list",list2);
+        request.setAttribute("list3",list);
+        request.setAttribute("currentPage",currentPage);
         request.getRequestDispatcher("webpage/warehouse/addLeaveWarehouse.jsp").forward(request,response);
 
     }
