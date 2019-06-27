@@ -157,7 +157,8 @@
             layer.msg('请选择行', {icon: 5, anim: 6});
             return;
         }
-        location.href="delDrugServlet.lovo?notChecked="+notChecked;
+        var selectId=$(":selected").val();
+        location.href="delDrugServlet.lovo?notChecked="+notChecked+"&selectId="+selectId;
     }
 
     //加载
@@ -239,7 +240,7 @@
         laypage.render({
             elem: 'test-laypage-demo3'
             , count: ${list3.size()} //设置总行数，从后台传
-            , limit:10 //每页显示行数，后台传
+            , limit:1000 //每页显示行数，后台传
             , first: '首页'
             , last: '尾页'
             , curr: $("#tt1").val()

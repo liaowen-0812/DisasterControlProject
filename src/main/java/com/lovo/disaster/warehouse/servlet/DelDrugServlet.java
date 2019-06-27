@@ -22,6 +22,11 @@ public class DelDrugServlet extends HttpServlet {
 
         List<SysClass> list2=service2.findAllClass();
         String classId=request.getParameter("selectId");
+
+        if (null==classId){
+            classId="";
+        }
+
         String currentPage2=request.getParameter("currentPage");
 
         List list = new ArrayList();
@@ -50,6 +55,8 @@ public class DelDrugServlet extends HttpServlet {
         request.setAttribute("list2",list);
         request.setAttribute("list",list2);
         request.setAttribute("list3",list);
+        request.setAttribute("classId",classId);
+
         request.setAttribute("currentPage",currentPage);
         request.getRequestDispatcher("webpage/warehouse/addLeaveWarehouse.jsp").forward(request,response);
 

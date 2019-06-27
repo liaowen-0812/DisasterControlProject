@@ -75,13 +75,13 @@ public class AddLeaveHouseInfoServlet extends HttpServlet {
             }
         }
 
-List list3=new ArrayList();
-for (int i=p.getStart();i<list2.size();i++){
-    list3.add(list2.get(i));
-}
+//List list3=new ArrayList();
+//for (int i=p.getStart();i<list2.size();i++){
+//    list3.add(list2.get(i));
+//}
 
 request.setAttribute("classId",classId);
-request.setAttribute("list2",list3);
+request.setAttribute("list2",list2);
 //request.setAttribute("tVal",tVal);
 request.setAttribute("list",list);
 request.setAttribute("currentPage",currentPage);
