@@ -59,11 +59,9 @@
                     <div class="layui-col-md6" style="width: 335px">
                         <select name="city" lay-verify="roleType">
                             <option value="">用户等级</option>
-                            <option value="1">超级管理员</option>
-                            <option value="2">资料管理员</option>
-                            <option value="3">灾情管理员</option>
-                            <option value="4">专家管理员</option>
-                            <option value="5">库房管理员</option>
+                            <c:forEach items="${rolelist}" var="role">
+                                <option id="option${role.roleId}" value="${role.roleId}">${role.roleName}</option>
+                            </c:forEach>
                         </select>
                     </div>
             </div>
@@ -90,10 +88,8 @@
             , admin = layui.admin
             , element = layui.element
             , form = layui.form
-            , router = layui.router();
 
         form.render();
-
         var tag="";
         $("#LAY-user-login-userName").change(function () {
             $.post("findName", {"userName":$("#LAY-user-login-userName").val()},function (data) {

@@ -90,6 +90,54 @@
             base: 'layuiadmin/' //静态资源所在路径
         }).extend({
             index: 'lib/index' //主入口模块
+        }).use(['index', 'form'], function(){
+            var $ = layui.$
+                ,admin = layui.admin
+                ,element = layui.element
+                ,form = layui.form;
+
+            form.render(null, 'component-form-element');
+            element.render('breadcrumb', 'breadcrumb');
+
+            form.on('submit(component-form-element)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+
+        layui.config({
+            base: 'layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index','laydate', 'laypage'], function(){
+            var laydate = layui.laydate,
+                laypage = layui.laypage;
+
+            laydate.render({
+                elem: '#test-laydate-start-cn'
+                ,trigger: 'click'
+            });
+
+            laydate.render({
+                elem: '#test-laydate-last-cn'
+                ,trigger: 'click'
+            });
+            //自定义首页、尾页、上一页、下一页文本
+            laypage.render({
+                elem: 'test-laypage-demo3'
+                ,count: 100
+                ,first: '首页'
+                ,last: '尾页'
+                ,prev: '<em>←</em>'
+                ,next: '<em>→</em>'
+            });
+
+        });
+
+        layui.config({
+            base: 'layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
         }).use(['index', 'upload'], function(){
             var $ = layui.jquery
                 ,upload = layui.upload;

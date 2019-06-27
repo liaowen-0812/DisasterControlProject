@@ -5,27 +5,4 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
   <display-name>Archetype Created Web Application</display-name>
-
-
-
-  <!--区域servlet-->
-  <servlet>
-    <servlet-name>AreaServlet</servlet-name>
-    <servlet-class>com.lovo.disaster.prevention.servlet.AreaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AreaServlet</servlet-name>
-    <url-pattern>/areaServlet.lovo</url-pattern>
-  </servlet-mapping>
-
-  <!--添加地类-->
-  <servlet>
-    <servlet-name>addAreaServlet</servlet-name>
-    <servlet-class>com.lovo.disaster.prevention.servlet.addAreaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>addAreaServlet</servlet-name>
-    <url-pattern>/addAreaServlet</url-pattern>
-  </servlet-mapping>
-
 </web-app>

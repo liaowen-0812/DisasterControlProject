@@ -1,6 +1,7 @@
 package com.lovo.disaster.system.service.impl;
 
 import com.lovo.disaster.db.GetSession;
+import com.lovo.disaster.system.bean.SysPower;
 import com.lovo.disaster.system.bean.SysRole;
 import com.lovo.disaster.system.dao.IRoleDao;
 import com.lovo.disaster.system.service.IRoleService;
@@ -21,5 +22,20 @@ public class RoleServiceImpl implements IRoleService {
         List<SysRole> role = dao.findAllRole();
         session.close();
         return role;
+    }
+
+
+
+    /**
+     * 根据角色id查询权限
+     * @param roleId 角色id
+     * @return 权限集合
+     */
+    public List<SysPower> findPowerByRoleId(long roleId){
+        SqlSession session = GetSession.creatSession();
+        IRoleDao dao = session.getMapper(IRoleDao.class);
+        List<SysPower> list = dao.findPowerByRoleId(roleId);
+        session.close();
+        return list;
     }
 }

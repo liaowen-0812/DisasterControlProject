@@ -26,13 +26,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text"  class="layui-input" id="1">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">寄主</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text"  class="layui-input" id="2">
             </div>
         </div>
     </div>
@@ -40,13 +40,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">繁殖</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text"  class="layui-input"id="3">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">天敌</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text"  class="layui-input" id="4">
             </div>
         </div>
     </div>
@@ -78,14 +78,14 @@
         <label class="layui-form-label">防治措施</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"></textarea>
+                <textarea name="" placeholder="请输入" class="layui-textarea"id="5"></textarea>
             </div>
     </div>
         <div class="layui-inline">
             <label class="layui-form-label">主要危害</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"></textarea>
+                <textarea name="" placeholder="请输入" class="layui-textarea"id="6"></textarea>
             </div>
         </div>
     </div>
@@ -96,6 +96,53 @@
         <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;" id="addId" onclick="add()">添加</button>
     </div>
         <script>
+            layui.config({
+                base: 'layuiadmin/' //静态资源所在路径
+            }).extend({
+                index: 'lib/index' //主入口模块
+            }).use(['index', 'form'], function(){
+                var $ = layui.$
+                    ,admin = layui.admin
+                    ,element = layui.element
+                    ,form = layui.form;
+
+                form.render(null, 'component-form-element');
+                element.render('breadcrumb', 'breadcrumb');
+
+                form.on('submit(component-form-element)', function(data){
+                    layer.msg(JSON.stringify(data.field));
+                    return false;
+                });
+            });
+
+            layui.config({
+                base: 'layuiadmin/' //静态资源所在路径
+            }).extend({
+                index: 'lib/index' //主入口模块
+            }).use(['index','laydate', 'laypage'], function(){
+                var laydate = layui.laydate,
+                    laypage = layui.laypage;
+
+                laydate.render({
+                    elem: '#test-laydate-start-cn'
+                    ,trigger: 'click'
+                });
+
+                laydate.render({
+                    elem: '#test-laydate-last-cn'
+                    ,trigger: 'click'
+                });
+                //自定义首页、尾页、上一页、下一页文本
+                laypage.render({
+                    elem: 'test-laypage-demo3'
+                    ,count: 100
+                    ,first: '首页'
+                    ,last: '尾页'
+                    ,prev: '<em>←</em>'
+                    ,next: '<em>→</em>'
+                });
+
+            });
 
         layui.config({
             base: 'layuiadmin/' //静态资源所在路径
