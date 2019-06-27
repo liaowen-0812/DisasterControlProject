@@ -19,6 +19,7 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
+<form action="addWormsServlet.lovo"method="post" id="f1">
 <div class="layui-fluid" align="center">
 <div class="layui-card-header" style="font-size: 30px">添加虫害</div>
     <br/><br/>
@@ -80,6 +81,7 @@
     <div align="center">
         <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;" id="addId" onclick="add()">添加</button>
     </div>
+</form>
         <script>
             layui.config({
                 base: 'layuiadmin/' //静态资源所在路径
@@ -139,7 +141,27 @@
             }
 
         function add(){
-            location.href="webpage/PDM/worms.jsp";
+            var posPattern = /^\d+$/;
+            if($("#1").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else  if($("#2").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#3").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#4").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#5").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#6").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }
+            $("#f1").submit();
         }
     </script>
 
