@@ -21,13 +21,6 @@ public class ISpecialistServiceImpl implements ISpecialistService {
     }
 
     @Override
-    public int findId(SysDoctor sysDoctor) {
-
-
-        return 0;
-    }
-
-    @Override
     public SysDoctor findById(int sysDoctorId) {
         SqlSession session=GetSession.creatSession();
         SysDoctor d= session.getMapper(ISpecialistDao.class).findById(sysDoctorId);

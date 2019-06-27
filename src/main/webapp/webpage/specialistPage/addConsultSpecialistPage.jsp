@@ -16,8 +16,11 @@
     <%@include file="../../head.jsp" %>
 </head>
 <body>
-
 <div><h2 align="center">专家会商</h2>
+    <form action="addResultServlet.lovo" method="post" class="layui-form">
+        <input type="text" style="display: none" value="" name="tName" id="tid">
+        <input type="text" style="display: none" value="" name="wName" id="tid1">
+        <input type="text" style="display: none" value="${sId}" name="wName" id="tid3">
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">事件名称:</b></span>
         <span><b style="margin-left: 20%">灾区图片:</b></span>
@@ -36,27 +39,33 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label" style="margin-left:3%"><b>会商结果:</b></label>
             <div class="layui-input-block">
-                <textarea name="text" class="layui-textarea" style="width: 200px"></textarea>
+                <textarea name="text" class="layui-textarea" style="width: 200px" id="tid2"></textarea>
                         <div class="layui-form-item" style="margin-top: 30px">
                             <div class="layui-col-md6" style="width: 335px;margin-left: -5%">
-                               <b>会商人员:</b> <select name="city" lay-verify="" class="layui-form">
-                                    <option value="">会商人员</option>
-                                    <option value="010">超级管理员</option>
-                                    <option value="021">资料管理员</option>
-                                    <option value="0571">灾情管理员</option>
-                                    <option value="0571">专家管理员</option>
-                                    <option value="0571">库房管理员</option>
+                               <b>会商人员:</b> <select id="sid" name="city" lay-verify="" lay-filter="aihao" class=”layui-form”>
+                                    <c:forEach items="${nameList}" var="a">
+                                        <option value="${a.doctorId}">${a.doctorName}</option>
+                                    </c:forEach>
                                 </select>
                                 <div style="margin-top: 30px">
+                                    <select id="nid" name="city1" lay-verify="" class=”layui-form”lay-filter="aihao2">
+
+                                    </select>
+                                </div>
+                                <div style="margin-top: 30px">
                                 <button type="submit" class="layui-btn layui-btn-primary" id="bid">添加会商信息</button>
-                                <button type="submit" class="layui-btn layui-btn-primary" id="bid1">返回</button>
                                 </div>
                             </div>
-                            <textarea name="text" class="layui-textarea" style="width: 100px;height: 50px"></textarea>
                         </div>
             </div>
         </div>
     </div>
+    </form>
+    <form action="result.lovo" method="post">
+        <div style="margin-top: 30px;margin-left: 35%">
+        <button type="submit" class="layui-btn layui-btn-primary" id="bid1">返回</button>
+        </div>
+    </form>
 
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
@@ -78,31 +87,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>贤心</td>
-                                <td>汉族</td>
-                                <td>1989-10-14</td>
-                            </tr>
-                            <tr>
-                                <td>张爱玲</td>
-                                <td>汉族</td>
-                                <td>1920-09-30</td>
-                            </tr>
-                            <tr>
-                                <td>Helen Keller</td>
-                                <td>拉丁美裔</td>
-                                <td>1880-06-27</td>
-                            </tr>
-                            <tr>
-                                <td>岳飞</td>
-                                <td>汉族</td>
-                                <td>1103-北宋崇宁二年</td>
-                            </tr>
-                            <tr>
-                                <td>孟子</td>
-                                <td>华夏族（汉族）</td>
-                                <td>公元前-372年</td>
-                            </tr>
+                            <c:forEach items="${resultList}" var="a">
+                                <tr><th>${a.doctorEventDate}</th><th>${a.list}</th><th>${a.doctorEventResult}</th></tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -116,7 +103,9 @@
 
 
 <script src="layuiadmin/layui/layui.js"></script>
+
 <script>
+
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
@@ -151,6 +140,34 @@
             ,trigger: 'click'
         });
     });
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form;
+        form.on('select(aihao)', function (data) {
+            var options=$("#sid option:selected");//获取当前选择项.
+            var tem= options.text();//获取当前选择项的文本
+            var v=options.val();
+            $("#nid").append("<option value='"+v+"'>"+tem+"</option>");
+            renderForm();
+        });
+    });
+
+    function renderForm(){
+        layui.use('form', function(){
+            var form = layui.form;
+            form.render();
+        });
+    }
+
+    $("#bid").click(function () {
+        var tm="";
+        $("#nid option").each(function () {
+            tm+=$(this).val()+",";
+        });
+       var tm2= tm.substring(0,tm.length-1);
+        $("#tid").val(tm2);
+        $("#tid1").val($("#tid2").val());
+    });
+
 </script>
 </body>
 </html>

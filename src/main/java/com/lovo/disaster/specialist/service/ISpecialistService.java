@@ -13,13 +13,6 @@ public interface ISpecialistService {
     public void addSpecialist(SysDoctor sysDoctor);
 
     /**
-     * 根据对象查询用户ID
-     * @param sysDoctor 专家对象
-     * @return 专家ID
-     */
-    public int findId(SysDoctor sysDoctor);
-
-    /**
      * 根据ID查询专家对象
      * @param sysDoctorId 专家ID
      * @return 专家对象
