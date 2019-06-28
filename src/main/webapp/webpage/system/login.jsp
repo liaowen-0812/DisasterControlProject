@@ -36,7 +36,7 @@
     }
 </style>
 <body>
-<div>
+<div style="background-color: rgba(0,150,136,0.04)">
     <div style="height: 50%;background-color: #009688">
     </div>
 </div>

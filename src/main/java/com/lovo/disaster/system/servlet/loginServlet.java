@@ -22,12 +22,14 @@ public class loginServlet extends HttpServlet {
 
         IUserService service = new UserServiceImpl();
         SysUser user = service.loginUser(username,password);
-        PrintWriter pw = response.getWriter();
         if(user !=null){
             IRoleService roleService = new RoleServiceImpl();
             request.getSession().setAttribute("userObj",user);
             List<SysPower> powerList=   roleService.findPowerByRoleId(user.getRoleObj().getRoleId());
+
+
             request.getSession().setAttribute("powerList",powerList);
+
             request.setAttribute("powerList",powerList);
             request.getRequestDispatcher("webpage/warehouse/main.jsp").forward(request,response);
         }else{

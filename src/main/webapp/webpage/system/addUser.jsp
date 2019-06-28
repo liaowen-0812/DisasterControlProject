@@ -98,7 +98,7 @@
         })
         form.verify({
             userName: function(value){
-                if(value.length < 2){
+                if(value.trim().length < 2){
                     return '姓名至少得2个字符';
                 }
                 if(tag=="true"){
@@ -106,7 +106,7 @@
                 }
             },
             realName: function(value){
-                if(value.length < 2){
+                if(value.trim().length < 2){
                     return '登陆至少得2个字符';
                 }
             }
