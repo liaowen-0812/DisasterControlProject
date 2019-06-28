@@ -20,6 +20,8 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
+<form action="diseaseListServlet.lovo" method="post" id="f2">
+    <input type="text" style="display: none" value="${cerPage}" name="tName" id="tid">
 <div class="layui-col-md12">
     <div class="layui-card">
         <div class="layui-card-header" style="font-size: 30px">病害一览</div>
@@ -33,43 +35,18 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
+                    <th>选择</th>
+                    <th>名称</th>
+                    <th>主要危害</th>
+                    <th>发病规律</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>贤心</td>
-                    <td>汉族</td>
-                    <td>1989-10-14</td>
-
-                </tr>
-                <tr>
-                    <td>张爱玲</td>
-                    <td>汉族</td>
-                    <td>1920-09-30</td>
-
-                </tr>
-                <tr>
-                    <td>Helen Keller</td>
-                    <td>拉丁美裔</td>
-                    <td>1880-06-27</td>
-
-                </tr>
-                <tr>
-                    <td>岳飞</td>
-                    <td>汉族</td>
-                    <td>1103-北宋崇宁二年</td>
-
-                </tr>
-                <tr>
-                    <td>孟子</td>
-                    <td>华夏族（汉族）</td>
-                    <td>公元前-372年</td>
-
-                </tr>
+                <c:forEach items="${diseaseList}" var="a">
+                    <tr><th><input value="${a.diseaseId}" name="checkName" type="checkbox" lay-skin="primary"/></th><th>${a.diseaseName}</th><th>${a.diseaseHarm}</th><th>${a.rule}</th>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
@@ -91,8 +68,9 @@
         <div class="layui-card-body">
             <div  id="btnDivId">
                 <!--按钮-->
-                <button type="button" class="layui-btn layui-btn-primary" onclick="addEnter()">添加新病害</button>
-                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 100px" onclick="see()">查看详细信息</button>
+                <button type="button" class="layui-btn layui-btn-primary"id="bid1" onclick="addEnter()">添加新病害</button>
+
+                <button type="button" class="layui-btn layui-btn-primary"id="bid2" style="margin-left: 100px" onclick="see()">查看详细信息</button>
 
             </div>
         </div>
@@ -106,50 +84,84 @@
             <div class="layui-inline">
                 <label class="layui-form-label">病害名称</label>
                 <div class="layui-input-inline">
-                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+                    <input type="text" name="diseaseName"  class="layui-input" value="${dName}" >
                 </div>
             </div>
             <br/><br/>
             <div class="layui-inline">
                 <label class="layui-form-label">发病症状</label>
                 <div class="layui-input-inline">
-                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+                    <input type="text" name="symptom"  class="layui-input"value="${sName}" >
                 </div>
             </div>
             <br/>
             <br/>
             <br/>
+
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary">查询</button>
+            <input type="button" class="layui-btn layui-btn-primary" value="查询"  id="bid"></input>
 
         </div>
     </div>
 </div>
-
+</form>
 <script>
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index', 'laypage'], function(){
-        var laypage = layui.laypage;
+    }).use(['index','laydate', 'laypage'], function(){
+        var laydate = layui.laydate,
+            laypage = layui.laypage;
+        laydate.render({
+            elem: '#test-laydate-start-cn'
+            ,trigger: 'click'
+        });
+
+        laydate.render({
+            elem: '#test-laydate-last-cn'
+            ,trigger: 'click'
+        });
         //自定义首页、尾页、上一页、下一页文本
         laypage.render({
             elem: 'test-laypage-demo3'
-            ,count: 100
+            ,count:${allCount}
+            ,limit:5
             ,first: '首页'
             ,last: '尾页'
-            ,prev: '<em>←</em>'
-            ,next: '<em>→</em>'
+            , curr: $("#tid").val()
+            , prev: '<em>←</em>'
+            , next: '<em>→</em>'
+            , jump: function (obj, first) { // 跳转页数
+                if (!first) {
+                    $("#tid").val(obj.curr) //将隐藏表单的val设置为当前页，然后提交，传给后台
+                    $("#f2").submit();
+                }
+            }
         });
     });
+
+    $("#bid").click(function () {
+        $("#f2").submit();
+    })
 
     function addEnter(){
         location.href="webpage/PDM/adddisease.jsp";
     }
     function see(){
-        location.href="webpage/PDM/diseaseInformation.jsp";
+        var idStr=$(":checked").val();
+        var checkId = $("input:checked").length;
+        if(checkId==0){
+            layer.msg('请选择1行', {icon: 5, anim: 6});
+            return;
+        }else if(checkId>1){
+            layer.msg('请选择1行', {icon: 5, anim: 6});
+            return;
+        }
+        location.href="findDiseaseServlet.lovo?idStr="+idStr;
     }
+
+
 </script>
 
 </body>

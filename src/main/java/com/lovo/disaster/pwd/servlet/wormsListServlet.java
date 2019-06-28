@@ -45,6 +45,8 @@ public class wormsListServlet extends HttpServlet {
         request.setAttribute("wormsList",list);
         request.setAttribute("cerPage",cerPage2);
         request.setAttribute("allCount",allCount);
+        request.setAttribute("wName",wormsName);
+        request.setAttribute("hName",host);
         request.getRequestDispatcher("webpage/PDM/worms.jsp").forward(request,response);
 
 

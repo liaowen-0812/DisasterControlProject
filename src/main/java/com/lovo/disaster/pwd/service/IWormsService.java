@@ -15,12 +15,6 @@ public interface IWormsService {
      */
     public void addWorms(WormsBean wormsBean);
 
-    /**
-     * 通过对象找到对象id
-     * @param wormsBean 虫害对象
-     * @return 虫害id
-     */
-    public int findByItem(WormsBean wormsBean);
 
     /**
      *通过对象id查找对象信息

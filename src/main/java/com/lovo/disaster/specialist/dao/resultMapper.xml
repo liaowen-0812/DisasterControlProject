@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.specialist.dao.IResultDao">
+
+<select id="find" parameterType="map" resultType="com.lovo.disaster.specialist.dto.eventDto">
+    select e.event_id eventId,e.event_name eventName,e.event_date eventDate,e.event_method eventMethod,t.type_val eventType
+     from sys_event e join sys_type t where e.event_stage=#{tt} and t.type_name=#{lx} and e.event_stage=t.type_key
+     limit #{start},#{hang}
+</select>
+    <select id="findArea" parameterType="map"  resultType="com.lovo.disaster.specialist.dto.eventDto">
+        select a.area_name eventArea from sys_event e join sys_area a on e.area_id=a.area_id where e.event_id=#{evName}
+    </select>
+
+    <select id="countPage" parameterType="map" resultType="Integer">
+        select count(event_id) from sys_event where event_stage=#{tt}
+    </select>
+
+    <select id="findAll" resultType="sysDoctor">
+        select doctor_id doctorId, doctor_name doctorName from sys_doctor
+    </select>
+
+    <select id="findById" resultType="sysDoctor">
+          select doctor_name doctorName from sys_doctor where doctor_id=#{0}
+    </select>
+
+
+    <select id="findId" resultType="Integer">
+        SELECT d.doctor_event_id FROM sys_event e JOIN doctor_event d ON e.event_id=d.event_id WHERE e.event_id=#{0}
+    </select>
+    <select id="findDoctorResultList" resultType="doctorResult">
+        SELECT result_id resultId,doctor_event_date doctorEventDate,
+        doctor_event_result doctorEventResult FROM doctor_result WHERE doctor_event_id=#{0}
+    </select>
+    <select id="findDoctorId" resultType="sysDoctor">
+          SELECT doctor_id doctorId FROM info_doctor WHERE result_id=#{0}
+    </select>
+    <select id="findDoctorName" resultType="sysDoctor">
+          SELECT doctor_name doctorName FROM sys_doctor WHERE doctor_id=#{0}
+    </select>
+
+
+    <insert id="addDoctorResult" parameterType="map">
+            INSERT INTO doctor_result(doctor_event_id,doctor_event_date,doctor_event_result)VALUES(#{zjsjName},#{date},#{wName})
+    </insert>
+    <select id="findMax" resultType="Integer">
+          SELECT MAX(result_id) FROM doctor_result
+    </select>
+    <insert id="addSpecialist">
+        INSERT INTO info_doctor(result_id,doctor_id)VALUES(#{maxId},#{doctorId})
+    </insert>
+
+
+    <select id="findByEventId" resultType="sysEvent">
+        SELECT event_name eventName,event_img_path eventImgPath,
+        event_date eventDate,event_info eventInfo,event_area eventArea FROM sys_event WHERE event_id=#{0}
+    </select>
+</mapper>
+
+

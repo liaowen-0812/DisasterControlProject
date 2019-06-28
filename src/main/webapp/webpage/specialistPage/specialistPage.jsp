@@ -181,7 +181,6 @@
 
     $("#bid2").click(function () {
         var checkId = $("#tableId input:checked").length;
-        alert(checkId)
         if(checkId==1){
             var tem="";
             $("#tableId input:checked").each(function () {
@@ -190,13 +189,13 @@
             $("#findInput").val(tem);
             $("#findId").submit();
         }else {
-            layer.msg('请选择1行')
+            layer.msg('请选择一行', {icon: 5, anim: 6});
+            return;
         }
     });
 
     $("#bid3").click(function () {
         var checkId = $("#tableId input:checked").length;
-        alert(checkId)
         if(checkId==1){
             var tem="";
             $("#tableId input:checked").each(function () {
@@ -205,13 +204,13 @@
             $("#updateInput").val(tem);
             $("#updateformId").submit();
         }else {
-            layer.msg('请选择1行')
+            layer.msg('请选择一行', {icon: 5, anim: 6});
+            return;
         }
     });
 
     $("#bid4").click(function () {
         var checkId = $("#tableId input:checked").length;
-        alert(checkId)
         if(checkId==1){
             var tem="";
             $("#tableId input:checked").each(function () {
@@ -220,7 +219,8 @@
             $("#delInput").val(tem);
             $("#delformId").submit();
         }else {
-            layer.msg('请选择1行')
+            layer.msg('请选择一行', {icon: 5, anim: 6});
+            return;
         }
     });
 </script>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovo.disaster.pwd.dao.IDiseaseDao">
+
+    <!--<resultMap id="test1" type="com.lovo.disaster.pwd.bean.DiseaseBean">-->
+        <!--<id property="diseaseId" column="sick_id" javaType="int"></id>-->
+        <!--<result property="diseaseName" column="sick_name"></result>-->
+        <!--<result property="source" column="sick_source"></result>-->
+        <!--<result property="symptom" column="sick_symptom"></result>-->
+        <!--<result property="rule" column="sick_rule"></result>-->
+        <!--<result property="diseasePath" column="sick_img_path"></result>-->
+        <!--<result property="diseaseMethod" column="sick_method"></result>-->
+        <!--<result property="diseaseHarm" column="sick_harm"></result>-->
+    <!--</resultMap>-->
+    <!-- select sick_id diseaseId, sick_name diseaseName, sick_source source, sick_symptom symptom,
+        sick_rule rule, sick_img_path diseasePath, sick_method diseaseMethod, sick_harm diseaseHarm -->
+    <!--动态展示界面-->
+    <select id="findAll"  parameterType="map" resultType="com.lovo.disaster.pwd.bean.DiseaseBean" >
+        select sick_id diseaseId, sick_name diseaseName, sick_source source, sick_symptom symptom,
+        sick_rule rule, sick_img_path diseasePath, sick_method diseaseMethod, sick_harm diseaseHarm from sys_sick where 1=1
+        <if test="null!=dName and ''!=dName">
+            and sick_name like '%${dName}%'
+        </if>
+        <if test="null!=sName and ''!=sName">
+            and sick_symptom like '%${sName}%'
+        </if>
+        limit #{start},#{hang}
+    </select>
+    <!--添加鼠害对象-->
+    <insert id="addDisease" parameterType="com.lovo.disaster.pwd.bean.DiseaseBean">
+        insert into sys_sick(sick_name,sick_source,sick_symptom,sick_rule,sick_img_path,sick_method,sick_harm)
+        values (#{diseaseName},#{source},#{symptom},#{rule},#{diseasePath},#{diseaseMethod},#{diseaseHarm})
+    </insert>
+
+    <!--通过id查找病害对象-->
+    <select id="findById"  parameterType="com.lovo.disaster.pwd.bean.DiseaseBean" resultType="com.lovo.disaster.pwd.bean.DiseaseBean">
+        select sick_id diseaseId, sick_name diseaseName, sick_source source, sick_symptom symptom,
+        sick_rule rule, sick_img_path diseasePath, sick_method diseaseMethod, sick_harm diseaseHarm from sys_sick where sick_id=#{diseaseId}
+    </select>
+
+    <!--分页-->
+    <select id="countPage" resultType="Integer" parameterType="map">
+        select count(*) from sys_sick where 1=1
+        <if test="null!=dName and ''!=dName">
+            and sick_name like '%${dName}%'
+        </if>
+        <if test="null!=sName and ''!=sName">
+            and sick_symptom like '%${sName}%'
+        </if>
+    </select>
+
+
+</mapper>

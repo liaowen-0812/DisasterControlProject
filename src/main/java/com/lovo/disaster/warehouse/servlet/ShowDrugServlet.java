@@ -27,7 +27,7 @@ public class ShowDrugServlet extends HttpServlet {
            Page p=new Page();
 
         //获得表单数据
-        String drugName=request.getParameter("title");
+        String drugName=request.getParameter("title1");
         String typeLx=request.getParameter("city");
         String typeLb=request.getParameter("city1");
         //当前页

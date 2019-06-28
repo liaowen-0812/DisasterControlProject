@@ -8,10 +8,10 @@
 </select>
 
   <resultMap id="drug2" type="com.lovo.disaster.warehouse.entity.SysDrug">
-       <result property="drugId" column="drug_id"></result>
-    <result property="drugName" column="drug_name"></result>
-    <result property="drugUseWay" column="drug_use_way"></result>
-    <result property="drugNum" column="drug_num"></result>
+      <result property="drugId" column="drug_id"></result>
+      <result property="drugName" column="drug_name"></result>
+      <result property="drugUseWay" column="drug_use_way"></result>
+      <result property="drugNum" column="drug_num"></result>
 
    <association property="type1" column="drug_cure_type" select="finType">
     <!--  <result property="typeId" column="type_id"></result>
@@ -61,5 +61,148 @@
         </if>
     </select>
 
+
+
+    <resultMap id="findDto" type="com.lovo.disaster.warehouse.dto.LookLeaveHouseDto">
+        <result property="stockpileDate" column="stockpile_date"></result>
+        <result property="className" column="sclass_name"></result>
+        <result property="leaveHouseMan" column="user_true_name"></result>
+        <result property="leaveHouseNum" column="leave_num"></result>
+       <!-- <result property="drugName" column="drug_name"></result>
+        <result property="type1" column="type_val1"></result>
+        <result property="type2" column="type_val2"></result>-->
+
+
+       <!-- <collection property="drugList" column="drug_id"  ofType="com.lovo.disaster.warehouse.entity.SysDrug">
+
+        </collection>-->
+    </resultMap>
+
+    <select id="findAllLeaveHouseDto" parameterType="map" resultMap="findDto">
+        SELECT stockpile_date,sclass_name,user_true_name,leave_num FROM sys_stockpile s
+        LEFT JOIN sys_user u ON u.user_id=s.stockpile_man LEFT JOIN sys_class c ON
+        c.sclass_id=s.stockpile_class left join drug_stockpile ds on ds.stockpile_id=s.stockpile_id
+        WHERE 1=1
+
+        --         SELECT s.stockpile_date,c.sclass_name,u.user_true_name,d.drug_id FROM sys_drug d LEFT JOIN drug_stockpile ds ON ds.drug_id=d.drug_id LEFT JOIN sys_stockpile s
+--         ON s.stockpile_id=ds.stockpile_id LEFT JOIN sys_user u ON u.user_id=s.stockpile_man LEFT JOIN sys_class c ON
+--         c.sclass_id=s.stockpile_class LEFT JOIN sys_type t ON t.type_id=d.drug_cure_type LEFT JOIN sys_type t2 ON t2.type_id=d.drug_type
+--         where 1=1
+
+<if test="dat1!=null and dat1!=''">
+    and s.stockpile_date &gt;#{dat1}
+</if>
+        <if test="dat2!=null and dat2!=''">
+            and s.stockpile_date &lt;#{dat1}
+        </if>
+        <if test="className!=null and className!=''">
+         and c.sclass_name like '%${className}%'
+        </if>
+        limit #{start},#{hang}
+    </select>
+
+<select id="findAllDtoCount" parameterType="map" resultType="int">
+    SELECT COUNT(*) FROM sys_stockpile s
+    LEFT JOIN sys_user u ON u.user_id=s.stockpile_man LEFT JOIN sys_class c ON
+    c.sclass_id=s.stockpile_class
+    WHERE 1=1
+    <if test="dat1!=null and dat1!=''">
+        and s.stockpile_date &gt;#{dat1}
+    </if>
+    <if test="dat2!=null and dat2!=''">
+        and s.stockpile_date &lt;#{dat1}
+    </if>
+    <if test="className!=null and className!=''">
+        and c.sclass_name like '%${className}%'
+    </if>
+</select>
+
+
+<resultMap id="find2" type="com.lovo.disaster.warehouse.dto.LookLeaveHouseDto">
+   <result property="leaveHouseNum" column="leave_num"></result>
+    <association property="sysDrug"   javaType="com.lovo.disaster.warehouse.entity.SysDrug">
+   <result property="drugId" column="drug_id"></result>
+        <result property="drugName" column="drug_name"></result>
+        <result property="drugUseWay" column="drug_use_way"></result>
+
+        <association property="type1" column="drug_cure_type" select="finType">
+
+        </association>
+        <association property="type2" column="drug_type" select="finType">
+
+        </association>
+    </association>
+</resultMap>
+
+
+    <select id="findLookLeaveHouse" resultMap="find2">
+               SELECT *  FROM sys_drug d LEFT JOIN drug_stockpile ds ON ds.drug_id=d.drug_id LEFT JOIN sys_stockpile s
+        ON s.stockpile_id=ds.stockpile_id LEFT JOIN sys_user u ON u.user_id=s.stockpile_man LEFT JOIN sys_class c ON
+         c.sclass_id=s.stockpile_class LEFT JOIN sys_type t ON t.type_id=d.drug_cure_type LEFT JOIN sys_type t2 ON t2.type_id=d.drug_type
+        WHERE 1=1
+        <if test="className!=null and className!=''">
+            AND c.sclass_name=#{className}
+        </if>
+        <if test="date1!=null and date1!=''">
+             AND s.stockpile_date=#{date1}
+        </if>
+        <if test="leaveHouseMan!=null and leaveHouseMan!=''">
+            AND u.user_true_name=#{leaveHouseMan}
+        </if>
+
+limit #{start},#{hang}
+    </select>
+
+<select id="findLookLeaveCount" resultType="int">
+       SELECT count(*) FROM sys_drug d LEFT JOIN drug_stockpile ds ON ds.drug_id=d.drug_id LEFT JOIN sys_stockpile s
+        ON s.stockpile_id=ds.stockpile_id LEFT JOIN sys_user u ON u.user_id=s.stockpile_man LEFT JOIN sys_class c ON
+         c.sclass_id=s.stockpile_class LEFT JOIN sys_type t ON t.type_id=d.drug_cure_type LEFT JOIN sys_type t2 ON t2.type_id=d.drug_type
+        WHERE 1=1 AND s.stockpile_date=#{0} AND c.sclass_name=#{1} AND u.user_true_name=#{2}
+</select>
+
+
+
+
+
+    <select id="findAllClass" resultType="com.lovo.disaster.warehouse.entity.SysClass">
+        select sclass_name sclassName,sclass_id sclassId  from sys_class
+    </select>
+
+
+
+
+
+
+    <resultMap id="findByid" type="com.lovo.disaster.warehouse.entity.SysDrug">
+        <result property="drugId" column="drug_id"></result>
+        <result property="drugName" column="drug_name"></result>
+        <result property="drugUseWay" column="drug_use_way"></result>
+        <result property="drugNum" column="drug_num"></result>
+
+        <association property="type1" column="drug_cure_type" select="finType2">
+        </association>
+        <association property="type2" column="drug_type" select="finType2">
+
+        </association>
+
+    </resultMap>
+
+    <select id="finType2" resultType="com.lovo.disaster.warehouse.entity.SysType">
+       select type_id typeId, type_name typeName, type_key typeKey, type_val typeVal
+         from sys_type where type_id=#{0}
+    </select>
+
+    <select id="findDrugById" resultMap="findByid">
+        select * from sys_drug where drug_id=#{0}
+    </select>
+
+
+
+    <select id="saveChuku" statementType="CALLABLE">
+    call saveStockpile(#{0},#{1},#{2})
+    </select>
+<select id="saveDrugStockpile" statementType="CALLABLE">
+    call saveDrugStockpile(#{0},#{1});
+</select>
 
 </mapper>

@@ -9,13 +9,13 @@ public class DoctorResult {
   private long doctorEventId;
   private String doctorEventDate;
   private String doctorEventResult;
-  private List<SysDoctor> list;
+  private String list;
 
-  public List<SysDoctor> getList() {
+  public String getList() {
     return list;
   }
 
-  public void setList(List<SysDoctor> list) {
+  public void setList(String list) {
     this.list = list;
   }
 

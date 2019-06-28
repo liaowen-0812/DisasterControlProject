@@ -28,7 +28,6 @@ public class AddSpecialistServlet extends HttpServlet {
         UploadUtil uploadUtil=new UploadUtil();
         boolean bl=false;
         SysDoctor doctor=new SysDoctor();
-       String STR= request.getParameter("zName");
         try {
             Map<String, List<FileItem>> map= uploadUtil.getFileItem(request);
             //获得表单集合
@@ -38,7 +37,7 @@ public class AddSpecialistServlet extends HttpServlet {
             String path= StringInfo.filePath;
             for (FileItem file:listFile) {
                 String fileName=file.getName();
-                bl= Verify.verifyFile(fileName,new String[]{"jpg","doc"});
+                bl= Verify.verifyFile(fileName,new String[]{"jpg","doc","gif"});
                 if(!bl){
                     break;
                 }

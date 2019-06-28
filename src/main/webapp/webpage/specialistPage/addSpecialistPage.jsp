@@ -17,20 +17,20 @@
 </head>
 
 <body>
+<form action="addSpecialistServlet.lovo" method="post" enctype="multipart/form-data" id="formId">
     <div class="layui-card"  style="text-align: center">
         <div class="layui-card-header"><h2>添加专家信息</h2></div>
         <div class="layui-card-body">
-
             <div class="layui-input-inline">
                 <label class="layui-form-label">专家姓名</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn1">
+                    <input type="text" class="layui-input" id="test-laydate-start-cn1" name="zName" onblur="shiqu(this)">
                 </div>
                 <div class="layui-card layui-form" lay-filter="component-form-element">
                     <div class="layui-card-body layui-row layui-col-space10">
                         <div class="layui-col-md12">
-                            <span><h3>性别</h3></span><input type="radio" name="sex" value="nan" title="男">
-                            <input type="radio" name="sex" value="nv" title="女" checked>
+                            <span><h3>性别</h3></span><input type="radio" name="sex" value="男" title="男">
+                            <input type="radio" name="sex" value="女" title="女" checked>
                         </div>
                     </div>
                 </div>
@@ -40,15 +40,13 @@
             <div class="layui-input-inline" style="margin-top: 20px">
                 <label class="layui-form-label">出生年月</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-last-cn">
+                    <input type="text" class="layui-input"  id="test-laydate-last-cn" name="cName">
                 </div>
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body">
                             <div class="layui-upload">
-                                <img class="layui-upload-img" id="test-upload-normal-img" style="width: 50px;height: 80px">
-                                <p id="test-upload-demoText"></p>
-                                <button type="button" class="layui-btn" id="test-upload-normal">上传头像</button>
+                                <input type="file" id="test-upload-normal" name="txName" value="上传头像">
                             </div>
                         </div>
                     </div>
@@ -60,13 +58,13 @@
             <div class="layui-input-inline">
                 <label class="layui-form-label">专长</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn2">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn2" name="sName">
                 </div>
             </div>
             <div class="layui-input-inline">
                 <label class="layui-form-label">职务</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn5">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn5" name="wName">
                 </div>
             </div>
             <br/>
@@ -75,13 +73,13 @@
             <div class="layui-input-inline">
                 <label class="layui-form-label">电话</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn3">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn3" name="fName">
                 </div>
             </div>
             <div class="layui-input-inline">
                 <label class="layui-form-label">工作单位</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn6">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn6" name="gName">
                 </div>
             </div>
             <br/>
@@ -90,20 +88,21 @@
             <div class="layui-input-inline">
                 <label class="layui-form-label">通讯地址</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn4">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn4" name="xName">
                 </div>
             </div>
             <div class="layui-input-inline">
                 <label class="layui-form-label">邮箱</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn7">
+                    <input type="text" class="layui-input"  id="test-laydate-start-cn7" name="yName">
                 </div>
             </div>
             <br/>
             <br/>
+            <input type="button"  class="layui-btn layui-btn-primary" value="添加" id="addButton">
         </div>
     </div>
-
+    </form>
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
@@ -163,29 +162,7 @@
         var $ = layui.jquery
             ,upload = layui.upload;
 
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test-upload-normal'
-            ,url: '/upload/'
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#test-upload-normal-img').attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-                //如果上传失败
-                if(res.code > 0){
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#test-upload-demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span>');
-            }
-        });
+
 
         //多图片上传
         upload.render({
@@ -261,7 +238,65 @@
         })
 
     });
+
+    $("#addButton").click(function () {
+       if($("#test-laydate-start-cn1").val().trim().length==0){
+           layer.msg('姓名不能为空', {icon: 5, anim: 6});
+           qing();
+          return;
+       }
+       else if($("#test-laydate-last-cn").val().trim().length==0){
+           layer.msg('出生年月不能为空', {icon: 5, anim: 6});
+           qing();
+           return;
+       }
+       else if($("#test-laydate-start-cn2").val().trim().length==0){
+           layer.msg('专长不能为空', {icon: 5, anim: 6});
+           qing();
+            return;
+       }
+       else if($("#test-laydate-start-cn5").val().trim().length==0){
+           layer.msg('职务不能为空', {icon: 5, anim: 6});
+           qing();
+            return;
+       }
+       else if($("#test-laydate-start-cn3").val().trim().length==0){
+           layer.msg('电话不能为空', {icon: 5, anim: 6});
+           qing();
+               return;
+       }
+       else if($("#test-laydate-start-cn6").val().trim().length==0){
+           layer.msg('工作单位不能为空', {icon: 5, anim: 6});
+           qing();
+               return;
+       }
+       else if($("#test-laydate-start-cn4").val().trim().length==0){
+           layer.msg('通讯地址不能为空', {icon: 5, anim: 6});
+           qing();
+               return;
+       }
+       else if($("#test-laydate-start-cn7").val().trim().length==0){
+           layer.msg('邮箱不能为空', {icon: 5, anim: 6});
+           qing();
+             return;
+       }
+
+       $("#formId").submit();
+    });
+
+    function qing() {
+        $("#test-laydate-start-cn1").val("");
+        $("#test-laydate-last-cn").val("");
+        $("#test-laydate-start-cn2").val("");
+        $("#test-laydate-start-cn5").val("");
+        $("#test-laydate-start-cn3").val("");
+        $("#test-laydate-start-cn6").val("");
+        $("#test-laydate-start-cn4").val("");
+        $("#test-laydate-start-cn7").val("");
+    }
 </script>
+
+
 
 </body>
 </html>
