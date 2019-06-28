@@ -17,15 +17,14 @@
 </head>
 
 <body>
-<form action="addSpecialistServlet.lovo" method="post" enctype="multipart/form-data">
+<form action="addSpecialistServlet.lovo" method="post" enctype="multipart/form-data" id="formId">
     <div class="layui-card"  style="text-align: center">
         <div class="layui-card-header"><h2>添加专家信息</h2></div>
         <div class="layui-card-body">
-
             <div class="layui-input-inline">
                 <label class="layui-form-label">专家姓名</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input" id="test-laydate-start-cn1" name="zName" >
+                    <input type="text" class="layui-input" id="test-laydate-start-cn1" name="zName" onblur="shiqu(this)">
                 </div>
                 <div class="layui-card layui-form" lay-filter="component-form-element">
                     <div class="layui-card-body layui-row layui-col-space10">
@@ -100,11 +99,10 @@
             </div>
             <br/>
             <br/>
-            <input type="submit"  class="layui-btn layui-btn-primary" value="添加">
+            <input type="button"  class="layui-btn layui-btn-primary" value="添加" id="addButton">
         </div>
     </div>
-</form>
-
+    </form>
 <script src="layuiadmin/layui/layui.js"></script>
 <script>
     layui.config({
@@ -241,55 +239,61 @@
 
     });
 
-    $("#test-laydate-start-cn1").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('姓名不能为空');
-        }
-    });
-    $("#test-laydate-last-cn").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('出生年月不能为空');
-        }
-    });
-    $("#test-laydate-start-cn2").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('专长不能为空');
-        }
-    });
-    $("#test-laydate-start-cn5").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('职务不能为空');
-        }
-    });
-    $("#test-laydate-start-cn3").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('电话不能为空');
-        }
-    });
-    $("#test-laydate-start-cn6").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('工作单位不能为空');
-        }
-    });
-    $("#test-laydate-start-cn4").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('通讯地址不能为空');
-        }
-    });
-    $("#test-laydate-start-cn7").blur(function () {
-        var name= $(this).val();
-        if(null==name || ""==name){
-            layer.msg('邮箱不能为空');
-        }
+    $("#addButton").click(function () {
+       if($("#test-laydate-start-cn1").val().trim().length==0){
+           layer.msg('姓名不能为空', {icon: 5, anim: 6});
+           qing();
+          return;
+       }
+       else if($("#test-laydate-last-cn").val().trim().length==0){
+           layer.msg('出生年月不能为空', {icon: 5, anim: 6});
+           qing();
+           return;
+       }
+       else if($("#test-laydate-start-cn2").val().trim().length==0){
+           layer.msg('专长不能为空', {icon: 5, anim: 6});
+           qing();
+            return;
+       }
+       else if($("#test-laydate-start-cn5").val().trim().length==0){
+           layer.msg('职务不能为空', {icon: 5, anim: 6});
+           qing();
+            return;
+       }
+       else if($("#test-laydate-start-cn3").val().trim().length==0){
+           layer.msg('电话不能为空', {icon: 5, anim: 6});
+           qing();
+               return;
+       }
+       else if($("#test-laydate-start-cn6").val().trim().length==0){
+           layer.msg('工作单位不能为空', {icon: 5, anim: 6});
+           qing();
+               return;
+       }
+       else if($("#test-laydate-start-cn4").val().trim().length==0){
+           layer.msg('通讯地址不能为空', {icon: 5, anim: 6});
+           qing();
+               return;
+       }
+       else if($("#test-laydate-start-cn7").val().trim().length==0){
+           layer.msg('邮箱不能为空', {icon: 5, anim: 6});
+           qing();
+             return;
+       }
+
+       $("#formId").submit();
     });
 
+    function qing() {
+        $("#test-laydate-start-cn1").val("");
+        $("#test-laydate-last-cn").val("");
+        $("#test-laydate-start-cn2").val("");
+        $("#test-laydate-start-cn5").val("");
+        $("#test-laydate-start-cn3").val("");
+        $("#test-laydate-start-cn6").val("");
+        $("#test-laydate-start-cn4").val("");
+        $("#test-laydate-start-cn7").val("");
+    }
 </script>
 
 

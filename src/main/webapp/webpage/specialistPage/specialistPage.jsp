@@ -189,7 +189,8 @@
             $("#findInput").val(tem);
             $("#findId").submit();
         }else {
-            layer.msg('请选择1行')
+            layer.msg('请选择一行', {icon: 5, anim: 6});
+            return;
         }
     });
 
@@ -203,7 +204,8 @@
             $("#updateInput").val(tem);
             $("#updateformId").submit();
         }else {
-            layer.msg('请选择1行')
+            layer.msg('请选择一行', {icon: 5, anim: 6});
+            return;
         }
     });
 
@@ -217,7 +219,8 @@
             $("#delInput").val(tem);
             $("#delformId").submit();
         }else {
-            layer.msg('请选择1行')
+            layer.msg('请选择一行', {icon: 5, anim: 6});
+            return;
         }
     });
 </script>

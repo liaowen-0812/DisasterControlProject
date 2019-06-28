@@ -4,7 +4,7 @@
     String path = request.getContextPath();
 //http://ip+port+projectName
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String basePathIMG = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/img/";
+    String basePathIMG = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
 %>
 <html>
 <head>
