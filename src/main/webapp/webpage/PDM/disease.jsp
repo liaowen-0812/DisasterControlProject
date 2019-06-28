@@ -35,9 +35,10 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
+                    <th>选择</th>
+                    <th>名称</th>
+                    <th>主要危害</th>
+                    <th>发病规律</th>
 
                 </tr>
                 </thead>
@@ -84,14 +85,14 @@
             <div class="layui-inline">
                 <label class="layui-form-label">病害名称</label>
                 <div class="layui-input-inline">
-                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="dName" id="test-laydate-start-cn1">
+                    <input type="text" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="${dName}" id="test-laydate-start-cn1">
                 </div>
             </div>
             <br/><br/>
             <div class="layui-inline">
                 <label class="layui-form-label">发病症状</label>
                 <div class="layui-input-inline">
-                    <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="sName"id="test-laydate-start-cn2">
+                    <input type="text" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="${sName}"id="test-laydate-start-cn2">
                 </div>
             </div>
             <br/>

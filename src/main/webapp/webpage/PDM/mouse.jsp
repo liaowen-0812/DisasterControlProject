@@ -35,9 +35,9 @@
                 <thead>
                 <tr>
                     <th>选择</th>
-                    <th>人物</th>
-                    <th>民族</th>
-                    <th>出场时间</th>
+                    <th>名称</th>
+                    <th>主要危害</th>
+                    <th>发病规律</th>
 
                 </tr>
                 </thead>

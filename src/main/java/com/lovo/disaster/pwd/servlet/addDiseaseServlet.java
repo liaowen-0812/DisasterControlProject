@@ -67,8 +67,6 @@ public class addDiseaseServlet extends HttpServlet {
                         disease.setSymptom(val);
                     } else if (formName.equals("rule")) {
                         disease.setRule(val);
-                    } else if (formName.equals("diseasePath")) {
-                        disease.setDiseasePath(val);
                     } else if (formName.equals("diseaseMethod")) {
                         disease.setDiseaseMethod(val);
                     }else if (formName.equals("diseaseHarm")){

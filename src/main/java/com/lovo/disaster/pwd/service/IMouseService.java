@@ -12,12 +12,6 @@ public interface IMouseService {
      */
     public void addMouse(MouseBean mouseBean);
 
-    /**
-     * 通过鼠害对象查找鼠害id
-     * @param mouseBean 鼠害对象
-     * @return 鼠害id
-     */
-    public int findByItem(MouseBean mouseBean);
 
     /**
      * 通过鼠害id查找鼠害对象

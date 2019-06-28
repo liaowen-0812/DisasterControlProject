@@ -23,11 +23,6 @@ public class MouseServiceImpl implements IMouseService {
     }
 
     @Override
-    public int findByItem(MouseBean mouseBean) {
-        return 0;
-    }
-
-    @Override
     public MouseBean findById(int mouseId) {
         SqlSession session=GetSession.creatSession();
         MouseBean mouse=session.getMapper(IMouseDao.class).findById(mouseId);
