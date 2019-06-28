@@ -20,8 +20,9 @@ public class diseaseListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setHeader("Content-type", "text/plain;charset=UTF-8");
-        String diseaseName=request.getParameter("dName");
-        String symptom=request.getParameter("sName");
+        String diseaseName=request.getParameter("diseaseName");
+        String symptom=request.getParameter("symptom");
+        String symptom2=request.getParameter("aaaa");
         Page p=new Page();
         Map<String,Object> map=new HashMap<>();
         //获得当前页
@@ -45,6 +46,8 @@ public class diseaseListServlet extends HttpServlet {
         request.setAttribute("diseaseList",list);
         request.setAttribute("cerPage",cerPage2);
         request.setAttribute("allCount",allCount);
+        request.setAttribute("dName",diseaseName);
+        request.setAttribute("sName",symptom);
         request.getRequestDispatcher("webpage/PDM/disease.jsp").forward(request,response);
     }
 

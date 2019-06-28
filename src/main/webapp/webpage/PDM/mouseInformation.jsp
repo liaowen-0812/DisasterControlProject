@@ -5,6 +5,9 @@
 //http://ip+port+projectName
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%
+    String basePath2 = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
+%>
 <html>
 <head>
     <base href="<%=basePath%>">
@@ -18,8 +21,8 @@
 <body>
 <div><h2 align="center">鼠害详细信息</h2>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">名称:${mName}</b></span>
-        <span><b style="margin-left: 20%">图片:<img style="width: 50px;height: 80px" src="<%=basePath%>${pathImg}"></b></span>
+        <span><b style="margin-left: 35%">名称:${mouseName}</b></span>
+        <span><b style="margin-left: 20%">图片:<img style="width: 50px;height: 80px" src="<%=basePath2%>${pathImg}"></b></span>
     </div>
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">繁殖:${mouseBreed}</b></span>
@@ -49,7 +52,7 @@
 
 <script>
     $("#bid").click(function () {
-        location.href="webpage/PDM/mouse.jsp";
+        location.href="mouseListServlet.lovo";
     });
 </script>
 

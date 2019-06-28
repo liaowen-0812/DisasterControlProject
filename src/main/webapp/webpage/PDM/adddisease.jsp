@@ -19,7 +19,7 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
-<form action="addMouseServlet.lovo" method="post" id="f1">
+<form action="addDiseaseServlet.lovo" method="post" id="f1" enctype="multipart/form-data">
 <div class="layui-fluid" align="center">
     <div class="layui-card-header" style="font-size: 30px">添加病害</div>
     <br/><br/>
@@ -27,13 +27,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input"id="1">
+                <input type="text" name="diseaseName"  class="layui-input" id="1">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">病原</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input"id="2">
+                <input type="text" name="source"  class="layui-input"id="2">
             </div>
         </div>
     </div>
@@ -42,18 +42,18 @@
             <label class="layui-form-label">发病症状</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="3"></textarea>
+                <textarea name="symptom" placeholder="请输入" class="layui-textarea"id="3"></textarea>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">发病规律</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="4"></textarea>
+                <textarea name="rule" placeholder="请输入" class="layui-textarea"id="4"></textarea>
             </div>
         </div>
     </div>
-                    <input type="file" id="test-upload-normal" value="上传头像" >
+                    <input type="file"  name="name5" value="上传头像" >
 
 </div>
 
@@ -66,14 +66,14 @@
             <label class="layui-form-label">防治措施</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="5"></textarea>
+                <textarea name="diseaseMethod" placeholder="请输入" class="layui-textarea"id="5"></textarea>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">主要危害</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="6"></textarea>
+                <textarea name="diseaseHarm" placeholder="请输入" class="layui-textarea"id="6"></textarea>
             </div>
         </div>
     </div>
@@ -81,10 +81,40 @@
 
     <!--按钮-->
 <div align="center">
-    <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;"onclick="add()">添加</button>
+    <input type="button" value="添加" class="layui-btn" style="margin-left: 5%;margin-top: 150px;"onclick="add()">
 </div>
 </form>
+
+
+<script src="layuiadmin/layui/layui.js"></script>
+<script src="webpage/jQuery-2.2.2-min.js"></script>
     <script>
+
+        function add(){
+
+            if($("#1").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else  if($("#2").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#3").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#4").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#5").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }else if($("#6").val().trim().length==0){
+                layer.msg('不能为空', {icon: 5, anim: 6});
+                return;
+            }
+            $("#f1").submit();
+        }
+
+
         layui.config({
             base: 'layuiadmin/' //静态资源所在路径
         }).extend({
@@ -140,32 +170,9 @@
         }).use(['index', 'upload'], function() {
             var $ = layui.jquery
                 , upload = layui.upload;
-        }
+        })
 
-        function add(){
-            var posPattern = /^\d+$/;
-            if($("#1").val().trim().length==0){
-                layer.msg('不能为空', {icon: 5, anim: 6});
-                return;
-            }else  if($("#2").val().trim().length==0){
-                layer.msg('不能为空', {icon: 5, anim: 6});
-                return;
-            }else if($("#3").val().trim().length==0){
-                layer.msg('不能为空', {icon: 5, anim: 6});
-                return;
-            }else if($("#4").val().trim().length==0){
-                layer.msg('不能为空', {icon: 5, anim: 6});
-                return;
-            }else if($("#5").val().trim().length==0){
-                layer.msg('不能为空', {icon: 5, anim: 6});
-                return;
-            }else if($("#6").val().trim().length==0){
-                layer.msg('不能为空', {icon: 5, anim: 6});
-                return;
-            }
-            $("#f1").submit();
 
-        }
     </script>
 </div>
 </div>

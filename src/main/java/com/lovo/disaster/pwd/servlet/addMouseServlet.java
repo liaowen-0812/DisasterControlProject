@@ -44,8 +44,8 @@ public class addMouseServlet extends HttpServlet {
                     break;
                 }
                 fileName=StringInfo.getNewFileName(fileName);
-                mouse.setPathImg(fileName);
-                OutputStream out=new FileOutputStream(path+fileName);
+                mouse.setPathImg("img/"+fileName);
+                OutputStream out=new FileOutputStream("F:/img/"+fileName);
                 InputStream in=file.getInputStream();
                 byte[] bytes=new byte[1024*10];
                 int len=0;
@@ -68,8 +68,6 @@ public class addMouseServlet extends HttpServlet {
                         mouse.setMouseBreed(val);
                     } else if (formName.equals("mouseEnemy")) {
                         mouse.setMouseEnemy(val);
-                    } else if (formName.equals("pathImg")) {
-                        mouse.setPathImg(val);
                     } else if (formName.equals("mouseMethod")) {
                         mouse.setMouseMethod(val);
                     }else if (formName.equals("mouseHarm")){

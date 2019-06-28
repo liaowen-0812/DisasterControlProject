@@ -68,10 +68,9 @@
             <div  id="btnDivId">
                 <!--按钮-->
                 <button type="button" class="layui-btn layui-btn-primary" id="bid1" onclick="addEnter()">添加新虫害</button>
-                <form style="display: initial;" class="layui-form" id="findId" action="findWormsServlet.lovo" method="post">
+
                 <button type="button" class="layui-btn layui-btn-primary" id="bid2" style="margin-left: 100px" onclick="see()">查看详细信息</button>
                     <input type="hidden" value="" name="idStr" id="findInput"/>
-                </form>
 
             </div>
         </div>
@@ -85,14 +84,14 @@
             <div class="layui-inline">
                 <label class="layui-form-label">害虫名</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="url" lay-verify="url" autocomplete="off" class="layui-input" value="${wName}"id="test-laydate-start-cn1">
+                    <input type="text" name="wName" lay-verify="url" autocomplete="off" class="layui-input" value="${wName}"id="test-laydate-start-cn1">
                 </div>
             </div>
             <br/><br/>
             <div class="layui-inline">
                 <label class="layui-form-label">寄主</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="${hName}"id="test-laydate-start-cn2">
+                    <input type="text" name="hName" lay-verify="url" autocomplete="off" class="layui-input"value="${hName}"id="test-laydate-start-cn2">
                 </div>
             </div>
             <br/>
@@ -142,30 +141,26 @@
         });
     });
 
+    $("#bid").click(function () {
+        $("#f2").submit();
+    })
+
     function addEnter(){
-        location.href="com.lovo.disaster.pwd.servlet.addWormsServlet";
+        location.href="webpage/PDM/addworms.jsp";
     }
     function see(){
-        location.href="webpage/PDM/wormsInformation.jsp";
-    }
-    $("#bid").click(function () {
-        var s=$("#test-laydate-start-cn1").val();
-        alert(s)
-    });
-    $("#bid2").click(function () {
-        var checkId = $("#tableId input:checked").length;
-        alert(checkId)
-        if(checkId==1){
-            var tem="";
-            $("#tableId input:checked").each(function () {
-                tem+=$(this).val();
-            });
-            $("#findInput").val(tem);
-            $("#findId").submit();
-        }else {
-            layer.msg('请选择1行')
+        var idStr=$(":checked").val();
+        var checkId = $("input:checked").length;
+        if(checkId==0){
+            layer.msg('请选择1行', {icon: 5, anim: 6});
+            return;
+        }else if(checkId>1){
+            layer.msg('请选择1行', {icon: 5, anim: 6});
+            return;
         }
-    });
+        location.href="findWormsServlet.lovo?idStr="+idStr;
+    }
+
 </script>
 
 

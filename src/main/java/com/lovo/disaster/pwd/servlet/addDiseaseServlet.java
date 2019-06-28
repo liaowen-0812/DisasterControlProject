@@ -43,8 +43,8 @@ public class addDiseaseServlet extends HttpServlet {
                     break;
                 }
                 fileName=StringInfo.getNewFileName(fileName);
-                disease.setDiseasePath(fileName);
-                OutputStream out=new FileOutputStream(path+fileName);
+                disease.setDiseasePath("img/"+fileName);
+                OutputStream out=new FileOutputStream("F:/img/"+fileName);
                 InputStream in=file.getInputStream();
                 byte[] bytes=new byte[1024*10];
                 int len=0;

@@ -19,7 +19,7 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
-<form action="addMouseServlet.lovo" method="post" id="f1">
+<form action="addMouseServlet.lovo" method="post" id="f1" enctype="multipart/form-data">
 <div class="layui-fluid" align="center">
     <div class="layui-card-header" style="font-size: 30px">添加新鼠害</div>
     <br/><br/>
@@ -27,13 +27,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input"id="1">
+                <input type="text" name="mouseName" lay-verify="required" autocomplete="off" class="layui-input"id="1">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">食物</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input" id="2">
+                <input type="text" name="food" lay-verify="required" autocomplete="off" class="layui-input" id="2">
             </div>
         </div>
     </div>
@@ -41,18 +41,18 @@
         <div class="layui-inline">
             <label class="layui-form-label">繁殖</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input"id="3">
+                <input type="text" name="mouseBreed" lay-verify="required" autocomplete="off" class="layui-input"id="3">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">天敌</label>
             <div class="layui-input-inline">
-                <input type="text" name="name" lay-verify="required" autocomplete="off" class="layui-input"id="4">
+                <input type="text" name="mouseEnemy" lay-verify="required" autocomplete="off" class="layui-input"id="4">
             </div>
         </div>
     </div>
 
-    <input type="file" id="test-upload-normal" value="上传头像" >
+    <input type="file" name="abc" id="test-upload-normal" value="上传头像" >
 </div>
 
 
@@ -63,14 +63,14 @@
             <label class="layui-form-label">防治措施</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="5"></textarea>
+                <textarea name="mouseMethod" placeholder="请输入" class="layui-textarea"id="5"></textarea>
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">主要危害</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="6"></textarea>
+                <textarea name="mouseHarm" placeholder="请输入" class="layui-textarea"id="6"></textarea>
             </div>
         </div>
     </div>
@@ -78,9 +78,14 @@
 
     <!--按钮-->
 <div align="center">
-    <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;" onclick="add()">添加</button>
+    <input type="button" value="添加" class="layui-btn layui-btn-primary" style="margin-left: 5%;margin-top: 150px;" onclick="add()"></input>
 </div>
 </form>
+
+
+
+<script src="layuiadmin/layui/layui.js"></script>
+<script src="webpage/jQuery-2.2.2-min.js"></script>
     <script>
         layui.config({
             base: 'layuiadmin/' //静态资源所在路径
@@ -137,7 +142,7 @@
         }).use(['index', 'upload'], function() {
             var $ = layui.jquery
                 , upload = layui.upload;
-        }
+        })
 
         function add(){
             var posPattern = /^\d+$/;

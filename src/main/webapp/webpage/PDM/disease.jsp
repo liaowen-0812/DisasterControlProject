@@ -69,10 +69,9 @@
             <div  id="btnDivId">
                 <!--按钮-->
                 <button type="button" class="layui-btn layui-btn-primary"id="bid1" onclick="addEnter()">添加新病害</button>
-                <form style="display: initial;" class="layui-form" id="findId" action="finddiseaseServlet.lovo" method="post">
+
                 <button type="button" class="layui-btn layui-btn-primary"id="bid2" style="margin-left: 100px" onclick="see()">查看详细信息</button>
-                    <input type="hidden" value="" name="idStr" id="findInput"/>
-                </form>
+
             </div>
         </div>
     </div>
@@ -85,21 +84,22 @@
             <div class="layui-inline">
                 <label class="layui-form-label">病害名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="${dName}" id="test-laydate-start-cn1">
+                    <input type="text" name="diseaseName"  class="layui-input" value="${dName}" >
                 </div>
             </div>
             <br/><br/>
             <div class="layui-inline">
                 <label class="layui-form-label">发病症状</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="url" lay-verify="url" autocomplete="off" class="layui-input"value="${sName}"id="test-laydate-start-cn2">
+                    <input type="text" name="symptom"  class="layui-input"value="${sName}" >
                 </div>
             </div>
             <br/>
             <br/>
             <br/>
+
             <!--按钮-->
-            <button type="button" class="layui-btn layui-btn-primary" id="bid">查询</button>
+            <input type="button" class="layui-btn layui-btn-primary" value="查询"  id="bid"></input>
 
         </div>
     </div>
@@ -141,30 +141,27 @@
         });
     });
 
+    $("#bid").click(function () {
+        $("#f2").submit();
+    })
+
     function addEnter(){
         location.href="webpage/PDM/adddisease.jsp";
     }
     function see(){
-        location.href="webpage/PDM/diseaseInformation.jsp";
-    }
-    $("#bid").click(function () {
-        var s=$("#test-laydate-start-cn1").val();
-        alert(s)
-    });
-    $("#bid2").click(function () {
-        var checkId = $("#tableId input:checked").length;
-        alert(checkId)
-        if(checkId==1){
-            var tem="";
-            $("#tableId input:checked").each(function () {
-                tem+=$(this).val();
-            });
-            $("#findInput").val(tem);
-            $("#findId").submit();
-        }else {
-            layer.msg('请选择1行')
+        var idStr=$(":checked").val();
+        var checkId = $("input:checked").length;
+        if(checkId==0){
+            layer.msg('请选择1行', {icon: 5, anim: 6});
+            return;
+        }else if(checkId>1){
+            layer.msg('请选择1行', {icon: 5, anim: 6});
+            return;
         }
-    });
+        location.href="findDiseaseServlet.lovo?idStr="+idStr;
+    }
+
+
 </script>
 
 </body>

@@ -21,10 +21,10 @@
     pest_harm wormsHarm
     from sys_pest where 1=1
     <if test="null!=wName and ''!=wName">
-        and pest_name=#{wName}
+        and pest_name like '%${wName}%'
     </if>
         <if test="null!=hName and ''!=hName">
-            and pest_host=#{hName}
+            and pest_host like '%${hName}%'
         </if>
         limit #{start},#{hang}
     </select>
@@ -36,7 +36,9 @@
     </insert>
     <!--通过id查找虫害对象-->
     <select id="findByWormsId" resultType="com.lovo.disaster.pwd.bean.WormsBean" parameterType="wormsBean">
-        select * from sys_pest where pest_id=#{wormsId}
+        select  pest_id wormsId,pest_name wormsName,pest_host host,pest_breed wormsBreed,
+    pest_enemy wormsEnemy,pest_baby_img babyImg,pest_old_img oldImg,pest_method wormsMethod,
+    pest_harm wormsHarm from sys_pest where pest_id=#{wormsId}
     </select>
 
     <!--分页-->

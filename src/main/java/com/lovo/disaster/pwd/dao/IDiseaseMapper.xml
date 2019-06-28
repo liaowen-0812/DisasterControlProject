@@ -22,7 +22,7 @@
             and sick_name like '%${dName}%'
         </if>
         <if test="null!=sName and ''!=sName">
-            and sick_symptom=#{sName}
+            and sick_symptom like '%${sName}%'
         </if>
         limit #{start},#{hang}
     </select>

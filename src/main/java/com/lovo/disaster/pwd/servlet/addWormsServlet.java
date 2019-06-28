@@ -43,8 +43,13 @@ public class addWormsServlet extends HttpServlet {
                     break;
                 }
                 fileName=StringInfo.getNewFileName(fileName);
-                worms.setBabyImg(fileName);
-                OutputStream out=new FileOutputStream(path+fileName);
+           String a=  file.getFieldName();
+           if ("file1".equals(a)){
+               worms.setBabyImg("img/"+fileName);
+           }else if("file2".equals(a)){
+               worms.setOldImg("img/"+fileName);
+           }
+                OutputStream out=new FileOutputStream("F:/img/"+fileName);
                 InputStream in=file.getInputStream();
                 byte[] bytes=new byte[1024*10];
                 int len=0;
@@ -67,10 +72,6 @@ public class addWormsServlet extends HttpServlet {
                         worms.setWormsBreed(val);
                     }else if(formName.equals("wormsEnemy")){
                         worms.setWormsEnemy(val);
-                    }else if(formName.equals("babyImg")){
-                        worms.setBabyImg(val);
-                    }else if(formName.equals("oldImg")){
-                        worms.setOldImg(val);
                     }else if(formName.equals("wormsMethod")){
                         worms.setWormsMethod(val);
                     }else if(formName.equals("wormsHarm")){

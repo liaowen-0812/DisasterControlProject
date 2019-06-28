@@ -5,6 +5,10 @@
 //http://ip+port+projectName
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
+<%
+    String basePath2 = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
+%>
 <html>
 <head>
     <base href="<%=basePath%>">
@@ -19,7 +23,7 @@
 <div><h2 align="center">病害详细信息</h2>
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">名称:${diseaseName}</b></span>
-        <span><b style="margin-left: 20%">图片:<img style="width: 50px;height: 80px" src="<%=basePath%>${diseasePath}"></b></span>
+        <span><b style="margin-left: 20%">图片:<img style="width: 50px;height: 80px" src="<%=basePath2%>${diseasePath}"></b></span>
     </div>
     <div style="margin-top: 30px">
         <span><b style="margin-left: 35%">病原:${source}</b></span>
@@ -49,7 +53,7 @@
 
 <script>
     $("#bid").click(function () {
-        location.href="webpage/PDM/disease.jsp";
+        location.href="diseaseListServlet.lovo";
     });
 </script>
 

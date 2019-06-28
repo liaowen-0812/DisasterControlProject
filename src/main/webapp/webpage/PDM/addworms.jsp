@@ -19,7 +19,7 @@
     <%@include file="head.jsp"%>
 </head>
 <body>
-<form action="addWormsServlet.lovo"method="post" id="f1">
+<form action="addWormsServlet.lovo" method="post" id="f1" enctype="multipart/form-data">
 <div class="layui-fluid" align="center">
 <div class="layui-card-header" style="font-size: 30px">添加虫害</div>
     <br/><br/>
@@ -27,13 +27,13 @@
         <div class="layui-inline">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-inline">
-                <input type="text"  class="layui-input" id="1">
+                <input type="text"name="wormsName" class="layui-input" id="1">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">寄主</label>
             <div class="layui-input-inline">
-                <input type="text"  class="layui-input" id="2">
+                <input type="text"name="host"  class="layui-input" id="2">
             </div>
         </div>
     </div>
@@ -41,19 +41,19 @@
         <div class="layui-inline">
             <label class="layui-form-label">繁殖</label>
             <div class="layui-input-inline">
-                <input type="text"  class="layui-input"id="3">
+                <input type="text" name="wormsBreed" class="layui-input"id="3">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">天敌</label>
             <div class="layui-input-inline">
-                <input type="text"  class="layui-input" id="4">
+                <input type="text" name="wormsEnemy" class="layui-input" id="4">
             </div>
         </div>
     </div>
 
-    <input type="file" id="test-upload-normal" value="上传头像" >
-    <input type="file" id="test-upload-norma2" value="上传头像" >
+  幼虫图片：  <input type="file" name="file1" id="test-upload-normal" value="上传头像" >
+  成虫图片：  <input type="file" name="file2" id="test-upload-norma2" value="上传头像" >
     </div>
 
 
@@ -64,14 +64,14 @@
         <label class="layui-form-label">防治措施</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="5"></textarea>
+                <textarea name="wormsMethod" placeholder="请输入" class="layui-textarea"id="5"></textarea>
             </div>
     </div>
         <div class="layui-inline">
             <label class="layui-form-label">主要危害</label>
 
             <div class="layui-input-inline">
-                <textarea name="" placeholder="请输入" class="layui-textarea"id="6"></textarea>
+                <textarea name="wormsHarm" placeholder="请输入" class="layui-textarea"id="6"></textarea>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@
             }).use(['index', 'upload'], function() {
                 var $ = layui.jquery
                     , upload = layui.upload;
-            }
+            })
 
         function add(){
             var posPattern = /^\d+$/;

@@ -41,6 +41,7 @@ public class mouseListServlet extends HttpServlet {
         request.setAttribute("mouseList",list);
         request.setAttribute("cerPage",cerPage2);
         request.setAttribute("allCount",allCount);
+        request.setAttribute("mName",mouseName);
         request.getRequestDispatcher("webpage/PDM/mouse.jsp").forward(request,response);
 
 
