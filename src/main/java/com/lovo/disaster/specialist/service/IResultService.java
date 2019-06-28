@@ -2,6 +2,7 @@ package com.lovo.disaster.specialist.service;
 
 import com.lovo.disaster.specialist.bean.DoctorResult;
 import com.lovo.disaster.specialist.bean.SysDoctor;
+import com.lovo.disaster.specialist.bean.SysEvent;
 import com.lovo.disaster.specialist.dto.eventDto;
 
 import java.util.List;
@@ -64,4 +65,30 @@ public interface IResultService {
      */
     public List<SysDoctor> findDoctorName(long dId);
 
+
+
+    /**
+     * 添加会商结果
+     */
+    public void addDoctorResult(Map map);
+    /**
+     * 查询结果最大ID
+     */
+    public Integer findMax();
+
+    /**
+     * 添加专家和结果ID
+     * @param map
+     */
+    public void addSpecialist(Map map);
+
+
+    /**
+     * 根据ID查找事件对象
+     * @param eventId
+     * @return
+     */
+    public SysEvent findByEventId(long eventId);
 }
+
+

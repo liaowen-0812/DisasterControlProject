@@ -18,22 +18,24 @@
 <body>
 <div><h2 align="center">专家会商</h2>
     <form action="addResultServlet.lovo" method="post" class="layui-form">
-        <input type="text" style="display: none" value="" name="tName" id="tid">
+        <input type="text" style="display: none" value="" name="tttName" id="tid">
         <input type="text" style="display: none" value="" name="wName" id="tid1">
-        <input type="text" style="display: none" value="${sId}" name="wName" id="tid3">
+        <input type="text" style="display: none" value="${sId}" name="aaaName" id="tid3">
+        <input type="text" style="display: none" value="${zjsj}" name="zjsjName" id="tid4">
+        <input type="text" style="display: none" value="${jg}" name="jgName" id="tid5">
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">事件名称:</b></span>
-        <span><b style="margin-left: 20%">灾区图片:</b></span>
+        <span><b style="margin-left: 35%">事件名称:${eventName}</b></span>
+        <span><b style="margin-left: 20%">灾区图片:${eventImg}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">时间:</b></span>
+        <span><b style="margin-left: 35%">时间:${eventDate}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">发生位置:</b></span>
+        <span><b style="margin-left: 35%">发生位置:${eventArea}</b></span>
     </div>
     <div style="margin-top: 30px">
-        <span><b style="margin-left: 35%">灾情描述:</b></span>
-        <span><b style="margin-left: 20%">影响面积:</b></span>
+        <span><b style="margin-left: 35%">灾情描述:${eventInfo}</b></span>
+        <span><b style="margin-left: 20%">影响面积:${eventPro}</b></span>
     </div>
     <div style="margin-top: 30px;margin-left: 30%">
         <div class="layui-form-item layui-form-text">
@@ -105,7 +107,7 @@
 <script src="layuiadmin/layui/layui.js"></script>
 
 <script>
-
+        alert($("#tid3").val())
     layui.config({
         base: 'layuiadmin/' //静态资源所在路径
     }).extend({
@@ -163,11 +165,14 @@
         $("#nid option").each(function () {
             tm+=$(this).val()+",";
         });
-       var tm2= tm.substring(0,tm.length-1);
-        $("#tid").val(tm2);
+        $("#tid").val(tm);
+        alert($("#tid").val());
+        alert($("#tid3").val());
         $("#tid1").val($("#tid2").val());
     });
 
 </script>
 </body>
 </html>
+
+

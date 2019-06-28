@@ -3,6 +3,7 @@ package com.lovo.disaster.specialist.service.impl;
 import com.lovo.disaster.db.GetSession;
 import com.lovo.disaster.specialist.bean.DoctorResult;
 import com.lovo.disaster.specialist.bean.SysDoctor;
+import com.lovo.disaster.specialist.bean.SysEvent;
 import com.lovo.disaster.specialist.dao.IResultDao;
 import com.lovo.disaster.specialist.dto.eventDto;
 import com.lovo.disaster.specialist.service.IResultService;
@@ -12,6 +13,38 @@ import java.util.List;
 import java.util.Map;
 
 public class ResultServiceImpl implements IResultService {
+    @Override
+    public void addDoctorResult(Map map) {
+        SqlSession session= GetSession.creatSession();
+        session.getMapper(IResultDao.class).addDoctorResult(map);
+        session.commit();
+        session.close();
+    }
+
+    @Override
+    public Integer findMax() {
+        SqlSession session= GetSession.creatSession();
+        int maxId= session.getMapper(IResultDao.class).findMax();
+        session.close();
+        return maxId;
+    }
+
+    @Override
+    public void addSpecialist(Map map) {
+        SqlSession session= GetSession.creatSession();
+        session.getMapper(IResultDao.class).addSpecialist(map);
+        session.commit();
+        session.close();
+    }
+
+    @Override
+    public SysEvent findByEventId(long eventId) {
+        SqlSession session= GetSession.creatSession();
+        SysEvent sysEvent= session.getMapper(IResultDao.class).findByEventId(eventId);
+        session.close();
+        return sysEvent;
+    }
+
     @Override
     public List<eventDto> find(Map map) {
         SqlSession session= GetSession.creatSession();
@@ -84,4 +117,6 @@ public class ResultServiceImpl implements IResultService {
         return list;
     }
 }
+
+
 

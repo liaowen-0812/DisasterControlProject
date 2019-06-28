@@ -56,3 +56,7 @@ public class eventDto {
         this.eventArea = eventArea;
     }
 }
+
+
+
+
