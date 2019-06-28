@@ -3,8 +3,10 @@ package com.lovo.disaster.specialist.dao;
 import com.lovo.disaster.specialist.bean.DoctorEvent;
 import com.lovo.disaster.specialist.bean.DoctorResult;
 import com.lovo.disaster.specialist.bean.SysDoctor;
+import com.lovo.disaster.specialist.bean.SysEvent;
 import com.lovo.disaster.specialist.dto.eventDto;
 
+import java.nio.channels.Pipe;
 import java.util.List;
 import java.util.Map;
 
@@ -41,23 +43,6 @@ public interface IResultDao {
      */
     public SysDoctor findById(int doctorId);
 
-    /**
-     * 添加专家事件
-     */
-    public void addDoctorEvent(DoctorEvent event);
-
-    /**
-     * 添加会商结果
-     */
-    public void addDoctorResult(DoctorResult result);
-
-    /**
-     * 添加会商专家
-     * @param doctor
-     */
-    public void addResultSpecialist(SysDoctor doctor);
-
-
 
 
     /**
@@ -83,4 +68,27 @@ public interface IResultDao {
      * @return
      */
     public List<SysDoctor> findDoctorName(long dId);
+
+    /**
+     * 添加会商结果
+     */
+    public void addDoctorResult(Map map);
+
+    /**
+     * 查询结果最大ID
+     */
+    public Integer findMax();
+
+    /**
+     * 添加专家和结果ID
+     * @param map
+     */
+    public void addSpecialist(Map map);
+
+    /**
+     * 根据ID查找事件对象
+     * @param eventId
+     * @return
+     */
+    public SysEvent findByEventId(long eventId);
 }

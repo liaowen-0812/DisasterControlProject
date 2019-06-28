@@ -181,7 +181,6 @@
 
     $("#bid2").click(function () {
         var checkId = $("#tableId input:checked").length;
-        alert(checkId)
         if(checkId==1){
             var tem="";
             $("#tableId input:checked").each(function () {
@@ -196,7 +195,6 @@
 
     $("#bid3").click(function () {
         var checkId = $("#tableId input:checked").length;
-        alert(checkId)
         if(checkId==1){
             var tem="";
             $("#tableId input:checked").each(function () {
@@ -211,7 +209,6 @@
 
     $("#bid4").click(function () {
         var checkId = $("#tableId input:checked").length;
-        alert(checkId)
         if(checkId==1){
             var tem="";
             $("#tableId input:checked").each(function () {

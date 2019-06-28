@@ -25,7 +25,7 @@
             <div class="layui-input-inline">
                 <label class="layui-form-label">专家姓名</label>
                 <div class="layui-input-inline">
-                    <input type="text" class="layui-input"  id="test-laydate-start-cn1" name="zName">
+                    <input type="text" class="layui-input" id="test-laydate-start-cn1" name="zName" >
                 </div>
                 <div class="layui-card layui-form" lay-filter="component-form-element">
                     <div class="layui-card-body layui-row layui-col-space10">
@@ -240,6 +240,56 @@
         })
 
     });
+
+    $("#test-laydate-start-cn1").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('姓名不能为空');
+        }
+    });
+    $("#test-laydate-last-cn").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('出生年月不能为空');
+        }
+    });
+    $("#test-laydate-start-cn2").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('专长不能为空');
+        }
+    });
+    $("#test-laydate-start-cn5").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('职务不能为空');
+        }
+    });
+    $("#test-laydate-start-cn3").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('电话不能为空');
+        }
+    });
+    $("#test-laydate-start-cn6").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('工作单位不能为空');
+        }
+    });
+    $("#test-laydate-start-cn4").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('通讯地址不能为空');
+        }
+    });
+    $("#test-laydate-start-cn7").blur(function () {
+        var name= $(this).val();
+        if(null==name || ""==name){
+            layer.msg('邮箱不能为空');
+        }
+    });
+
 </script>
 
 </body>

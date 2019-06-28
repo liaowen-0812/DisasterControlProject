@@ -37,4 +37,21 @@
     <select id="findDoctorName" resultType="sysDoctor">
           SELECT doctor_name doctorName FROM sys_doctor WHERE doctor_id=#{0}
     </select>
+
+
+    <insert id="addDoctorResult" parameterType="map">
+            INSERT INTO doctor_result(doctor_event_id,doctor_event_date,doctor_event_result)VALUES(#{zjsjName},#{date},#{wName})
+    </insert>
+    <select id="findMax" resultType="Integer">
+          SELECT MAX(result_id) FROM doctor_result
+    </select>
+    <insert id="addSpecialist">
+        INSERT INTO info_doctor(result_id,doctor_id)VALUES(#{maxId},#{doctorId})
+    </insert>
+
+
+    <select id="findByEventId" resultType="sysEvent">
+        SELECT event_name eventName,event_img_path eventImgPath,
+        event_date eventDate,event_info eventInfo,event_area eventArea FROM sys_event WHERE event_id=#{0}
+    </select>
 </mapper>

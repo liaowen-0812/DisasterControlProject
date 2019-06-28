@@ -12,38 +12,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddResultServlet extends HttpServlet {
     IResultService service=new ResultServiceImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setHeader("Content-type", "text/plain;charset=UTF-8");
-        String str=request.getParameter("tName");
+        //专家ID
+        String str=request.getParameter("tttName");
+        //事件ID
+        String str4=request.getParameter("aaaName");
+        //文本会商内容
         String str2=request.getParameter("wName");
+        //专家事件ID
+        String str3=request.getParameter("zjsjName");
+        //日期
         String date= DateUtils.getInternateDate("1");
-
-//        DoctorResult result=new DoctorResult();
-//        result.setDoctorEventDate(date);
-//        result.setDoctorEventResult(str2);
-//        result.setList(str);
-        String[] strings=str.split(",");
-        String str3="";
-        for (String s:strings) {
-          SysDoctor d=  service.findById(Integer.parseInt(s));
-          str3+=d.getDoctorName()+",";
+        //专家ID集合
+        String[] strArray=str.split(",");
+        Map<String,Object> map=new HashMap<>();
+        map.put("zjsjName",Integer.parseInt(str3));
+        map.put("date",date);
+        map.put("wName",str2);
+        service.addDoctorResult(map);
+        int maxId= service.findMax();
+        map.put("maxId",maxId);
+        for(int i=0;i<strArray.length;i++){
+            map.put("doctorId",Integer.parseInt(strArray[i]));
+            service.addSpecialist(map);
         }
-        String str4=str3.substring(0,str3.length()-1);
-        List<DoctorResult> list2=new ArrayList<>();
-        DoctorResult result=new DoctorResult();
-        //result.setList(str4);
-        result.setDoctorEventResult(str2);
-        result.setDoctorEventDate(date);
-        list2.add(result);
-       // request.setAttribute("rList",list2);
-        List<SysDoctor> list=service.findAll();
-        request.setAttribute("nameList",list);
-       request.getRequestDispatcher("webpage/specialistPage/addConsultSpecialistPage.jsp").forward(request,response);
+        request.setAttribute("textName",str4);
+       request.getRequestDispatcher("result.lovo").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
