@@ -91,4 +91,7 @@ public interface IResultDao {
      * @return
      */
     public SysEvent findByEventId(long eventId);
+
+
+
 }
